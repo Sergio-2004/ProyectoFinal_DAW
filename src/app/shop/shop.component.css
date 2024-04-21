@@ -1,0 +1,20 @@
+body{
+  background-color: blueviolet;
+}
+
+.slider-button{
+  background-color: #3b58a7;
+  border-radius: 50%;
+  border-color: #3b58a7;
+  width: 60px;
+  height: 60px;
+}
+
+.slider-btn-left{
+  position: relative;
+  right: -60px;
+}
+.slider-btn-right{
+  position: relative;
+  left: -60px;
+}

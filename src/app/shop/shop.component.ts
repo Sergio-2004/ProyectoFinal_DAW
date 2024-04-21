@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, ElementRef, NgModule, OnInit } from '@angular/core';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { AppComponent } from '../app.component';
 
@@ -9,9 +9,13 @@ import { AppComponent } from '../app.component';
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css'
 })
-export class ShopComponent{
-  constructor(){
+export class ShopComponent implements OnInit{
+  constructor(private elementRef: ElementRef){
 
+  }
+  ngOnInit(): void {
+    this.elementRef.nativeElement.ownerDocument
+            .body.style.backgroundColor = '#3b213b';
   }
   public images: Array<any> = [
     {
