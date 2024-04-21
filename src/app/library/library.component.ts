@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-library',
@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './library.component.html',
   styleUrl: './library.component.css'
 })
-export class LibraryComponent {
-
+export class LibraryComponent implements OnInit{
+  constructor(private elementRef: ElementRef){
+  }
+  ngOnInit(): void {
+    this.elementRef.nativeElement.ownerDocument
+            .body.style.backgroundColor = '#3b213b';
+  }
 }

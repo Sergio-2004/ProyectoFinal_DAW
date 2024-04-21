@@ -1,6 +1,21 @@
 body{
   background-color: blueviolet;
 }
+h1{
+  text-align: center;
+  padding: 40px;
+}
+*{
+  color: white;
+}
+.card{
+  background-color: blueviolet;
+}
+
+.right{
+  width: 100vw;
+  align-items: right;
+}
 
 .slider-button{
   background-color: #3b58a7;

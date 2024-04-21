@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-developer',
@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './developer.component.html',
   styleUrl: './developer.component.css'
 })
-export class DeveloperComponent {
-
+export class DeveloperComponent implements OnInit{
+  constructor(private elementRef: ElementRef){
+  }
+  ngOnInit(): void {
+    this.elementRef.nativeElement.ownerDocument
+            .body.style.backgroundColor = '#3b213b';
+  }
 }

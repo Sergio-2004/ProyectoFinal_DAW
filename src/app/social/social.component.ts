@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-social',
@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './social.component.html',
   styleUrl: './social.component.css'
 })
-export class SocialComponent {
-
+export class SocialComponent implements OnInit{
+  constructor(private elementRef: ElementRef){
+  }
+  ngOnInit(): void {
+    this.elementRef.nativeElement.ownerDocument
+            .body.style.backgroundColor = '#3b213b';
+  }
 }
