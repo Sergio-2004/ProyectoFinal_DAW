@@ -1,0 +1,24 @@
+@media all {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+  .nav-item:hover, .dropdown-item:hover{ background: rgb(80, 0, 100);}
+}
+li{
+  padding-top: 20px;
+  padding-bottom: 20px ;
+}
+a, a:hover{
+  color: white;
+}
+.right{
+  position: absolute;
+  right: 0;
+}
+nav, ul{
+  background-color: rgb(25, 0, 49);
+  padding: 0;
+}
+li+li{
+  margin-left: 5px;
+}
