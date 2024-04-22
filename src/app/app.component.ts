@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from './navigation/navigation.component';
+import { get } from 'jquery';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,15 @@ import { NavigationComponent } from './navigation/navigation.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'proyecto';
+
+  ngOnInit(): void {
+    this.getPost();
+  }
+
+  getPost(){
+    get('http://localhost/data.php')
+    .then((response) => console.log(response));
+  }
 }

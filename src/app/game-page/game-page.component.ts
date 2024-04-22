@@ -17,6 +17,9 @@ export class GamePageComponent implements OnInit {
 
   constructor(private _route: ActivatedRoute, private elementRef: ElementRef) { }
 
+  sessionService: SessionService = inject(SessionService);
+  gamesService: GamesService = inject(GamesService);
+  public games: Game[] = this.gamesService.getGamesList();
   public game!: Game;
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
@@ -29,8 +32,5 @@ export class GamePageComponent implements OnInit {
       }
     });
   }
-  sessionService: SessionService = inject(SessionService);
-  gamesService: GamesService = inject(GamesService);
-  public games: Game[] = this.gamesService.getGamesList();
 
 }
