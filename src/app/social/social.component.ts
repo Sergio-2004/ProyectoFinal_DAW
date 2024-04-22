@@ -14,4 +14,13 @@ export class SocialComponent implements OnInit{
     this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundColor = '#3b213b';
   }
+
+  public games: string[]=[
+    'Deliver To Whence You Came',
+    'Funny Business',
+    'Project Ambrosia',
+    'Dark Roast Cafè',
+    'Time Bandit',
+    'Rising Up'
+  ]
 }

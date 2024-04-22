@@ -8,6 +8,10 @@ h1{
 *{
   color: white;
 }
+.card-text{
+  height: 80px;
+  overflow: auto;
+}
 .card{
   background-color: blueviolet;
 }
@@ -32,4 +36,8 @@ h1{
 .slider-btn-right{
   position: relative;
   left: -60px;
+}
+
+div.search-box *{
+  color: black;
 }

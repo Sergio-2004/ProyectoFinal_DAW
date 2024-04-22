@@ -1,0 +1,14 @@
+@if(!getSession()){
+
+<div class="container d-flex flex-column w-25 mt-5">
+  <strong>Introduzca su nombre de usuario:</strong>
+  <input class="m-2" type="text" #user placeholder="Nombre de usuario">
+  <strong>Introduzca su contraseña:</strong>
+  <input class="m-2" type="password" #password placeholder="****">
+  <button class="m-2" (click)="setSession(user.value, password.value)">Iniciar Sesión</button>
+  <p>Si aún no tiene una cuenta, pulse <a href="sign-in">aqui</a></p>
+</div>
+<p style="color: red;">nota: Puede iniciar sesión como "UsuarioDePrueba" con la contraseña "1234"</p>
+}@else{
+  <p>Bienvenido, {{getSession()}}, ¡ya puede navegar por la página como guste!</p>
+}

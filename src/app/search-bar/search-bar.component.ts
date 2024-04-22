@@ -1,22 +1,15 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Game } from '../interfaces/game';
-import { GamePreviewComponent } from '../game-preview/game-preview.component';
-import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
 
 @Component({
-  selector: 'app-library',
+  selector: 'app-search-bar',
   standalone: true,
-  imports: [GamePreviewComponent, SessionInitRequireComponent],
-  templateUrl: './library.component.html',
-  styleUrl: './library.component.css'
+  imports: [],
+  templateUrl: './search-bar.component.html',
+  styleUrl: './search-bar.component.css'
 })
-export class LibraryComponent implements OnInit{
-  constructor(private elementRef: ElementRef){
-  }
-  ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-            .body.style.backgroundColor = '#3b213b';
-  }
+export class SearchBarComponent {
+
   public games: Game[] = [
     {
       name: 'Deliver To Whence You Came',
@@ -48,17 +41,21 @@ export class LibraryComponent implements OnInit{
       description: "Climb the Corporate Ladder... with Your Fists!",
       src: '../../assets/games/RU.png'
     },
-  ]
-  public selectedGame: Game = this.games[0];
+  ];
+  public filtered: Game[] = this.games;
+  @Output() newItemEvent = new EventEmitter();
 
-  getSession(){
-    console.log(sessionStorage.getItem('user'));
-    if(sessionStorage.getItem('user')){
-      console.log(true);
-      return sessionStorage.getItem('user');
-    }else{
-      console.log(false);
-      return false;
+  public filterResults(text: string) {
+    if (!text) {
+      return;
     }
+    this.filtered = [];
+
+    this.games.forEach(game => {
+      if(game.name.toLowerCase().includes(text.toLowerCase())){
+        this.filtered.push(game);
+      }
+    });
+    this.newItemEvent.emit(this.filtered);
   }
 }

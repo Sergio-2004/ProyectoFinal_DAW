@@ -1,10 +1,12 @@
 import { Component, ElementRef, NgModule, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
+import { Game } from '../interfaces/game';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-shop',
   standalone: true,
-  imports: [AppComponent],
+  imports: [AppComponent, SearchBarComponent],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css'
 })
@@ -15,52 +17,45 @@ export class ShopComponent implements OnInit{
     this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundColor = '#3b213b';
   }
-  public images: Array<any> = [
+  public games: Game[] = [
     {
-      src: '../../assets/config.svg',
-      alt: 'image 1'
+      name: 'Deliver To Whence You Came',
+      description: "Deliver the meal. Don't become one yourself. An open-ended puzzle platformer based around physics and AI",
+      src: '../../assets/games/DTWYC.png'
     },
     {
-      src: '../../assets/profile.svg',
-      alt: 'image 2'
+      name: 'Funny Business',
+      description: "Wow! It's your first day at your new job at the Funny Business™ joke factory. Over the course of a short corporate induction, you too can become a comedy genius!! \n Of course, who knows more about comedy (and the teaching thereof) than junior manager Stone Jones~",
+      src: '../../assets/games/FB.png'
     },
     {
-      src: '../../assets/honor-svgrepo-com.svg',
-      alt: 'image 3'
+      name: 'Project Ambrosia',
+      description: "From Nectarplasm Studios comes a brand spankin' new experience. PROJECT AMBROSIA is unlike anything you've ever seen, I promise. Currently a WIP (Work in Progress), PROJECT AMBROSIA is an exploration into the mind of Nectar J. Plasm, savant and entrepreneur (and sexy, sexy beast). ",
+      src: '../../assets/games/PA.png'
     },
     {
-      src: '../../assets/picture-svgrepo-com.svg',
-      alt: 'image 4'
+      name: 'Dark Roast Cafè',
+      description: "Summon demons to run your cozy little place!",
+      src: '../../assets/games/DRC.png'
     },
     {
-      src: '../../assets/table-of-contents-svgrepo-com.svg',
-      alt: 'image 5'
+      name: 'Time Bandit',
+      description: "A real-time adventure game with a dark secret. Uncover a capitalist conspiracy and steal back your time.",
+      src: '../../assets/games/TB.png'
     },
     {
-      src: '../../assets/browse-svgrepo-com.svg',
-      alt: 'image 6'
+      name: 'Rising Up',
+      description: "Climb the Corporate Ladder... with Your Fists!",
+      src: '../../assets/games/RU.png'
     },
-  ]
-  public nextImage():void{
-    this.images.push(this.images[0]);
-    this.images.splice(0, 1);
+  ];
+  public filtered: Game[] = this.games;
+  public nextGame():void{
+    this.games.push(this.games[0]);
+    this.games.splice(0, 1);
   }
-  public previousImage():void{
-    this.images.splice(0, 0, this.images[this.images.length - 1]);
-    this.images.pop();
-  }
-  filterResults(text: string) {
-    if (!text) {
-      return;
-    }
-    var filtered: string[] = [];
-
-    this.images.forEach(image => {
-      if(image.alt.toLowerCase().includes(text.toLowerCase())){
-        filtered.push(image.alt);
-      }
-    });
-    console.table(filtered)
-    return filtered;
+  public previousGame():void{
+    this.games.splice(0, 0, this.games[this.games.length - 1]);
+    this.games.pop();
   }
 }

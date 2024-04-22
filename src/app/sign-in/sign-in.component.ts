@@ -1,16 +1,17 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
 
 @Component({
-  selector: 'app-developer',
+  selector: 'app-sign-in',
   standalone: true,
-  imports: [SessionInitRequireComponent],
-  templateUrl: './developer.component.html',
-  styleUrl: './developer.component.css'
+  imports: [],
+  templateUrl: './sign-in.component.html',
+  styleUrl: './sign-in.component.css'
 })
-export class DeveloperComponent implements OnInit{
+export class SignInComponent implements OnInit{
+
   constructor(private elementRef: ElementRef){
   }
+
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundColor = '#3b213b';
@@ -25,5 +26,8 @@ export class DeveloperComponent implements OnInit{
       console.log(false);
       return false;
     }
+  }
+  createUser(user: string, password1: string,  password2: string){
+    sessionStorage.setItem('user', user);
   }
 }

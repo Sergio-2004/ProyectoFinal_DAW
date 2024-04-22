@@ -1,1 +1,10 @@
 <p>social works!</p>
+
+<div class="container d-flex flex-column">
+  <h1>Foros más visitados</h1>
+  <ul>
+    @for (game of games; track $index) {
+    <li><a href="forum/{{game}}">{{game}}</a></li>
+    }
+  </ul>
+</div>

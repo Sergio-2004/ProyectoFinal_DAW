@@ -1,22 +1,20 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Game } from '../interfaces/game';
-import { GamePreviewComponent } from '../game-preview/game-preview.component';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
 
 @Component({
-  selector: 'app-library',
+  selector: 'app-game-page',
   standalone: true,
-  imports: [GamePreviewComponent, SessionInitRequireComponent],
-  templateUrl: './library.component.html',
-  styleUrl: './library.component.css'
+  imports: [SearchBarComponent, SessionInitRequireComponent],
+  templateUrl: './game-page.component.html',
+  styleUrl: './game-page.component.css'
 })
-export class LibraryComponent implements OnInit{
-  constructor(private elementRef: ElementRef){
-  }
-  ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-            .body.style.backgroundColor = '#3b213b';
-  }
+export class GamePageComponent implements OnInit {
+
+  constructor(private _route: ActivatedRoute, private elementRef: ElementRef) { }
+
   public games: Game[] = [
     {
       name: 'Deliver To Whence You Came',
@@ -49,8 +47,19 @@ export class LibraryComponent implements OnInit{
       src: '../../assets/games/RU.png'
     },
   ]
-  public selectedGame: Game = this.games[0];
 
+  public game!: Game;
+  ngOnInit(): void {
+    this.elementRef.nativeElement.ownerDocument
+    .body.style.backgroundColor = '#3b213b';
+
+    this.games.forEach(game => {
+      if(game.name === this._route.snapshot.params['name']){
+        this.game = game;
+        return;
+      }
+    });
+  }
   getSession(){
     console.log(sessionStorage.getItem('user'));
     if(sessionStorage.getItem('user')){
@@ -61,4 +70,5 @@ export class LibraryComponent implements OnInit{
       return false;
     }
   }
+
 }

@@ -1,0 +1,18 @@
+@if(!getSession()){
+
+  <div class="container d-flex flex-column w-25 mt-5">
+    <strong>Introduzca su nombre de usuario:</strong>
+    <input class="m-2" type="text" #user placeholder="Nombre de usuario">
+    <strong>Introduzca su contraseña:</strong>
+    <input class="m-2" type="password" #password1 placeholder="****">
+    <strong>Repita su contraseña:</strong>
+    <input class="m-2" type="password" #password2 placeholder="****">
+    <button class="m-2" (click)="createUser(user.value, password1.value, password2.value)">Iniciar Sesión</button>
+    <p>Si ya tiene una cuenta, pulse <a href="log-in">aqui</a></p>
+  </div>
+  }@else{
+    <p>Bienvenido, {{getSession()}}, ¡ya puede navegar por la página como guste!</p>
+  }
+
+  <p style="color: red;">Nota: Este usuario no ha sido insertado en ninguna base de datos, por lo que no permanecerá una vez se cierre sesión</p>
+  <p style="color: red;">Esta página solo sirve para mostrar como será en un futuro la funcionalidad</p>

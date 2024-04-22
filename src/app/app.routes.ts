@@ -5,6 +5,9 @@ import { SocialComponent } from './social/social.component';
 import { DeveloperComponent } from './developer/developer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ConfigComponent } from './config/config.component';
+import { GamePageComponent } from './game-page/game-page.component';
+import { LogInComponent } from './log-in/log-in.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 export const routes: Routes = [
   {
@@ -31,5 +34,17 @@ export const routes: Routes = [
   {
     path: 'config',
     component: ConfigComponent
+  },
+  {
+    path: 'game-page/:name',
+    component: GamePageComponent
+  },
+  {
+    path: 'log-in',
+    component: LogInComponent
+  },
+  {
+    path: 'sign-in',
+    component: SignInComponent
   },
 ];
