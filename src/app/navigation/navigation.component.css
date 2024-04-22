@@ -22,3 +22,6 @@ nav, ul{
 li+li{
   margin-left: 5px;
 }
+.logo img{
+  margin: auto;
+}
