@@ -1,4 +1,4 @@
-@if(!getSession()){
+@if(!sessionService.getSession()){
 
   <div class="container d-flex flex-column w-25 mt-5">
     <strong>Introduzca su nombre de usuario:</strong>
@@ -7,11 +7,16 @@
     <input class="m-2" type="password" #password1 placeholder="****">
     <strong>Repita su contraseña:</strong>
     <input class="m-2" type="password" #password2 placeholder="****">
-    <button class="m-2" (click)="createUser(user.value, password1.value, password2.value)">Iniciar Sesión</button>
+    @if(notSamePassword){
+      <p style="color: red;">Las contraseñas no coinciden</p>
+    }
+    <button class="m-2" (click)="notSamePassword = !sessionService.createUser(user.value, password1.value, password2.value)">Crear Usuario</button>
     <p>Si ya tiene una cuenta, pulse <a href="log-in">aqui</a></p>
   </div>
   }@else{
-    <p>Bienvenido, {{getSession()}}, ¡ya puede navegar por la página como guste!</p>
+    <div class="container d-flex flex-column mt-5">
+      <h1>Bienvenido, {{sessionService.getSession()}}<br> ¡ya puede navegar por la página como guste!</h1>
+    </div>
   }
 
   <p style="color: red;">Nota: Este usuario no ha sido insertado en ninguna base de datos, por lo que no permanecerá una vez se cierre sesión</p>

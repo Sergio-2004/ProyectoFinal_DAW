@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,14 +16,5 @@ export class ProfileComponent implements OnInit{
     this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundColor = '#3b213b';
   }
-  getSession(){
-    if(sessionStorage.getItem("user")){
-      return sessionStorage.getItem("user");
-    }else{
-      return false;
-    }
-  }
-  closeSession(){
-    sessionStorage.removeItem("user");
-  }
+  sessionService: SessionService = inject(SessionService);
 }

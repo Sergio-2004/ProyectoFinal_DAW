@@ -7,7 +7,7 @@
   <p>{{game.description}}</p>
 
 
-  @if(getSession()){
+  @if(sessionService.getSession()){
   <button class="btn btn-success">
     Descargar
   </button>

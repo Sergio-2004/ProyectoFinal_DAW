@@ -8,6 +8,7 @@ import { ConfigComponent } from './config/config.component';
 import { GamePageComponent } from './game-page/game-page.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { ForumComponent } from './forum/forum.component';
 
 export const routes: Routes = [
   {
@@ -46,5 +47,9 @@ export const routes: Routes = [
   {
     path: 'sign-in',
     component: SignInComponent
+  },
+  {
+    path: 'forum/:name',
+    component: ForumComponent
   },
 ];

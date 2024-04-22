@@ -1,4 +1,4 @@
-@if(!getSession()){
+@if(!sessionService.getSession()){
   <app-session-init-require></app-session-init-require>
 }@else {
   <div class="d-flex">

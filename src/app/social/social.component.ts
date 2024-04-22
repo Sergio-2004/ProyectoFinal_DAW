@@ -1,4 +1,6 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, inject } from '@angular/core';
+import { GamesService } from '../services/game/games.service';
+import { Game } from '../interfaces/game';
 
 @Component({
   selector: 'app-social',
@@ -15,12 +17,7 @@ export class SocialComponent implements OnInit{
             .body.style.backgroundColor = '#3b213b';
   }
 
-  public games: string[]=[
-    'Deliver To Whence You Came',
-    'Funny Business',
-    'Project Ambrosia',
-    'Dark Roast Cafè',
-    'Time Bandit',
-    'Rising Up'
-  ]
+  private gamesService: GamesService = inject(GamesService);
+  public games: Game[] = this.gamesService.getGamesList();
+
 }

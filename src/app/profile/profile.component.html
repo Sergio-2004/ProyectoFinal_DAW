@@ -1,7 +1,7 @@
-@if(!getSession()){
+@if(!sessionService.getSession()){
   <app-session-init-require></app-session-init-require>
 }@else {
   <div class="container d-flex flex-column w-25">
-    <button (click)="closeSession()">Cerrar Sesión</button>
+    <button (click)="sessionService.closeSession()">Cerrar Sesión</button>
   </div>
 }
