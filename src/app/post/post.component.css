@@ -1,0 +1,29 @@
+*{
+  color: white;
+}
+h1{
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.list-group-item{
+  background-color: rgb(34, 0, 66);
+  border: none;
+  border-radius: 0;
+  margin-top: 10px;
+}
+
+textarea{
+  color: black;
+}
+.post{
+  background-color: rgb(19, 0, 44);
+  margin-top: 20px;
+  margin-bottom: 100px;
+  padding-bottom: 50px;
+  padding-left: 10px;
+}
+.comments{
+  background-color: rgb(19, 0, 44);
+  padding: 10px;
+}

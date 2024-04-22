@@ -9,6 +9,7 @@ import { GamePageComponent } from './game-page/game-page.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ForumComponent } from './forum/forum.component';
+import { PostComponent } from './post/post.component';
 
 export const routes: Routes = [
   {
@@ -51,5 +52,9 @@ export const routes: Routes = [
   {
     path: 'forum/:name',
     component: ForumComponent
+  },
+  {
+    path: 'forum/:name/:title',
+    component: PostComponent
   },
 ];

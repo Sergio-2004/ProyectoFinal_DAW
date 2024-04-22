@@ -1,9 +1,9 @@
 
 <div class="container">
   <h1>{{game.name}}</h1>
-
-  <img class="banner" src="{{game.src}}" width="200px">
-
-  <p>{{game.description}}</p>
-
+  <ul class="list-group">
+    @for (post of posts; track $index) {
+    <a href="forum/{{game.name}}/{{post.title}}"><li class="list-group-item">{{post.title}}</li></a>
+    }
+  </ul>
 </div>
