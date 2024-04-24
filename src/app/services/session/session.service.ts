@@ -9,18 +9,14 @@ export class SessionService {
 
   setSession(user: string, password: string){
     if(user === "UsuarioDePrueba" && password === "1234"){
-      console.log("seted")
       sessionStorage.setItem('user', user);
     }
   }
 
   getSession(){
-    console.log(sessionStorage.getItem('user'));
     if(sessionStorage.getItem('user')){
-      console.log(true);
       return sessionStorage.getItem('user');
     }else{
-      console.log(false);
       return false;
     }
   }

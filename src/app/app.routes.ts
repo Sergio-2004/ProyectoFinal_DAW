@@ -10,13 +10,18 @@ import { LogInComponent } from './log-in/log-in.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ForumComponent } from './forum/forum.component';
 import { PostComponent } from './post/post.component';
+import { ParameterComponent } from './parameter/parameter.component';
 
 export const routes: Routes = [
   {
     path: 'shop',
     component: ShopComponent
   },
-
+  {
+    path: '',
+    redirectTo: 'shop',
+    pathMatch: 'full'
+  },
   {
     path: 'library',
     component: LibraryComponent
@@ -56,5 +61,9 @@ export const routes: Routes = [
   {
     path: 'forum/:name/:title',
     component: PostComponent
+  },
+  {
+    path: 'parameter/:name',
+    component: ParameterComponent
   },
 ];

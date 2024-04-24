@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
 import { SessionService } from '../services/session/session.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -17,4 +18,24 @@ export class ProfileComponent implements OnInit{
             .body.style.backgroundColor = '#3b213b';
   }
   sessionService: SessionService = inject(SessionService);
+
+  fileName?: any;
+  file?: File;
+
+
+  onSave(event: any){
+    const file:File = event.target.files[0];
+
+    if (file) {
+
+        this.fileName = file.name;
+
+        this.file = file;
+        console.log(this.file);
+
+        const formData = new FormData();
+
+        formData.append("thumbnail", file);
+    }
+  }
 }

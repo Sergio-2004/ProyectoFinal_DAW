@@ -1,5 +1,8 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
+import { GamesService } from '../services/game/games.service';
+import { Game } from '../interfaces/game';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-developer',
@@ -16,14 +19,30 @@ export class DeveloperComponent implements OnInit{
             .body.style.backgroundColor = '#3b213b';
   }
 
-  getSession(){
-    console.log(sessionStorage.getItem('user'));
-    if(sessionStorage.getItem('user')){
-      console.log(true);
-      return sessionStorage.getItem('user');
-    }else{
-      console.log(false);
-      return false;
-    }
+  sessionService: SessionService = inject(SessionService);
+  private gamesService: GamesService = inject(GamesService);
+  public games: Game[] = this.gamesService.getGamesList();
+  public selectedGame: Game = this.games[0];
+
+
+  dataList= {
+    gameName: 'Time Bandit',
+    parameters: [
+      {
+        name: 'playtime',
+        data: 20.42,
+        dataCount: 200
+      },
+      {
+        name: 'gotSuperSword',
+        data: 100,
+        dataCount: 200
+      },
+      {
+        name: 'timesDeath',
+        data: 857,
+        dataCount: 200
+      },
+    ]
   }
 }
