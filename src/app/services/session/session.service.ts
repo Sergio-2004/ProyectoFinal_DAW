@@ -7,18 +7,12 @@ export class SessionService {
 
   constructor() { }
 
-  setSession(user: string, password: string){
-    if(user === "UsuarioDePrueba" && password === "1234"){
-      sessionStorage.setItem('user', user);
-    }
+  setSession(user: string){
+    sessionStorage.setItem('user', user);
   }
 
   getSession(){
-    if(sessionStorage.getItem('user')){
-      return sessionStorage.getItem('user');
-    }else{
-      return false;
-    }
+    return sessionStorage.getItem('user');
   }
 
   closeSession(){

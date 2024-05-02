@@ -2,8 +2,10 @@
   <app-session-init-require></app-session-init-require>
 }@else {
   <div class="container d-flex flex-column w-25">
-    <input type="file" class="file-upload" (change)="onSave($event)" placeholder="Introduzca una imagen" width="100px" height="100px">
-    <button>Cambiar foto de perfil</button>
+    <img [src]="imageUrl" alt="Imagen">
+    <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+    <button (click)="fileInput.click()">Seleccionar imagen</button>
+    <button (click)="uploadImage()">Subir imagen</button>
 
     <button (click)="sessionService.closeSession()">Cerrar Sesión</button>
 

@@ -7,6 +7,7 @@
     <input class="m-2" type="password" #password1 placeholder="****">
     <strong>Repita su contraseña:</strong>
     <input class="m-2" type="password" #password2 placeholder="****">
+    <button (click)="EULAPopup()">Mostrar Eula</button>
     @if(notSamePassword){
       <p style="color: red;">Las contraseñas no coinciden</p>
     }
