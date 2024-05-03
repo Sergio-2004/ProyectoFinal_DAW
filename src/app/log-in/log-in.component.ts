@@ -1,7 +1,6 @@
-import { AuthService } from '../services/auth/auth.service';
 import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { SessionService } from '../services/session/session.service';
-import { get } from 'jquery';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-log-in',
@@ -12,7 +11,7 @@ import { get } from 'jquery';
 })
 export class LogInComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef){
+  constructor(private elementRef: ElementRef, private http: HttpClient){
   }
 
   sessionService: SessionService = inject(SessionService);
@@ -24,23 +23,21 @@ export class LogInComponent implements OnInit {
 
 
   login(username: string, password: string){
-    get('http://localhost/login.php',  { "username": username, "password": password })
-    .then((response) => {
+    this.http.get<any>('http://localhost/login.php',  { params: { "username": username, "password": password }})
+    .subscribe((response) => {
       console.log(response)
-      switch (response){
-        case '{"message":"No username by that name"}':
-          alert("No username by that name");
+      switch (response.message){
+        case "No username by that name":
           break;
-        case '{"message":"Incorrect password"}':
-          alert("Incorrect password");
+        case "Incorrect password":
           break;
-        case '{"message":"Registration successful"}':
-          alert("Registration successful");
-          this.sessionService.setSession(username);
+        case "Registration successful":
+          this.sessionService.setSession(response.user_id);
           break;
         default:
           break;
       }
+      alert(response.message);
     });
   }
 

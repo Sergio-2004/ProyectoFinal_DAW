@@ -33,14 +33,14 @@ export class ProfileComponent implements OnInit{
       return;
     }
 
-    const username = this.sessionService.getSession();
-    if (username === null) {
-      console.error('Username is null');
+    const user_id = this.sessionService.getSession();
+    if (user_id === null) {
+      console.error('user_id is null');
       return;
     }
 
     const formData = new FormData();
-    formData.append('username', username);
+    formData.append('user_id', user_id);
     formData.append('picture', this.selectedFile);
 
     this.http.post('http://localhost/uploadPicture.php', formData)
@@ -57,14 +57,13 @@ export class ProfileComponent implements OnInit{
   imageUrl!: string;
 
   getImage() {
-    const username = this.sessionService.getSession();
-    if (username === null) {
-      console.error('Username is null');
+    const user_id = this.sessionService.getSession();
+    if (user_id === null) {
+      console.error('user_id is null');
       return;
     }
-    const url = `http://localhost/getPicture.php?username=${username}`;
     // Realiza la solicitud GET para obtener la imagen
-    this.http.get(url, { params:{"username":username}, responseType: 'blob' }).subscribe(
+    this.http.get('http://localhost/getPicture.php', { params:{"user_id":user_id}, responseType: 'blob' }).subscribe(
       (response: Blob) => {
         const reader = new FileReader();
         reader.onload = (event: any) => {
