@@ -2,7 +2,6 @@ import { Component, ElementRef, inject, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { Game } from '../interfaces/game';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { GamesService } from '../services/game/games.service';
 
 @Component({
   selector: 'app-shop',
@@ -13,8 +12,7 @@ import { GamesService } from '../services/game/games.service';
 })
 export class ShopComponent implements OnInit{
 
-  private gamesService: GamesService = inject(GamesService);
-  public games: Game[] = this.gamesService.getGamesList();
+  public games!: Game[];
   public filtered: Game[] = this.games;
 
   constructor(private elementRef: ElementRef){

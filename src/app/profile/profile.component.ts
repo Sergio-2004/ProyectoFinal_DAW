@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
 import { SessionService } from '../services/session/session.service';
 import { HttpClient } from '@angular/common/http';
+import { UserDataService } from '../services/session/userData.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,11 +13,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit{
 
-  constructor(private elementRef: ElementRef, private http: HttpClient){}
+  constructor(private elementRef: ElementRef, private http: HttpClient, private data:UserDataService){
+    this.data.currentImageUrl.subscribe(imageUrl => {
+      this.imageUrl = imageUrl;
+    })
+  }
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundColor = '#3b213b';
-    this.getImage();
+    this.sessionService.getImage();
   }
   sessionService: SessionService = inject(SessionService);
 
@@ -46,7 +51,7 @@ export class ProfileComponent implements OnInit{
     this.http.post('http://localhost/uploadPicture.php', formData)
       .subscribe(response => {
         console.log('Image uploaded successfully:', response);
-        this.getImage();
+        this.sessionService.getImage();
       }, error => {
         console.error('Error uploading image:', error);
       });
@@ -55,25 +60,4 @@ export class ProfileComponent implements OnInit{
   }
 
   imageUrl!: string;
-
-  getImage() {
-    const user_id = this.sessionService.getSession();
-    if (user_id === null) {
-      console.error('user_id is null');
-      return;
-    }
-    // Realiza la solicitud GET para obtener la imagen
-    this.http.get('http://localhost/getPicture.php', { params:{"user_id":user_id}, responseType: 'blob' }).subscribe(
-      (response: Blob) => {
-        const reader = new FileReader();
-        reader.onload = (event: any) => {
-          this.imageUrl = event.target.result;
-        };
-        reader.readAsDataURL(response);
-      },
-      error => {
-        console.error('Error al obtener la imagen:', error);
-      }
-    );
-  }
 }

@@ -1,6 +1,5 @@
 import { Component, ElementRef, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GamesService } from '../services/game/games.service';
 import { Game } from '../interfaces/game';
 
 @Component({
@@ -14,8 +13,7 @@ export class ForumComponent {
 
   constructor(private _route: ActivatedRoute, private elementRef: ElementRef) { }
 
-  gamesService: GamesService = inject(GamesService);
-  public games: Game[] = this.gamesService.getGamesList();
+  public games!: Game[];
   public game!: Game;
 
   public posts = [

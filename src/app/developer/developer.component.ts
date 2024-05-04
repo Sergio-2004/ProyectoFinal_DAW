@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
-import { GamesService } from '../services/game/games.service';
 import { Game } from '../interfaces/game';
 import { SessionService } from '../services/session/session.service';
 
@@ -20,8 +19,7 @@ export class DeveloperComponent implements OnInit{
   }
 
   sessionService: SessionService = inject(SessionService);
-  private gamesService: GamesService = inject(GamesService);
-  public games: Game[] = this.gamesService.getGamesList();
+  public games!: Game[];
   public selectedGame: Game = this.games[0];
 
 

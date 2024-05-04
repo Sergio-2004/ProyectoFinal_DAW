@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Game } from '../interfaces/game';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
-import { GamesService } from '../services/game/games.service';
 import { SessionService } from '../services/session/session.service';
 
 @Component({
@@ -18,8 +17,7 @@ export class GamePageComponent implements OnInit {
   constructor(private _route: ActivatedRoute, private elementRef: ElementRef) { }
 
   sessionService: SessionService = inject(SessionService);
-  gamesService: GamesService = inject(GamesService);
-  public games: Game[] = this.gamesService.getGamesList();
+  public games!: Game[];
   public game!: Game;
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument

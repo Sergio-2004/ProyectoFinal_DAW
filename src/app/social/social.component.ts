@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, inject } from '@angular/core';
-import { GamesService } from '../services/game/games.service';
 import { Game } from '../interfaces/game';
 
 @Component({
@@ -16,8 +15,6 @@ export class SocialComponent implements OnInit{
     this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundColor = '#3b213b';
   }
-
-  private gamesService: GamesService = inject(GamesService);
-  public games: Game[] = this.gamesService.getGamesList();
+  public games?: Game[];
 
 }
