@@ -38,14 +38,14 @@ export class ProfileComponent implements OnInit{
       return;
     }
 
-    const user_id = this.sessionService.getSession();
+    const user_id = this.sessionService.getSession()!.id;
     if (user_id === null) {
       console.error('user_id is null');
       return;
     }
 
     const formData = new FormData();
-    formData.append('user_id', user_id);
+    formData.append('user_id', user_id.toString());
     formData.append('picture', this.selectedFile);
 
     this.http.post('http://localhost/uploadPicture.php', formData)

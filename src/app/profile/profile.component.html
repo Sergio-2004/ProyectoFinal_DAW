@@ -2,7 +2,7 @@
   <app-session-init-require></app-session-init-require>
 }@else {
   <div class="container d-flex flex-column w-25">
-    <img [src]="imageUrl" alt="Imagen">
+    <img [src]="sessionService.getSession()?.picture" alt="Imagen">
     <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
     <button (click)="fileInput.click()">Seleccionar imagen</button>
     <button (click)="uploadImage()">Subir imagen</button>

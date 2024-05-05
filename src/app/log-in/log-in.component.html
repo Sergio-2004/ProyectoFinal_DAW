@@ -7,7 +7,6 @@
   <button class="m-2" (click)="login(username.value, password.value)">Iniciar Sesión</button>
   <p>Si aún no tiene una cuenta, pulse <a href="sign-in">aqui</a></p>
 </div>
-<p style="color: red;">nota: Puede iniciar sesión como "UsuarioDePrueba" con la contraseña "1234"</p>
 }@else{
   <h1>Bienvenido, {{sessionService.getSession()}}<br> ¡ya puede navegar por la página como guste!</h1>
 }

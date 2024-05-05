@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserDataService } from '../services/session/userData.service';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-navigation',
@@ -12,10 +13,8 @@ export class NavigationComponent {
 
   imageUrl: string = '../../assets/profile.svg';
 
-  constructor(private data:UserDataService) {
-    this.data.currentImageUrl.subscribe(imageUrl => {
-      this.imageUrl = imageUrl;
-    })
-  }
+  constructor() {}
+
+  sessionService: SessionService = inject(SessionService);
 
 }

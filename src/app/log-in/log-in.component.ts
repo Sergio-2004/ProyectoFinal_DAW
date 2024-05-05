@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { SessionService } from '../services/session/session.service';
 import { HttpClient } from '@angular/common/http';
 import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
+import { UserDataService } from '../services/session/userData.service';
 
 @Component({
   selector: 'app-log-in',
@@ -12,9 +13,8 @@ import { SessionInitRequireComponent } from '../session-init-require/session-ini
 })
 export class LogInComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef, private http: HttpClient){
+  constructor(private elementRef: ElementRef, private http: HttpClient, private data:UserDataService){
   }
-
   sessionService: SessionService = inject(SessionService);
 
   ngOnInit(): void {
@@ -33,7 +33,10 @@ export class LogInComponent implements OnInit {
         case "Incorrect password":
           break;
         case "Registration successful":
-          this.sessionService.setSession(response.user_id);
+          this.sessionService.setSession(response.user);
+          console.log(response.user);
+          console.log(this.sessionService.getSession());
+          this.sessionService.getImage();
           break;
         default:
           break;

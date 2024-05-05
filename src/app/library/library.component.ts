@@ -32,6 +32,6 @@ export class LibraryComponent implements OnInit{
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundColor = '#3b213b';
-    this.gameData.fetchLibrary(parseInt(this.sessionService.getSession()!));
+    this.gameData.fetchLibrary(this.sessionService.getSession()!.id);
   }
 }

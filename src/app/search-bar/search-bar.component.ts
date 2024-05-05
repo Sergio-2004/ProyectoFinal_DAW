@@ -30,7 +30,7 @@ export class SearchBarComponent {
       return;
     }
     this.filtered = [];
-    this.filtered = this.games.filter(game => game.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()));
+    this.filtered = this.games.filter(game => game.name.toLocaleLowerCase().startsWith(text.toLocaleLowerCase()));
   }
 
   searchFiltered(){
