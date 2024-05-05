@@ -1,7 +1,8 @@
-<div class="container">
+@if(game){
+  <div class="container">
     <h1>{{game.name}}</h1>
 
-    <img class="banner" src="{{game.src}}" width="200px">
+    <img class="banner" src="{{game.game_cover}}" width="200px">
 
     <p>{{game.description}}</p>
 
@@ -10,4 +11,5 @@
       Jugar
     </button>
   </div>
+}
 

@@ -9,6 +9,5 @@ import { Game } from '../interfaces/game';
   styleUrl: './game-preview.component.css'
 })
 export class GamePreviewComponent {
-  @Input()
-  public game!: Game;
+  @Input() game?: Game;
 }

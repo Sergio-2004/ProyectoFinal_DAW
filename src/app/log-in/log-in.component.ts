@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { SessionService } from '../services/session/session.service';
 import { HttpClient } from '@angular/common/http';
+import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
 
 @Component({
   selector: 'app-log-in',
   standalone: true,
-  imports: [],
+  imports: [SessionInitRequireComponent],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css'
 })
@@ -23,7 +24,7 @@ export class LogInComponent implements OnInit {
 
 
   login(username: string, password: string){
-    this.http.get<any>('http://localhost/login.php',  { params: { "username": username, "password": password }})
+    this.http.get<any>('http://localhost/ProyectoFinal_DAW/HTMLRequests/login.php',  { params: { "username": username, "password": password }})
     .subscribe((response) => {
       console.log(response)
       switch (response.message){

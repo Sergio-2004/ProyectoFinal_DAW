@@ -1,4 +1,16 @@
 <div class="search-box right d-flex justify-content-end p-5">
-  <input size="40" type="text" placeholder="Busca un juego!" #filter>
-  <button class="primary" type="button" (click)="filterResults(filter.value)">Buscar</button>
+  <div>
+  <input size="40" type="text" placeholder="Busca un juego!" #filter (input)="filterResults(filter.value)" (focus)="onFocus()" (blur)="onBlur()">
+  <button class="primary" type="button" (click)="searchFiltered()">Buscar</button>
+
+  @if(show){
+    <ul class="row" style="position: absolute; z-index: 10; list-style:none; padding: 0;">
+      @for (game of filtered; track $index) {
+        <a style="text-decoration: none; color: white;" href="game-page/{{game.name}}">
+          <li style="width: 336px; background-color: rgb(33, 0, 48); padding: 5px;">{{game.name}}</li>
+        </a>
+      }
+      </ul>
+  }
+  </div>
 </div>
