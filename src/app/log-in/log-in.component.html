@@ -4,9 +4,9 @@
   <input class="m-2" type="text" #username placeholder="Nombre de usuario">
   <strong>Introduzca su contraseña:</strong>
   <input class="m-2" type="password" #password placeholder="****">
-  <button class="m-2" (click)="login(username.value, password.value)">Iniciar Sesión</button>
+  <button class="m-2" (click)="logIn(username.value, password.value)">Iniciar Sesión</button>
   <p>Si aún no tiene una cuenta, pulse <a href="sign-in">aqui</a></p>
 </div>
 }@else{
-  <h1>Bienvenido, {{sessionService.getSession()}}<br> ¡ya puede navegar por la página como guste!</h1>
+  <h1>Bienvenido, {{sessionService.getSession()?.username}}<br> ¡ya puede navegar por la página como guste!</h1>
 }

@@ -23,8 +23,8 @@ export class LogInComponent implements OnInit {
   }
 
 
-  login(username: string, password: string){
-    this.http.get<any>('http://localhost/ProyectoFinal_DAW/HTMLRequests/login.php',  { params: { "username": username, "password": password }})
+  logIn(username: string, password: string){
+    this.http.get<any>('http://localhost/ProyectoFinal_DAW/HTMLRequests/logIn.php',  { params: { "username": username, "password": password }})
     .subscribe((response) => {
       console.log(response)
       switch (response.message){

@@ -47,7 +47,7 @@ export class SessionService {
       return;
     }
     // Realiza la solicitud GET para obtener la imagen
-    this.http.get('http://localhost/getPicture.php', { params:{"user_id": user_id}, responseType: 'blob' })
+    this.http.get('http://localhost/ProyectoFinal_DAW/HTMLRequests/getPicture.php', { params:{"user_id": user_id}, responseType: 'blob' })
     .subscribe(
       (response: Blob) => {
         const reader = new FileReader();
@@ -55,7 +55,7 @@ export class SessionService {
           //this.data.changeImageUrl(event.target.result);
           this.setSession({
             id: this.getSession()!.id,
-            name: this.getSession()!.name,
+            username: this.getSession()!.username,
             description: this.getSession()!.description,
             picture: event.target.result
           });

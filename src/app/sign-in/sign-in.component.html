@@ -7,16 +7,19 @@
     <input class="m-2" type="password" #password1 placeholder="****">
     <strong>Repita su contraseña:</strong>
     <input class="m-2" type="password" #password2 placeholder="****">
-    <button (click)="EULAPopup()">Mostrar Eula</button>
+    <div>
+      <input class="m-2" type="checkbox" #checkbox>
+      Aceptar eula Eula, <a class="eula" (click)="EULAPopup()">pulse aqui para leerlo</a>
+    </div>
     @if(notSamePassword){
       <p style="color: red;">Las contraseñas no coinciden</p>
     }
-    <button class="m-2" (click)="notSamePassword = !sessionService.createUser(user.value, password1.value, password2.value)">Crear Usuario</button>
+    <button class="m-2" (click)="signIn(user.value, password1.value)">Crear Usuario</button>
     <p>Si ya tiene una cuenta, pulse <a href="log-in">aqui</a></p>
   </div>
   }@else{
     <div class="container d-flex flex-column mt-5">
-      <h1>Bienvenido, {{sessionService.getSession()}}<br> ¡ya puede navegar por la página como guste!</h1>
+      <h1>Bienvenido, {{sessionService.getSession()?.username}}<br> ¡ya puede navegar por la página como guste!</h1>
     </div>
   }
 

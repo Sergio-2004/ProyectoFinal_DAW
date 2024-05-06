@@ -4,3 +4,11 @@
 input, button{
   color: black;
 }
+
+.eula{
+  text-decoration: underline;
+}
+
+.eula:hover{
+  cursor: pointer;
+}

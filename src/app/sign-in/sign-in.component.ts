@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { SessionService } from '../services/session/session.service';
+import { HttpClient } from '@angular/common/http';
+import { UserDataService } from '../services/session/userData.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,16 +12,15 @@ import { SessionService } from '../services/session/session.service';
 })
 export class SignInComponent implements OnInit{
 
-  constructor(private elementRef: ElementRef){
-  }
+  constructor(private elementRef: ElementRef, private http: HttpClient, private data:UserDataService){}
+
+  public notSamePassword: boolean = false;
+  sessionService: SessionService = inject(SessionService);
 
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundColor = '#3b213b';
   }
-
-  public notSamePassword: boolean = false;
-  sessionService: SessionService = inject(SessionService);
 
   EULAPopup(){
     var externalWindow = null;
@@ -80,5 +81,27 @@ export class SignInComponent implements OnInit{
     <p>Al utilizar nuestra plataforma, aceptas estas condiciones de uso. Si tienes alguna pregunta o inquietud sobre estas condiciones, no dudes en contactarnos. Te agradecemos por ser parte de nuestra comunidad de pruebas de juegos beta y esperamos que disfrutes de tu experiencia en nuestra plataforma.</p>
 
     `);
+  }
+
+  signIn(username: string, password: string){
+    console.log(1)
+    this.http.get<any>('http://localhost/ProyectoFinal_DAW/HTMLRequests/signIn.php',  { params: { "username": username, "password": password }})
+    .subscribe((response) => {
+      console.log(2)
+      console.log(response)
+      switch (response.message){
+        case "Duplicate entry '"+username+"' for key 'unique_username'":
+          break;
+        case "Registration successful":
+          this.sessionService.setSession(response.user);
+          console.log(response.user);
+          console.log(this.sessionService.getSession());
+          this.sessionService.getImage();
+          break;
+        default:
+          break;
+      }
+      alert(response.message);
+    });
   }
 }

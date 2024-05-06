@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit{
     formData.append('user_id', user_id.toString());
     formData.append('picture', this.selectedFile);
 
-    this.http.post('http://localhost/uploadPicture.php', formData)
+    this.http.post('http://localhost/ProyectoFinal_DAW/HTMLRequests/uploadPicture.php', formData)
       .subscribe(response => {
         console.log('Image uploaded successfully:', response);
         this.sessionService.getImage();
