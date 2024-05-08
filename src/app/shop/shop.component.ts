@@ -17,11 +17,14 @@ export class ShopComponent implements OnInit{
     this.gameData.currentGameList.subscribe(gameList => {
       this.games = gameList;
       this.filtered = this.games;
+      this.gameNames = this.games.map(game => game.name);
     })
   }
 
   public games!: Game[];
   public filtered!: Game[];
+
+  public gameNames!: string[];
 
 
 
@@ -38,6 +41,14 @@ export class ShopComponent implements OnInit{
     this.games.splice(0, 0, this.games[this.games.length - 1]);
     this.games.pop();
   }
+
+  filterGames(event: string[]){
+    this.filtered = [];
+    event.forEach(name => {
+      this.filtered.push(this.games.find(game => game.name == name)!);
+    });
+  }
+
 
 
 

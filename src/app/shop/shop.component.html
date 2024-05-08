@@ -2,7 +2,7 @@
   ¡Descubre y Prueba Nuevos Juegos!
 </h1>
 
-<app-search-bar [games]="this.games" (newItemEvent)="this.filtered=$event"></app-search-bar>
+<app-search-bar [items]="this.gameNames" (selectedFilter)="filterGames($event)"></app-search-bar>
 
 
 <div class="container-fluid d-flex align-items-center">

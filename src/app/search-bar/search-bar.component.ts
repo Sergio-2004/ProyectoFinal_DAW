@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Game } from '../interfaces/game';
-import { GameDataService } from '../services/session/gameData.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,30 +9,26 @@ import { GameDataService } from '../services/session/gameData.service';
 })
 export class SearchBarComponent {
 
-  constructor(private gameData:GameDataService){
-    this.gameData.currentGameList.subscribe(gameList => {
-      this.games = gameList;
-    })
-  }
+  constructor(){}
 
-  @Input() public games: Game[] = [];
-  public filtered: Game[] = this.games;
+  @Input() public items: string[] = [];
+  public filteredItems: string[] = this.items;
 
-  @Output() newItemEvent = new EventEmitter();
+  @Output() selectedFilter = new EventEmitter<string[]>();
 
   show: boolean = false;
 
   public filterResults(text: string) {
     if(!text || text.length == 0){
-      this.filtered = [];
+      this.filteredItems = [];
       return;
     }
-    this.filtered = [];
-    this.filtered = this.games.filter(game => game.name.toLocaleLowerCase().startsWith(text.toLocaleLowerCase()));
+    this.filteredItems = [];
+    this.filteredItems = this.items.filter(items => items.toLocaleLowerCase().startsWith(text.toLocaleLowerCase()));
   }
 
   searchFiltered(){
-    if(this.filtered.length > 0) this.newItemEvent.emit(this.filtered);
+    if(this.filteredItems.length > 0) this.selectedFilter.emit(this.filteredItems);
   }
 
   onFocus(){
@@ -43,5 +37,9 @@ export class SearchBarComponent {
 
   onBlur(){
     setTimeout(() => this.show = false, 400);
+  }
+
+  optionSelected(item: string){
+    this.selectedFilter.emit([item]);
   }
 }

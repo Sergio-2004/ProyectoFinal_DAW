@@ -18,15 +18,18 @@ export class ProfileComponent implements OnInit{
       this.imageUrl = imageUrl;
     })
   }
+
+  sessionService: SessionService = inject(SessionService);
+
+
+  selectedFile?: File;
+  imageUrl!: string;
+
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundColor = '#3b213b';
     this.sessionService.getImage();
   }
-  sessionService: SessionService = inject(SessionService);
-
-
-  selectedFile?: File;
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -59,5 +62,7 @@ export class ProfileComponent implements OnInit{
       //Quiero que este metodo no se lance hasta que lo de arriba no haya acabado
   }
 
-  imageUrl!: string;
+  uploadDescription(){
+
+  }
 }
