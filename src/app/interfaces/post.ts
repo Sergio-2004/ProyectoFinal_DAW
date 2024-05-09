@@ -1,12 +1,13 @@
-export interface Comment {
-  user: string;
+export interface Post {
+  id: number;
+  title: string;
+  username: string;
   content: string;
+  image?: string;
+  comments?: Comment[];
 }
 
-export interface Post {
-  title: string;
-  user: string;
+export interface Comment {
+  username: string;
   content: string;
-  image: string;
-  comments: Comment[];
 }

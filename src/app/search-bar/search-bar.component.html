@@ -1,6 +1,6 @@
 <div class="search-box right d-flex justify-content-end p-5">
   <div>
-  <input size="40" type="text" placeholder="Busca un juego!" #filter (input)="filterResults(filter.value)" (focus)="onFocus()" (blur)="onBlur()">
+  <input size="40" type="text" #filter (input)="filterResults(filter.value)" (focus)="onFocus()" (blur)="onBlur()">
   <button class="primary" type="button" (click)="searchFiltered()">Buscar</button>
 
   @if(show){

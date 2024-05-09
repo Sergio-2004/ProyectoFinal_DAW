@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { Game } from '../interfaces/game';
 import { GamePreviewComponent } from '../game-preview/game-preview.component';
 import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
@@ -32,6 +32,8 @@ export class LibraryComponent implements OnInit{
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundColor = '#3b213b';
-    this.gameData.fetchLibrary(this.sessionService.getSession()!.id);
+            if(this.sessionService.getSession()){
+              this.gameData.fetchLibrary(this.sessionService.getSession()!.id);
+            }
   }
 }

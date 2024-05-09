@@ -11,46 +11,16 @@ import { Post } from '../interfaces/post';
 })
 export class PostComponent implements OnInit {
 
-  public posts: Post[]= [
-    {
-      title: 'Error con el primer jefe',
-      user: 'xXFreeLordXx',
-      content: 'Buenas a todos, como podeis ver con el título, ha habido un problema y no puedo pasar del primer jefe, el juego crashea y no se que hacer, un saludo',
-      image: '',
-      comments:[
-        {
-          user: 'MyTulip',
-          content: 'Me ha pasado lo mismo, ojalá se solucione pronto'
-        },
-        {
-          user: 'MyTulip',
-          content: 'Me ha pasado lo mismo, ojalá se solucione pronto'
-        }
-      ]
 
-    },
-    {
-      title: 'Fan Art de X Personaje',
-      user: 'MyTulip',
-      content: 'Hola gente, he hecho este dibujo de mi personaje favorito, espero que os guste',
-      image: '../../assets/post_things/fanart.jpg',
-      comments:[
-        {
-          user: 'Fer',
-          content: 'Creo que te has equivocado de foro, no tiene nada que ver con el juego'
-        },
-        {
-          user: 'ProAngular',
-          content: 'Muy chulo, pero creo que es de otro juego'
-        }
-      ]
+  constructor(private _route: ActivatedRoute, private elementRef: ElementRef) { }
 
-    }
-  ];
+  public posts: Post[]= [];
 
   public post?: Post;
 
-  constructor(private _route: ActivatedRoute, private elementRef: ElementRef) { }
+  userSet = true;
+
+
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
     .body.style.backgroundColor = '#3b213b';
@@ -63,16 +33,14 @@ export class PostComponent implements OnInit {
     });
   }
 
-  userSet = true;
-
   postComment(post: Post, comment: string){
     if(!sessionStorage.getItem('user')) {
       return false
-    }else {
+    }else{
       this.posts.forEach(Post => {
-        if(Post == post){
-          Post.comments.push({
-            user: sessionStorage.getItem('user')!,
+        if(Post == post && post.comments != undefined){
+          Post.comments!.push({
+            username: sessionStorage.getItem('user')!,
             content: comment
           });
         }

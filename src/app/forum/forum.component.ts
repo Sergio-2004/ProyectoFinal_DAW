@@ -1,65 +1,52 @@
-import { Component, ElementRef, inject } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Game } from '../interfaces/game';
+import { Post } from '../interfaces/post';
+import { SocialDataService } from '../services/session/socialData.service';
+import { Forum } from '../interfaces/IForum';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
-  selector: 'app-forum',
+  selector: 'app-post',
   standalone: true,
-  imports: [],
+  imports: [SearchBarComponent],
   templateUrl: './forum.component.html',
   styleUrl: './forum.component.css'
 })
 export class ForumComponent {
 
-  constructor(private _route: ActivatedRoute, private elementRef: ElementRef) { }
+  constructor(private _route: ActivatedRoute, private elementRef: ElementRef, private socialData:SocialDataService){
+    this.socialData.currentPostList.subscribe(postList => {
+      this.posts = postList;
+      this.filtered = this.posts;
+      this.postTitles = this.posts.map(post => post.title);
+      console.log(this.postTitles);
+    })
+  }
 
-  public games!: Game[];
-  public game!: Game;
+  public forum!: Forum;
 
-  public posts = [
-    {
-      title: 'Error con el primer jefe',
-      user: 'xXFreeLordXx',
-      content: 'Buenas a todos, como podeis ver con el título, ha habido un problema y no puedo pasar del primer jefe, el juego crashea y no se que hacer, un saludo',
-      image: '',
-      comments: [
-        {
-          user: 'MyTulip',
-          content: 'Me ha pasado lo mismo, ojalá se solucione pronto'
-        },
-        {
-          user: 'The_P_Destroyer',
-          content: 'A mi me ha pasado también, el bug está relacionado con los ajustes de brillo, ni idea de por que crashea, pero lo arreglarán pronto'
-        },
-      ]
-    },
-    {
-      title: 'Fan Art de X Personaje',
-      user: 'MyTulip',
-      content: 'Hola gente, he hecho este dibujo de mi personaje favorito, espero que os guste',
-      image: '',
-      comments: [
-        {
-          user: 'Fer',
-          content: 'Creo que te has equivocado de foro, no tiene nada que ver con el juego'
-        },
-        {
-          user: 'Angular_Pro',
-          content: 'Es muy bonito, pero no es de este juego lol'
-        },
-      ]
-    }
-  ];
+  public posts!: Post[];
+  public filtered!: Post[];
+
+  public postTitles!: string[];
+
 
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
     .body.style.backgroundColor = '#3b213b';
-
-    this.games.forEach(game => {
-      if(game.name === this._route.snapshot.params['name']){
-        this.game = game;
-        return;
+    this.socialData.fetchForums();
+    this.socialData.currentForumList.subscribe({
+      next: (forumList) => {
+        this.forum = forumList.find(forum => forum.id.toString() == this._route.snapshot.params['id'])!;
+        this.socialData.fetchPosts(this._route.snapshot.params['id']);
       }
+    });
+  }
+
+  filterPosts(event: string[]){
+    this.filtered = [];
+    event.forEach(title => {
+      this.filtered.push(this.posts.find(post => post.title == title)!);
     });
   }
 }

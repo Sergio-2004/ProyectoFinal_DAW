@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="post">
-    <p>{{post!.user}}</p>
+    <p>{{post!.username}}</p>
     <h1>{{post!.title}}</h1>
     @if(post!.image != ''){
       <h1><img src="{{post!.image}}" width="200px"></h1>
@@ -17,7 +17,7 @@
     @for (comment of post!.comments; track $index) {
       <ul class="list-group">
         <li class="list-group-item">
-          <p>{{comment.user}}.<p>
+          <p>{{comment.username}}.<p>
           <p>{{comment.content}}<p>
         </li>
       </ul>

@@ -7,9 +7,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { GamePageComponent } from './game-page/game-page.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { ForumComponent } from './forum/forum.component';
 import { PostComponent } from './post/post.component';
 import { ParameterComponent } from './parameter/parameter.component';
+import { ForumComponent } from './forum/forum.component';
 
 export const routes: Routes = [
   {
@@ -50,11 +50,11 @@ export const routes: Routes = [
     component: SignInComponent
   },
   {
-    path: 'forum/:name',
+    path: 'forum/:id',
     component: ForumComponent
   },
   {
-    path: 'forum/:name/:title',
+    path: 'forum/:id/:title',
     component: PostComponent
   },
   {

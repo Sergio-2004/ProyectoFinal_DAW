@@ -1,9 +1,12 @@
 
 <div class="container">
-  <h1>{{game.name}}</h1>
-  <ul class="list-group">
-    @for (post of posts; track $index) {
-    <a href="forum/{{game.name}}/{{post.title}}"><li class="list-group-item">{{post.title}}</li></a>
-    }
-  </ul>
+  @if(forum){
+    <h1>{{forum.name}}</h1>
+    <app-search-bar [items]="postTitles" (selectedFilter)="filterPosts($event)"></app-search-bar>
+    <ul class="list-group">
+      @for (post of filtered; track $index) {
+      <a href="forum/{{forum.id}}/{{post.id}}"><li class="list-group-item">{{post.title}}</li></a>
+      }
+    </ul>
+  }
 </div>

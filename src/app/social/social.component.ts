@@ -1,20 +1,41 @@
 import { Component, ElementRef, OnInit, inject } from '@angular/core';
-import { Game } from '../interfaces/game';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { SocialDataService } from '../services/session/socialData.service';
+import { Forum } from '../interfaces/IForum';
 
 @Component({
   selector: 'app-social',
   standalone: true,
-  imports: [],
+  imports: [SearchBarComponent],
   templateUrl: './social.component.html',
   styleUrl: './social.component.css'
 })
 export class SocialComponent implements OnInit{
-  constructor(private elementRef: ElementRef){
+  constructor(private elementRef: ElementRef, private socialData:SocialDataService){
+    this.socialData.currentForumList.subscribe(forumList => {
+      this.forums = forumList;
+      this.filtered = this.forums;
+      this.forumNames = this.forums.map(forum => forum.name);
+    })
   }
+
+  public forums!: Forum[];
+  public filtered!: Forum[];
+
+  public forumNames!: string[];
+
+
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
             .body.style.backgroundColor = '#3b213b';
+    this.socialData.fetchForums();
   }
-  public games?: Game[];
+
+  filterForums(event: string[]){
+    this.filtered = [];
+    event.forEach(name => {
+      this.filtered.push(this.forums.find(forum => forum.name == name)!);
+    });
+  }
 
 }

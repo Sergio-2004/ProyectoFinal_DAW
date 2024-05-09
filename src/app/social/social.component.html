@@ -1,9 +1,15 @@
 <div class="container d-flex flex-column">
-  <h1>Foros más visitados</h1>
-  <div class="spacer"></div>
-  <ul class="list-group">
-    @for (game of games; track $index) {
-    <a href="forum/{{game.name}}"><li class="list-group-item">{{game.name}}</li></a>
+
+  <div class="container p-2">
+    <h1 class="text-center text-light display-4">Foros</h1>
+    <app-search-bar [items]="forumNames" (selectedFilter)="filterForums($event)"></app-search-bar>
+    <div class="row row-gap-4 row-cols-lg-3 row-cols-xs-1 row-cols-sm-1">
+    @for (forum of filtered; track $index) {
+    <a href="forum/{{forum.id}}"><li class="list-group-item">
+      <h2>{{forum.name}}</h2>
+      <p>{{forum.description}}</p>
+    </li></a>
     }
-  </ul>
+    </div>
+  </div>
 </div>
