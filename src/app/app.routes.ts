@@ -54,7 +54,7 @@ export const routes: Routes = [
     component: ForumComponent
   },
   {
-    path: 'forum/:id/:title',
+    path: 'forum/:forum_id/:post_id',
     component: PostComponent
   },
   {

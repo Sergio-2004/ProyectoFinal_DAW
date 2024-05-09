@@ -1,4 +1,5 @@
 
+@if(post){
 <div class="container">
   <div class="post">
     <p>{{post!.username}}</p>
@@ -10,11 +11,11 @@
   </div>
 
   <div class="comments">
-    <textarea type="text" #comment placeholder="Escribe un comentario" rows="2" cols="100"></textarea><button class="btn btn-primary" (click)="userSet=postComment(post!, comment.value)">Publicar</button>
-    @if(!userSet){
+    <textarea type="text" #comment placeholder="Escribe un comentario" rows="2" cols="100"></textarea><button class="btn btn-primary" (click)="postComment(comment.value)">Publicar</button>
+    @if(false){
       <p>Debe iniciar sesión para poder hacer comentarios, pulse <a href="log-in">aqui</a> para iniciar sesión</p>
     }
-    @for (comment of post!.comments; track $index) {
+    @for (comment of comments; track $index) {
       <ul class="list-group">
         <li class="list-group-item">
           <p>{{comment.username}}.<p>
@@ -24,3 +25,4 @@
     }
   </div>
 </div>
+}
