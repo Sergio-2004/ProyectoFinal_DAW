@@ -13,8 +13,9 @@ $database = "betanet";
 $conn = new mysqli($servername, $user_id, $password, $database);
 
 $user_id = $_GET['user_id'];
-$post_id = $_GET['post_id'];
+$forum_id = $_GET['forum_id'];
 $content = $_GET['content'];
+$title = $_GET['title'];
 
 // Verificar la conexión
 try{
@@ -24,9 +25,9 @@ try{
 
   // Consulta SQL para obtener los juegos de la base de datos
   $stmt = $conn->prepare(
-      "INSERT INTO comments (user_id, post_id, content)
-      VALUES (?, ?, ?);");
-  $stmt->bind_param("iis", $user_id, $post_id, $content);
+      "INSERT INTO comments (user_id, forum_id, title, content)
+      VALUES (?, ?, ?, ?);");
+  $stmt->bind_param("iiss", $user_id, $forum_id, $title, $content);
 
     if ($stmt->execute()) {
         echo json_encode(['message' => "Imagen actualizada correctamente."]);;
