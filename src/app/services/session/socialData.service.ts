@@ -57,16 +57,18 @@ export class SocialDataService {
   }
 
 
-  postPost(title: string, content: string, image?: string){
-    this.http.get<Post[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postPost.php', {params: {'username':1,'title': title, 'content': content, 'image': image!}})
+  postPost(forum_id:number, user_id: number,title: string, content: string, image?: string){
+    this.http.get<Post[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postPost.php', {params: {'forum_id':forum_id, 'user_id':user_id,'title': title, 'content': content}})
     .subscribe(response => {
       });
   }
 
 
-  postComment(content: string){
-    this.http.get<Comment[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postComment.php', {params: {'content': content}})
+  postComment(user_id: number, post_id: number, content: string){
+    this.http.get<Comment[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postComment.php', {params: {'user_id': user_id, 'post_id': post_id, 'content': content}})
     .subscribe(response => {
+      console.log(response);
       });
+    this.fetchComments(post_id);
   }
 }

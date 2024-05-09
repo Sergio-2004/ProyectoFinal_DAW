@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Post } from '../interfaces/post';
 import { SocialDataService } from '../services/session/socialData.service';
 import { Comment } from '../interfaces/comment';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-post',
@@ -14,7 +15,7 @@ import { Comment } from '../interfaces/comment';
 export class PostComponent implements OnInit {
 
 
-  constructor(private _route: ActivatedRoute, private elementRef: ElementRef, private socialData:SocialDataService){
+  constructor(private _route: ActivatedRoute, private elementRef: ElementRef, private socialData:SocialDataService, private sessionService:SessionService){
     this.socialData.currentCommentList.subscribe(commentList => {
       this.comments = commentList;
     })
@@ -38,11 +39,12 @@ export class PostComponent implements OnInit {
   }
 
   postComment(content: string){
-    if(!sessionStorage.getItem('user')) {
+    if(!this.sessionService.getSession()) {
       console.log(false)
       return false
     }else{
       console.log(true)
+      this.socialData.postComment(this.sessionService.getSession()!.id,this.post.id, content);
       return true;
     }
   }

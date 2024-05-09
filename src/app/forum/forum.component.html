@@ -3,6 +3,7 @@
   @if(forum){
     <h1>{{forum.name}}</h1>
     <app-search-bar [items]="postTitles" (selectedFilter)="filterPosts($event)"></app-search-bar>
+    <a href="forum/{{forum.id}}/createPost">Crear post</a>
     <ul class="list-group">
       @for (post of filtered; track $index) {
       <a href="forum/{{forum.id}}/{{post.id}}"><li class="list-group-item">{{post.title}}</li></a>
