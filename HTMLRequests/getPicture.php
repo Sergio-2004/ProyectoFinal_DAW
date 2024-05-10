@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 $user_id = $_GET['user_id'];
 
 // Consulta SQL para obtener la imagen del usuario de la base de datos
-$stmt = $conn->prepare("SELECT picture FROM profiles WHERE user_id = ?");
+$stmt = $conn->prepare("SELECT image FROM profiles WHERE user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
     header("Content-Type: image/jpeg"); // Cambia esto según el tipo MIME de tus imágenes
 
     // Imprimir el contenido de la imagen
-    echo $row['picture'];
+    echo $row['image'];
 } else {
     // Si no se encontró ninguna imagen para el usuario, devolver un código de estado 404 y un mensaje de error
     http_response_code(404);

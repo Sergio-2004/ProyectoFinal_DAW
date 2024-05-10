@@ -13,8 +13,4 @@ export class UserDataService {
   });
   currentgame = this.game.asObservable();
   constructor() { }
-
-  changeGame(game: Game){
-    this.game.next(game);
-  }
 }

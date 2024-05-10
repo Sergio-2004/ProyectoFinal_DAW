@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { UserDataService } from '../services/session/userData.service';
 import { SessionService } from '../services/session/session.service';
 
 @Component({
@@ -11,10 +10,14 @@ import { SessionService } from '../services/session/session.service';
 })
 export class NavigationComponent {
 
-  imageUrl: string = '../../assets/profile.svg';
-
   constructor() {}
 
   sessionService: SessionService = inject(SessionService);
+
+  imageUrl: string = '../../assets/profile.svg';
+
+  getProfileImageUrl(): string {
+    return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getProfileImage.php?fileName=1.png&random=${Math.random()}`;
+  }
 
 }

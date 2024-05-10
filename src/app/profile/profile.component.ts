@@ -3,11 +3,12 @@ import { SessionInitRequireComponent } from '../session-init-require/session-ini
 import { SessionService } from '../services/session/session.service';
 import { HttpClient } from '@angular/common/http';
 import { UserDataService } from '../services/session/userData.service';
+import { UploadImageComponent } from '../upload-image/upload-image.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [SessionInitRequireComponent],
+  imports: [SessionInitRequireComponent, UploadImageComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -60,6 +61,10 @@ export class ProfileComponent implements OnInit{
       });
 
       //Quiero que este metodo no se lance hasta que lo de arriba no haya acabado
+  }
+
+  getProfileImageUrl(): string {
+    return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getProfileImage.php?fileName=1.png&random=${Math.random()}`;
   }
 
   uploadDescription(){

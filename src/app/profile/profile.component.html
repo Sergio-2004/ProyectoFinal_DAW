@@ -4,16 +4,14 @@
   <div class="container p-5">
         <div class="row">
           <div class="col">
-            <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
-            <button (click)="fileInput.click()">Seleccionar imagen</button>
-            <button (click)="uploadImage()">Subir imagen</button>
+            <app-upload-image></app-upload-image>
           </div>
           <div class="col">
-            <img [src]="sessionService.getSession()?.picture" alt="Imagen">
+            <img [src]="getProfileImageUrl()" alt="Imagen" width="200px">
           </div>
           <div class="col">
             <h1>{{sessionService.getSession()?.username}}</h1>
-            <textarea>{{sessionService.getSession()?.description}}</textarea>
+            <textarea cols="50" rows="10">{{sessionService.getSession()?.description}}</textarea>
             <button (click)="uploadDescription()">Subir descripción</button>
           </div>
         </div>

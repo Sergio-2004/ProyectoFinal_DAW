@@ -12,7 +12,6 @@ export class SessionService {
 
   setSession(user: User){
     sessionStorage.setItem('user', JSON.stringify(user));
-    this.getImage();
   }
 
   getSession(): User | null{

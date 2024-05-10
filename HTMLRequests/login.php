@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     or die("Connection error");
     mysqli_select_db($conexion, "betanet")
     or die("Error connecting to database");
-    $sql="SELECT users.password as password, users.id as id, users.username as username, profiles.description as description, profiles.picture as picture
+    $sql="SELECT users.password as password, users.id as id, users.username as username, profiles.description as description
           FROM users
           JOIN profiles ON (users.id = profiles.user_id)
           WHERE username = ?;";
@@ -35,5 +35,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             mysqli_close($conexion);
 }
 }catch(Exception $e){
-    echo json_encode(['message' => "ERROR:"+$e->getMessage()]);
+    echo json_encode(['message' => $e->getMessage()]);
 }
