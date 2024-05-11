@@ -12,14 +12,12 @@ import { UserDataService } from '../services/session/userData.service';
 })
 export class SignInComponent implements OnInit{
 
-  constructor(private elementRef: ElementRef, private http: HttpClient, private data:UserDataService){}
+  constructor(private http: HttpClient, private data:UserDataService){}
 
   public notSamePassword: boolean = false;
   sessionService: SessionService = inject(SessionService);
 
   ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-            .body.style.backgroundColor = '#3b213b';
   }
 
   EULAPopup(){

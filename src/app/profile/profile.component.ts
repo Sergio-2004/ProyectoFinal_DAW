@@ -14,7 +14,7 @@ import { UploadImageComponent } from '../upload-image/upload-image.component';
 })
 export class ProfileComponent implements OnInit{
 
-  constructor(private elementRef: ElementRef, private http: HttpClient, private data:UserDataService){
+  constructor( private http: HttpClient, private data:UserDataService){
     this.data.currentImageUrl.subscribe(imageUrl => {
       this.imageUrl = imageUrl;
     })
@@ -27,8 +27,6 @@ export class ProfileComponent implements OnInit{
   imageUrl!: string;
 
   ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-            .body.style.backgroundColor = '#3b213b';
     this.sessionService.getImage();
   }
 
@@ -64,7 +62,7 @@ export class ProfileComponent implements OnInit{
   }
 
   getProfileImageUrl(): string {
-    return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getProfileImage.php?fileName=1.png&random=${Math.random()}`;
+    return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getProfileImage.php?fileName=${this.sessionService.getSession()?.id}.png&random=${Math.random()}`;
   }
 
   uploadDescription(){

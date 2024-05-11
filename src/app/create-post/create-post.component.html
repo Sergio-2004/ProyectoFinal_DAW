@@ -1,4 +1,10 @@
 
 <div class="container">
-    <input type="text"placeholder="Titulo">
+  <input type="text"placeholder="Titulo">
+  <input type="content"placeholder="Titulo">
+  <label for="showUploadImage">Añadir imagen</label>
+  <input type="checkbox" id="showUploadImage" (change)="toggleSwowUploadImage()">
+  @if(showUploadImage){
+    <app-upload-image ></app-upload-image>
+  }
 </div>

@@ -11,11 +11,9 @@ import { SessionService } from '../services/session/session.service';
   styleUrl: './developer.component.css'
 })
 export class DeveloperComponent implements OnInit{
-  constructor(private elementRef: ElementRef){
+  constructor(){
   }
   ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-            .body.style.backgroundColor = '#3b213b';
   }
 
   sessionService: SessionService = inject(SessionService);

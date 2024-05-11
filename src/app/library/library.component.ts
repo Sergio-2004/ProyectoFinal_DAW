@@ -14,7 +14,7 @@ import { GameDataService } from '../services/session/gameData.service';
 })
 export class LibraryComponent implements OnInit{
 
-  constructor(private elementRef: ElementRef, private gameData:GameDataService){
+  constructor( private gameData:GameDataService){
     this.gameData.currentLibrary.subscribe(library => {
       this.games = library;
       this.selectedGame = this.games[0];
@@ -30,8 +30,6 @@ export class LibraryComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-            .body.style.backgroundColor = '#3b213b';
             if(this.sessionService.getSession()){
               this.gameData.fetchLibrary(this.sessionService.getSession()!.id);
             }

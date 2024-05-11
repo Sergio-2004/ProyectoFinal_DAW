@@ -15,7 +15,7 @@ import { GameDataService } from '../services/session/gameData.service';
 })
 export class GamePageComponent implements OnInit {
 
-  constructor(private _route: ActivatedRoute, private elementRef: ElementRef, private gameData:GameDataService) {}
+  constructor(private _route: ActivatedRoute, private gameData:GameDataService) {}
 
   sessionService: SessionService = inject(SessionService);
   public games: Game[] = [];
@@ -25,8 +25,6 @@ export class GamePageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-    .body.style.backgroundColor = '#3b213b';
     this.gameData.fetchGames();
     this.gameData.currentGameList.subscribe({
       next: (gameList) => {

@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ParameterComponent implements OnInit{
 
-  constructor(private _route: ActivatedRoute, private elementRef: ElementRef){}
+  constructor(private _route: ActivatedRoute){}
 
   dataList= {
     gameName: 'Time Bandit',
@@ -35,8 +35,6 @@ export class ParameterComponent implements OnInit{
 
   parameter: any;
   ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-    .body.style.backgroundColor = '#3b213b';
 
     this.dataList.parameters.forEach(parameter => {
       if(parameter.name === this._route.snapshot.params['name']){

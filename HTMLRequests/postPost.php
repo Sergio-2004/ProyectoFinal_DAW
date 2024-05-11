@@ -40,5 +40,5 @@ try{
   $stmt->close();
   $conn->close();
 }catch(Exception $e){
-  echo "Error: " . $e->getMessage();
+  echo $e->getMessage();
 }

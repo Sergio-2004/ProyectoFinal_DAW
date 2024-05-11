@@ -15,7 +15,7 @@ import { SessionService } from '../services/session/session.service';
 export class PostComponent implements OnInit {
 
 
-  constructor(private _route: ActivatedRoute, private elementRef: ElementRef, private socialData:SocialDataService, private sessionService:SessionService){
+  constructor(private _route: ActivatedRoute, private socialData:SocialDataService, private sessionService:SessionService){
     this.socialData.currentCommentList.subscribe(commentList => {
       this.comments = commentList;
     })
@@ -27,8 +27,6 @@ export class PostComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-    .body.style.backgroundColor = '#3b213b';
     this.socialData.fetchPosts(this._route.snapshot.params['forum_id']);
     this.socialData.currentPostList.subscribe({
       next: (postList) => {

@@ -14,7 +14,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 })
 export class ForumComponent {
 
-  constructor(private _route: ActivatedRoute, private elementRef: ElementRef, private socialData:SocialDataService){
+  constructor(private _route: ActivatedRoute, private socialData:SocialDataService){
     this.socialData.currentPostList.subscribe(postList => {
       this.posts = postList;
       this.filtered = this.posts;
@@ -32,8 +32,6 @@ export class ForumComponent {
 
 
   ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-    .body.style.backgroundColor = '#3b213b';
     this.socialData.fetchForums();
     this.socialData.currentForumList.subscribe({
       next: (forumList) => {

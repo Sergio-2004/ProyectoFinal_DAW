@@ -13,7 +13,7 @@ import { GameDataService } from '../services/session/gameData.service';
 })
 export class ShopComponent implements OnInit{
 
-  constructor(private elementRef: ElementRef, private gameData:GameDataService){
+  constructor( private gameData:GameDataService){
     this.gameData.currentGameList.subscribe(gameList => {
       this.games = gameList;
       this.filtered = this.games;
@@ -29,8 +29,6 @@ export class ShopComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-            .body.style.backgroundColor = '#3b213b';
             this.gameData.fetchGames();
   }
   public nextGame():void{

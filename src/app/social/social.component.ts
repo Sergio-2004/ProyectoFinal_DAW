@@ -11,7 +11,7 @@ import { Forum } from '../interfaces/IForum';
   styleUrl: './social.component.css'
 })
 export class SocialComponent implements OnInit{
-  constructor(private elementRef: ElementRef, private socialData:SocialDataService){
+  constructor(private socialData:SocialDataService){
     this.socialData.currentForumList.subscribe(forumList => {
       this.forums = forumList;
       this.filtered = this.forums;
@@ -26,8 +26,6 @@ export class SocialComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-            .body.style.backgroundColor = '#3b213b';
     this.socialData.fetchForums();
   }
 
