@@ -5,12 +5,14 @@ import { Post } from '../../interfaces/post';
 import { Forum } from '../../interfaces/IForum';
 import { Comment } from '../../interfaces/comment';
 import { SessionService } from './session.service';
+import { ImageUploadService } from '../image/image-upload.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocialDataService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private imageUploadService: ImageUploadService) { }
 
   private forumList = new BehaviorSubject<Forum[]>([]);
   currentForumList = this.forumList.asObservable();
@@ -57,10 +59,22 @@ export class SocialDataService {
   }
 
 
-  postPost(forum_id:number, user_id: number,title: string, content: string, image?: string){
+  postPost(forum_id:number, user_id: number,title: string, content: string, image?: File){
     this.http.get<Post[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postPost.php', {params: {'forum_id':forum_id, 'user_id':user_id,'title': title, 'content': content}})
     .subscribe(response => {
+      console.log(response);
+    });
+    console.log(image)
+    if(image){
+      this.imageUploadService.uploadPostImage(image, forum_id, title)
+      .subscribe(response => {
+        console.log('Imagen subida correctamente:', response);
+        // Aquí puedes manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
+      }, error => {
+        console.error('Error al subir la imagen:', error);
+        // Aquí puedes manejar errores, por ejemplo, mostrar un mensaje de error al usuario
       });
+    }
   }
 
 

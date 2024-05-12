@@ -25,16 +25,15 @@ try{
 
   // Consulta SQL para obtener los juegos de la base de datos
   $stmt = $conn->prepare(
-      "INSERT INTO comments (user_id, forum_id, title, content)
+      "INSERT INTO posts (user_id, forum_id, title, content)
       VALUES (?, ?, ?, ?);");
   $stmt->bind_param("iiss", $user_id, $forum_id, $title, $content);
 
     if ($stmt->execute()) {
-        echo json_encode(['message' => "Imagen actualizada correctamente."]);;
+        echo json_encode(['message' => "Post publicado correctamente."]);;
     } else {
-        echo json_encode(['error' => "Error al actualizar la imagen: " . $conn->error]);;
+        echo json_encode(['error' => $conn->error]);;
     }
-  echo json_encode($comment);
 
   // Cerrar la conexión a la base de datos
   $stmt->close();

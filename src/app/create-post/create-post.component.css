@@ -1,0 +1,24 @@
+label{
+  color: white;
+}
+
+#post{
+  margin: 10px;
+  background-color:rgb(25, 0, 49);
+}
+
+input{
+  font-size: 30px;
+}
+
+input, textarea{
+  background-color:rgb(25, 0, 49);
+  border: none;
+  outline: none;
+  caret-color: white;
+  resize: none;
+  color: white;
+}
+hr{
+  color: blueviolet;
+}

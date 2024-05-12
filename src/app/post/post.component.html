@@ -5,7 +5,7 @@
     <p>{{post!.username}}</p>
     <h1>{{post!.title}}</h1>
     @if(post!.image != ''){
-      <h1><img src="{{post!.image}}" width="200px"></h1>
+      <h1><img [src]="getPostImageUrl()" alt="Imagen" width="200px"></h1>
     }
     <p>{{post!.content}}</p>
   </div>

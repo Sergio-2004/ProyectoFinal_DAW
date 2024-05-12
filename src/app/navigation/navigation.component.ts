@@ -17,7 +17,7 @@ export class NavigationComponent {
   imageUrl: string = '../../assets/profile.svg';
 
   getProfileImageUrl(): string {
-    return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getProfileImage.php?fileName=${this.sessionService.getSession()?.id}.png&random=${Math.random()}`;
+    return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getProfileImage.php?fileName=${this.sessionService.getSession()?.id}.png`;
   }
 
 }

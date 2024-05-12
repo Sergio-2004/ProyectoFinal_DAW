@@ -13,9 +13,9 @@ import { ImageUploadService } from '../services/image/image-upload.service';
 })
 export class UploadImageComponent {
 
-  selectedImage: File | undefined;
+  constructor(private imageUploadService: ImageUploadService, private sessionService: SessionService) { }
 
-  constructor(private imageUploadService: ImageUploadService, private sessionServive: SessionService) { }
+  selectedImage: File | undefined;
 
   onFileSelected(event: any) {
     this.selectedImage = event.target.files[0];
@@ -27,7 +27,7 @@ export class UploadImageComponent {
       return;
     }
 
-    this.imageUploadService.uploadImage(this.selectedImage, this.sessionServive.getSession()!.id.toString())
+    this.imageUploadService.uploadImage(this.selectedImage, this.sessionService.getSession()!.id.toString())
       .subscribe(response => {
         console.log('Imagen subida correctamente:', response);
         // Aquí puedes manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito

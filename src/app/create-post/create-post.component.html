@@ -1,10 +1,19 @@
 
 <div class="container">
-  <input type="text"placeholder="Titulo">
-  <input type="content"placeholder="Titulo">
-  <label for="showUploadImage">Añadir imagen</label>
+  <div class="d-flex flex-column p-1" id="post">
+  <input type="text" placeholder="Título" #title>
+  <hr>
+  <textarea cols="60" rows="10" placeholder="Contenido" #content></textarea>
+  <div>
   <input type="checkbox" id="showUploadImage" (change)="toggleSwowUploadImage()">
+  <label for="showUploadImage">Añadir imagen</label>
+  </div>
   @if(showUploadImage){
-    <app-upload-image ></app-upload-image>
+    <input type="file" (change)="onFileSelected($event)">
+  }
+  </div>
+  <button class="btn btn-success" (click)="submitPost(title.value, content.value)">Publicar</button>
+  @if(showError){
+    <p style="color: red;">Por favor, ponga título y contenido</p>
   }
 </div>

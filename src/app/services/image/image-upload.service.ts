@@ -16,4 +16,13 @@ export class ImageUploadService {
 
     return this.http.post<any>('http://localhost/ProyectoFinal_DAW/HTMLRequests/saveProfileImage.php', formData);
   }
+
+  uploadPostImage(image: File, forum_id: number, title: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('forum_id', forum_id.toString());
+    formData.append('title', title); // Agregar el atributo "name" al FormData
+
+    return this.http.post<any>('http://localhost/ProyectoFinal_DAW/HTMLRequests/savePostImage.php', formData);
+  }
 }
