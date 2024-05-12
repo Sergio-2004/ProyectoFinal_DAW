@@ -39,7 +39,7 @@ export const routes: Routes = [
     component: ProfileComponent
   },
   {
-    path: 'game-page/:game_name',
+    path: 'game-page/:name',
     component: GamePageComponent
   },
   {
@@ -51,19 +51,19 @@ export const routes: Routes = [
     component: SignInComponent
   },
   {
-    path: 'forum/:forum_name',
+    path: 'forum/:id',
     component: ForumComponent
   },
   {
-    path: 'forum/:forum_name/createPost',
+    path: 'forum/:forum_id/createPost',
     component: CreatePostComponent
   },
   {
-    path: 'forum/:forum_name/:post_title',
+    path: 'forum/:forum_id/:post_id',
     component: PostComponent
   },
   {
-    path: 'parameter/:parameter_name',
+    path: 'parameter/:name',
     component: ParameterComponent
   },
 ];

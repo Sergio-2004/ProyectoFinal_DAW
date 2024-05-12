@@ -22,7 +22,7 @@ try{
 
   // Consulta SQL para obtener los juegos de la base de datos
   $stmt = $conn->prepare(
-      "SELECT games.id as game_id, games.name as name, games.description as description, games.game_cover as game_cover, games.creator_id as creator_id
+      "SELECT games.id as game_id, games.name as name, games.description as description, games.creator_id as creator_id
       FROM games
       JOIN libraries on(games.id=libraries.game_id)
       WHERE libraries.user_id = ?;");
