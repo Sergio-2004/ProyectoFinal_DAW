@@ -2,10 +2,16 @@
 
   <div class="container p-2">
     <h1 class="text-center text-light display-4">Foros</h1>
+    @if(sessionService.getSession()){
+      <p>Debe iniciar sesión para poder crear un nuevo Foro, <a href="log-in">pulse aqui para iniciar sesión</a></p>
+    }@else {
+      <a href="social/create_forum">Crear Nuevo Foro</a>
+    }
     <app-search-bar [items]="forumNames" (selectedFilter)="filterForums($event)"></app-search-bar>
     <div class="row row-gap-4 row-cols-lg-3 row-cols-xs-1 row-cols-sm-1">
     @for (forum of filtered; track $index) {
-    <a href="forum/{{forum.id}}"><li class="list-group-item">
+    <a class='list-group-warper' href="forum/{{forum.id}}"><li class="list-group-item">
+      <h1><img [src]="getForumImageUrl(forum.name)" alt="Imagen" width="40px"></h1>
       <h2>{{forum.name}}</h2>
       <p>{{forum.description}}</p>
     </li></a>

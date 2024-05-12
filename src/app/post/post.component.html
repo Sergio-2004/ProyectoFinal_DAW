@@ -4,16 +4,15 @@
   <div class="post">
     <p>{{post!.username}}</p>
     <h1>{{post!.title}}</h1>
-    @if(post!.image != ''){
-      <h1><img [src]="getPostImageUrl()" alt="Imagen" width="200px"></h1>
-    }
+    <h1><img [src]="getPostImageUrl()" alt="Imagen" width="200px"></h1>
     <p>{{post!.content}}</p>
   </div>
 
   <div class="comments">
-    <textarea type="text" #comment placeholder="Escribe un comentario" rows="2" cols="100"></textarea><button class="btn btn-primary" (click)="postComment(comment.value)">Publicar</button>
-    @if(false){
-      <p>Debe iniciar sesión para poder hacer comentarios, pulse <a href="log-in">aqui</a> para iniciar sesión</p>
+    @if(sessionService.getSession()){
+      <p>Debe iniciar sesión para poder hacer comentarios, <a href="log-in">pulse aqui para iniciar sesión</a></p>
+    }@else {
+      <textarea type="text" #comment placeholder="Escribe un comentario" rows="2" cols="100"></textarea><button class="btn btn-primary" (click)="postComment(comment.value)">Publicar</button>
     }
     @for (comment of comments; track $index) {
       <ul class="list-group">

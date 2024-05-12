@@ -3,10 +3,14 @@
   @if(forum){
     <h1>{{forum.name}}</h1>
     <app-search-bar [items]="postTitles" (selectedFilter)="filterPosts($event)"></app-search-bar>
-    <a href="forum/{{forum.id}}/createPost">Crear post</a>
+    @if(sessionService.getSession()){
+      <p>Debe iniciar sesión para poder crear un nuevo post, <a href="log-in">pulse aqui para iniciar sesión</a></p>
+    }@else {
+      <a href="forum/{{forum.id}}/create_post">Crear post</a>
+    }
     <ul class="list-group">
       @for (post of filtered; track $index) {
-      <a href="forum/{{forum.id}}/{{post.id}}"><li class="list-group-item">{{post.title}}</li></a>
+      <a class="list-group-warper" href="forum/{{forum.id}}/{{post.id}}"><li class="list-group-item">{{post.title}}</li></a>
       }
     </ul>
   }
