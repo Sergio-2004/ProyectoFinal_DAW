@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Game } from '../interfaces/game';
 import { GamePreviewComponent } from '../game-preview/game-preview.component';
 import { SessionInitRequireComponent } from '../session-init-require/session-init-require.component';
@@ -15,8 +15,8 @@ import { GameDataService } from '../services/session/gameData.service';
 export class LibraryComponent implements OnInit{
 
   constructor( private gameData:GameDataService){
-    this.gameData.currentLibrary.subscribe(library => {
-      this.games = library;
+    this.gameData.currentGameList.subscribe(game => {
+      this.games = game;
       this.selectedGame = this.games[0];
     })
   }
@@ -30,8 +30,8 @@ export class LibraryComponent implements OnInit{
 
 
   ngOnInit(): void {
-            if(this.sessionService.getSession()){
-              this.gameData.fetchLibrary(this.sessionService.getSession()!.id);
-            }
+    if(this.sessionService.getSession()){
+      this.gameData.fetchLibrary(this.sessionService.getSession()!.id);
+    }
   }
 }

@@ -12,9 +12,6 @@ export class GameDataService {
   private gameList = new BehaviorSubject<Game[]>([]);
   currentGameList = this.gameList.asObservable();
 
-  private library = new BehaviorSubject<Game[]>([]);
-  currentLibrary = this.gameList.asObservable();
-
 
 
   fetchGames(){
@@ -32,6 +29,19 @@ export class GameDataService {
 
   fetchLibrary(user_id: number){
     this.http.get<Game[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getLibrary.php', {params: {'user_id': user_id}})
+     .subscribe(response => {
+        this.gameList.next(response.map(game => ({
+          id: game.id,
+          name: game.name,
+          creator_id: game.creator_id,
+          game_cover: game.game_cover,
+          description: game.description,
+        })))
+      });
+  }
+
+  fetchDevelopedGames(user_id: number){
+    this.http.get<Game[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getDevelopedGames.php', {params: {'user_id': user_id}})
      .subscribe(response => {
         this.gameList.next(response.map(game => ({
           id: game.id,

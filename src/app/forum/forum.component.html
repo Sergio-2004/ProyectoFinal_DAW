@@ -4,9 +4,9 @@
     <h1>{{forum.name}}</h1>
     <app-search-bar [items]="postTitles" (selectedFilter)="filterPosts($event)"></app-search-bar>
     @if(sessionService.getSession()){
-      <p>Debe iniciar sesión para poder crear un nuevo post, <a href="log-in">pulse aqui para iniciar sesión</a></p>
-    }@else {
       <a href="forum/{{forum.id}}/create_post">Crear post</a>
+    }@else {
+      <p>Debe iniciar sesión para poder crear un nuevo post, <a href="log-in">pulse aqui para iniciar sesión</a></p>
     }
     <ul class="list-group">
       @for (post of filtered; track $index) {

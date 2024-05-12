@@ -10,9 +10,9 @@
 
   <div class="comments">
     @if(sessionService.getSession()){
-      <p>Debe iniciar sesión para poder hacer comentarios, <a href="log-in">pulse aqui para iniciar sesión</a></p>
-    }@else {
       <textarea type="text" #comment placeholder="Escribe un comentario" rows="2" cols="100"></textarea><button class="btn btn-primary" (click)="postComment(comment.value)">Publicar</button>
+    }@else {
+      <p>Debe iniciar sesión para poder hacer comentarios, <a href="log-in">pulse aqui para iniciar sesión</a></p>
     }
     @for (comment of comments; track $index) {
       <ul class="list-group">
