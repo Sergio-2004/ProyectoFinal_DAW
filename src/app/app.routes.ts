@@ -68,7 +68,7 @@ export const routes: Routes = [
     component: PostComponent
   },
   {
-    path: 'parameter/:name',
+    path: 'parameter/:game_id/:param_name',
     component: ParameterComponent
   },
 ];

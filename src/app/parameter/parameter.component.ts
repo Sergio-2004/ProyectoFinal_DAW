@@ -1,5 +1,7 @@
-import { Component, ElementRef, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { GameDataService } from '../services/session/gameData.service';
+import { Data } from '../interfaces/data';
 
 @Component({
   selector: 'app-parameter',
@@ -10,38 +12,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ParameterComponent implements OnInit{
 
-  constructor(private _route: ActivatedRoute){}
+constructor(private _route: ActivatedRoute, private gameData:GameDataService){
+  this.gameData.currentGameDataList.subscribe(dataList => {
+    this.parameter = dataList.filter( data => data.game_id.toString() === this._route.snapshot.params['game_id'] && data.name.toString() === this._route.snapshot.params['param_name'])!;
+  });
+}
 
-  dataList= {
-    gameName: 'Time Bandit',
-    parameters: [
-      {
-        name: 'playtime',
-        data: 20.42,
-        dataCount: 200
-      },
-      {
-        name: 'gotSuperSword',
-        data: 100,
-        dataCount: 200
-      },
-      {
-        name: 'timesDeath',
-        data: 857,
-        dataCount: 200
-      },
-    ]
-  }
-
-  parameter: any;
+  public parameter: Data[] = [];
   ngOnInit(): void {
-
-    this.dataList.parameters.forEach(parameter => {
-      if(parameter.name === this._route.snapshot.params['name']){
-        this.parameter = parameter;
-        return;
-      }
-    });
+    this.gameData.fetchGameData(this._route.snapshot.params['game_id']);
   }
 
 }

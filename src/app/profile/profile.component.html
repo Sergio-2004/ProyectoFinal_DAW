@@ -11,8 +11,8 @@
           </div>
           <div class="col">
             <h1>{{sessionService.getSession()?.username}}</h1>
-            <textarea cols="50" rows="10">{{sessionService.getSession()?.description}}</textarea>
-            <button (click)="uploadDescription()">Subir descripción</button>
+            <textarea cols="50" rows="10" [value]="sessionService.getSession()?.description" #description>{{sessionService.getSession()?.description}}</textarea>
+            <button (click)="uploadDescription(description.value)">Subir descripción</button>
           </div>
         </div>
         <div class="row">

@@ -32,9 +32,8 @@ export class LogInComponent implements OnInit {
           break;
         case "Registration successful":
           this.sessionService.setSession(response.user);
-          console.log(response.user);
-          console.log(this.sessionService.getSession());
           this.sessionService.getImage();
+          history.back();
           break;
         default:
           break;

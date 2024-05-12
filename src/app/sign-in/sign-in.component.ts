@@ -12,7 +12,7 @@ import { UserDataService } from '../services/session/userData.service';
 })
 export class SignInComponent implements OnInit{
 
-  constructor(private http: HttpClient, private data:UserDataService){}
+  constructor(private http: HttpClient){}
 
   public notSamePassword: boolean = false;
   sessionService: SessionService = inject(SessionService);
@@ -95,6 +95,7 @@ export class SignInComponent implements OnInit{
           console.log(response.user);
           console.log(this.sessionService.getSession());
           this.sessionService.getImage();
+          history.back();
           break;
         default:
           break;

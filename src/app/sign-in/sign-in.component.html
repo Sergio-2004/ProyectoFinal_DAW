@@ -1,5 +1,3 @@
-@if(!sessionService.getSession()){
-
   <div class="container d-flex flex-column w-25 mt-5">
     <strong>Introduzca su nombre de usuario:</strong>
     <input class="m-2" type="text" #user placeholder="Nombre de usuario">
@@ -17,11 +15,3 @@
     <button class="m-2" (click)="signIn(user.value, password1.value)">Crear Usuario</button>
     <p>Si ya tiene una cuenta, pulse <a href="log-in">aqui</a></p>
   </div>
-  }@else{
-    <div class="container d-flex flex-column mt-5">
-      <h1>Bienvenido, {{sessionService.getSession()?.username}}<br> ¡ya puede navegar por la página como guste!</h1>
-    </div>
-  }
-
-  <p style="color: red;">Nota: Este usuario no ha sido insertado en ninguna base de datos, por lo que no permanecerá una vez se cierre sesión</p>
-  <p style="color: red;">Esta página solo sirve para mostrar como será en un futuro la funcionalidad</p>

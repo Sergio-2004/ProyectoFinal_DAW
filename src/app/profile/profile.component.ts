@@ -57,15 +57,19 @@ export class ProfileComponent implements OnInit{
       }, error => {
         console.error('Error uploading image:', error);
       });
-
-      //Quiero que este metodo no se lance hasta que lo de arriba no haya acabado
   }
 
   getProfileImageUrl(): string {
     return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getProfileImage.php?fileName=${this.sessionService.getSession()?.id}.png`;
   }
 
-  uploadDescription(){
-
+  uploadDescription(description: string){
+    this.http.get('http://localhost/ProyectoFinal_DAW/HTMLRequests/uploadDescription.php', {params: {'user_id': this.sessionService.getSession()!.id, 'description': description}})
+      .subscribe(response => {
+        console.log('Description uploaded successfully:', response);
+        this.sessionService.getImage();
+      }, error => {
+        console.error('Error uploading description:', error);
+      });
   }
 }

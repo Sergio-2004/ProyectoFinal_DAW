@@ -1,4 +1,3 @@
-@if(!sessionService.getSession()){
 <div class="container d-flex flex-column w-25 mt-5">
   <strong>Introduzca su nombre de usuario:</strong>
   <input class="m-2" type="text" #username placeholder="Nombre de usuario">
@@ -7,6 +6,3 @@
   <button class="m-2" (click)="logIn(username.value, password.value)">Iniciar Sesión</button>
   <p>Si aún no tiene una cuenta, pulse <a href="sign-in">aqui</a></p>
 </div>
-}@else{
-  <h1>Bienvenido, {{sessionService.getSession()?.username}}<br> ¡ya puede navegar por la página como guste!</h1>
-}
