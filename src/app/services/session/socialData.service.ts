@@ -4,9 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Post } from '../../interfaces/post';
 import { Forum } from '../../interfaces/IForum';
 import { Comment } from '../../interfaces/comment';
-import { SessionService } from './session.service';
 import { ImageUploadService } from '../image/image-upload.service';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -59,12 +57,19 @@ export class SocialDataService {
   }
 
 
+  postComment(user_id: number, post_id: number, content: string){
+    this.http.get<Comment[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postComment.php', {params: {'user_id': user_id, 'post_id': post_id, 'content': content}})
+    .subscribe(response => {
+      console.log(response);
+      });
+    this.fetchComments(post_id);
+  }
+
   postPost(forum_id:number, user_id: number,title: string, content: string, image?: File){
     this.http.get<Post[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postPost.php', {params: {'forum_id':forum_id, 'user_id':user_id,'title': title, 'content': content}})
     .subscribe(response => {
       console.log(response);
     });
-    console.log(image)
     if(image){
       this.imageUploadService.uploadPostImage(image, forum_id, title)
       .subscribe(response => {
@@ -77,12 +82,20 @@ export class SocialDataService {
     }
   }
 
-
-  postComment(user_id: number, post_id: number, content: string){
-    this.http.get<Comment[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postComment.php', {params: {'user_id': user_id, 'post_id': post_id, 'content': content}})
+  postForum(name: string, description: string, image?: File){
+    this.http.get<Post[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postForum.php', {params: {'forum_name':name, 'forum_description':description}})
     .subscribe(response => {
       console.log(response);
+    });
+    if(image){
+      this.imageUploadService.uploadForumImage(image, name)
+      .subscribe(response => {
+        console.log('Imagen subida correctamente:', response);
+        // Aquí puedes manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
+      }, error => {
+        console.error('Error al subir la imagen:', error);
+        // Aquí puedes manejar errores, por ejemplo, mostrar un mensaje de error al usuario
       });
-    this.fetchComments(post_id);
+    }
   }
 }

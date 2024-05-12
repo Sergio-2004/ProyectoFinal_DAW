@@ -11,6 +11,7 @@ import { PostComponent } from './post/post.component';
 import { ParameterComponent } from './parameter/parameter.component';
 import { ForumComponent } from './forum/forum.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { CreateForumComponent } from './create-forum/create-forum.component';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,10 @@ export const routes: Routes = [
   {
     path: 'social',
     component: SocialComponent
+  },
+  {
+    path: 'social/create_forum',
+    component: CreateForumComponent
   },
   {
     path: 'developer',
@@ -55,7 +60,7 @@ export const routes: Routes = [
     component: ForumComponent
   },
   {
-    path: 'forum/:forum_id/createPost',
+    path: 'forum/:forum_id/create_post',
     component: CreatePostComponent
   },
   {

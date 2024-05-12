@@ -1,0 +1,15 @@
+
+<div class="container">
+  <div class="d-flex flex-column p-1" id="post">
+  <input type="text" placeholder="Nombre del foro" #name>
+  <hr>
+  <input cols="60" rows="10" placeholder="Descripción del foro" #description>
+  <div>
+  </div>
+  <input type="file" (change)="onFileSelected($event)">
+  </div>
+  <button class="btn btn-success" (click)="submitForum(name.value, description.value)">Crear nuevo foro</button>
+  @if(showError){
+    <p style="color: red;">Por favor, ponga nombre y descripción al foro</p>
+  }
+</div>

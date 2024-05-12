@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { SocialDataService } from '../services/session/socialData.service';
 import { Forum } from '../interfaces/IForum';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-social',
@@ -11,7 +12,7 @@ import { Forum } from '../interfaces/IForum';
   styleUrl: './social.component.css'
 })
 export class SocialComponent implements OnInit{
-  constructor(private socialData:SocialDataService){
+  constructor(private socialData:SocialDataService, public sessionService: SessionService){
     this.socialData.currentForumList.subscribe(forumList => {
       this.forums = forumList;
       this.filtered = this.forums;
@@ -34,6 +35,10 @@ export class SocialComponent implements OnInit{
     event.forEach(name => {
       this.filtered.push(this.forums.find(forum => forum.name == name)!);
     });
+  }
+
+  getForumImageUrl(forum_name: string): string {
+    return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getForumImage.php?forum_name=${forum_name}.png`;
   }
 
 }

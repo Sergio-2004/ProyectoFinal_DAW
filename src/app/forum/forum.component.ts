@@ -4,6 +4,7 @@ import { Post } from '../interfaces/post';
 import { SocialDataService } from '../services/session/socialData.service';
 import { Forum } from '../interfaces/IForum';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-post',
@@ -14,7 +15,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 })
 export class ForumComponent {
 
-  constructor(private _route: ActivatedRoute, private socialData:SocialDataService){
+  constructor(private _route: ActivatedRoute, private socialData:SocialDataService, public sessionService: SessionService){
     this.socialData.currentPostList.subscribe(postList => {
       this.posts = postList;
       this.filtered = this.posts;

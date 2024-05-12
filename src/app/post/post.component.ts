@@ -15,7 +15,7 @@ import { SessionService } from '../services/session/session.service';
 export class PostComponent implements OnInit {
 
 
-  constructor(private _route: ActivatedRoute, private socialData:SocialDataService, private sessionService:SessionService){
+  constructor(private _route: ActivatedRoute, private socialData:SocialDataService, public sessionService:SessionService){
     this.socialData.currentCommentList.subscribe(commentList => {
       this.comments = commentList;
     })
