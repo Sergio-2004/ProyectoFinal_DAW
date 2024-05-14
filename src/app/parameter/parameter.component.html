@@ -1,9 +1,6 @@
 <div class="container">
   <h3>{{parameter[0].name}}</h3>
-  <h3>Media de Valores: {{parameter[0].value}}</h3>
-  <h3>Fechas:</h3>
 
   @for (item of parameter; track $index) {
-    {{item.recorded_date}}
   }
 </div>

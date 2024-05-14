@@ -14,14 +14,14 @@
       </nav>
           @if(selectedGame){
             <ul class="nav flex-column">
-              @for(data of dataList; track $index){
+              @for(data of dataIndexList; track $index){
                 <a href="parameter/{{selectedGame.id}}/{{data.name}}">
                 <li class="nav-item">
                   {{data.name}}
                 </li>
                 </a>
-                <a href="new-parameter"><li>Crear nuevo parámetro</li></a>
               }
+              <a href="new-parameter/{{selectedGame.id}}"><li>Crear nuevo parámetro</li></a>
             </ul>
           }@else{
             <h3>Seleccione un juego para ver sus parámetros</h3>

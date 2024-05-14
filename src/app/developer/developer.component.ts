@@ -3,7 +3,7 @@ import { SessionInitRequireComponent } from '../session-init-require/session-ini
 import { SessionService } from '../services/session/session.service';
 import { GameDataService } from '../services/session/gameData.service';
 import { Game } from '../interfaces/game';
-import { Data } from '../interfaces/data';
+import { DataIndex } from '../interfaces/dataIndex';
 
 @Component({
   selector: 'app-developer',
@@ -18,8 +18,8 @@ export class DeveloperComponent implements OnInit{
     this.gameData.currentGameList.subscribe(game => {
       this.games = game;
     });
-    this.gameData.currentGameDataList.subscribe(data => {
-      this.dataList = data;
+    this.gameData.currentGameDataIndexList.subscribe(dataIndex => {
+      this.dataIndexList = dataIndex;
     });
   }
 
@@ -29,7 +29,7 @@ export class DeveloperComponent implements OnInit{
 
   public selectedGame?: Game;
 
-  public dataList: Data[] = [];
+  public dataIndexList: DataIndex[] = [];
 
   ngOnInit(): void {
     if(this.sessionService.getSession()){

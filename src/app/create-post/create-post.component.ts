@@ -29,8 +29,8 @@ export class CreatePostComponent {
 
   submitPost(title: string, content: string){
     if(title != '' && content != ''){
-      this.socialData.postPost(this.sessionService.getSession()!.id,this._route.snapshot.params['forum_name'], title, content, this.selectedImage);
-      this.router.navigate(['forum/'+this._route.snapshot.params['forum_name']]);
+      this.socialData.postPost(this._route.snapshot.params['forum_id'], this.sessionService.getSession()!.id, title, content, this.selectedImage);
+      this.router.navigate(['forum/'+this._route.snapshot.params['forum_id']]);
     }else{
       this.showError = true;
     }

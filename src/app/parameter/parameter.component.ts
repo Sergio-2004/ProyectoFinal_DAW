@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GameDataService } from '../services/session/gameData.service';
-import { Data } from '../interfaces/data';
+import { DataIndex } from '../interfaces/dataIndex';
 
 @Component({
   selector: 'app-parameter',
@@ -13,14 +13,11 @@ import { Data } from '../interfaces/data';
 export class ParameterComponent implements OnInit{
 
 constructor(private _route: ActivatedRoute, private gameData:GameDataService){
-  this.gameData.currentGameDataList.subscribe(dataList => {
-    this.parameter = dataList.filter( data => data.game_id.toString() === this._route.snapshot.params['game_id'] && data.name.toString() === this._route.snapshot.params['param_name'])!;
-  });
 }
 
-  public parameter: Data[] = [];
+  public parameter: DataIndex[] = [];
   ngOnInit(): void {
-    this.gameData.fetchGameData(this._route.snapshot.params['game_id']);
+    //this.gameData.fetchGameData(this._route.snapshot.params['game_id']);
   }
 
 }

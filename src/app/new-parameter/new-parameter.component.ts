@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { GameDataService } from '../services/session/gameData.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-parameter',
@@ -9,4 +11,8 @@ import { Component } from '@angular/core';
 })
 export class NewParameterComponent {
 
+  constructor(private gameData:GameDataService, private _route: ActivatedRoute){}
+  testData(name: string){
+    this.gameData.createDataTable(name, this._route.snapshot.params['game_id']);
+  }
 }
