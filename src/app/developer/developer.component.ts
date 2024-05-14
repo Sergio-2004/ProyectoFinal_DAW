@@ -39,7 +39,7 @@ export class DeveloperComponent implements OnInit{
 
   selectGame(game: Game): void {
     this.selectedGame = game;
-    this.gameData.fetchGameData(game.id);
+    this.gameData.fetchGameDataIndex(game.id);
     console.log(game.id);
   }
 }

@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Game } from '../../interfaces/game';
 import { HttpClient } from '@angular/common/http';
 import {  DataIndex } from '../../interfaces/dataIndex';
+import { Data } from '../../interfaces/data';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,9 @@ export class GameDataService {
 
   private gameDataIndexList = new BehaviorSubject<DataIndex[]>([]);
   currentGameDataIndexList = this.gameDataIndexList.asObservable();
+
+  private gameDataList = new BehaviorSubject<Data[]>([]);
+  currentGameDataList = this.gameDataList.asObservable();
 
   private parameter = new BehaviorSubject<DataIndex[]>([]);
   currentParameter = this.parameter.asObservable();
@@ -60,24 +64,19 @@ export class GameDataService {
       });
   }
 
-  fetchGameData(user_id: number){
-    /*
-    this.http.get<Data[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getGameData.php', {params: {'game_id': user_id}})
+  fetchGameData(name: string, game_id: number){
+    this.http.get<Data[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getGameData.php', {params: {'name': name, 'game_id': game_id}})
      .subscribe(response => {
         this.gameDataList.next(response.map(data => ({
-          id: data.id,
-          name: data.name,
-          value: data.value,
-          game_id: data.game_id,
           player_id: data.player_id,
           recorded_date: data.recorded_date,
+          value: data.value,
         })))
       });
-      */
   }
 
-  fetchDataIndex(user_id: number){
-    this.http.get<DataIndex[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getDataIndex.php', {params: {'game_id': user_id}})
+  fetchGameDataIndex(game_id: number){
+    this.http.get<DataIndex[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getGameDataIndex.php', {params: {'game_id': game_id}})
      .subscribe(response => {
         this.gameDataIndexList.next(response.map(data => ({
           id: data.id,

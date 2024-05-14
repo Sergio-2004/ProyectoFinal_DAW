@@ -12,7 +12,6 @@ $database = "betanet";
 
 $conn = new mysqli($servername, $user_id, $password, $database);
 
-$name = $_GET['name'];
 $game_id = $_GET['game_id'];
 
 // Verificar la conexión
@@ -21,28 +20,21 @@ try{
       die("Connection failed: " . $conn->connect_error);
   }
 
+  // Consulta SQL para obtener los juegos de la base de datos
   $stmt = $conn->prepare(
-    "SELECT *
-    FROM data_index
-    WHERE game_id = ?;");
+      "SELECT *
+      FROM data_index
+      WHERE game_id = ?;");
   $stmt->bind_param("i", $game_id);
   $stmt->execute();
   $result = $stmt->get_result();
 
-  if($row = $result->fetch_assoc()) {
-    $table_name = $row['table_name'].'-'.$row['id'];
-    $stmt = $conn->prepare(
-      "SELECT *
-      FROM `$table_name`");
-  $stmt->execute();
-  $result = $stmt->get_result();
   $data = [];
   // Verificar si se encontraron resultados
   while ( $row = mysqli_fetch_assoc( $result )){
       $data[] = $row;
   }
   echo json_encode($data);
-  }
 
   // Cerrar la conexión a la base de datos
   $stmt->close();
