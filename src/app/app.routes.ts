@@ -13,6 +13,7 @@ import { ForumComponent } from './forum/forum.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { CreateForumComponent } from './create-forum/create-forum.component';
 import { NewParameterComponent } from './new-parameter/new-parameter.component';
+import { NewGameComponent } from './new-game/new-game.component';
 
 export const routes: Routes = [
   {
@@ -75,5 +76,9 @@ export const routes: Routes = [
   {
     path: 'new-parameter/:game_id',
     component: NewParameterComponent
+  },
+  {
+    path: 'new-game',
+    component: NewGameComponent
   },
 ];

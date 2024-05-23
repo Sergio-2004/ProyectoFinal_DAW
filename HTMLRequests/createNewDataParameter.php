@@ -41,16 +41,15 @@ try {
         if ($row = $result->fetch_assoc()) {
             $tablename = $row['table_name'] ."-". $row['id'];
             // Crear una nueva tabla con el nombre dinámico
-            $create_table_sql = "
-                CREATE TABLE `betanet`.`$tablename` (
+            $create_table_sql =
+            "CREATE TABLE `betanet`.`$tablename` (
                     `player_id` INT(5) NOT NULL,
                     `recorded_date` DATE NOT NULL,
                     `value` VARCHAR(20) NOT NULL,
                     PRIMARY KEY (`player_id`)
-                ) ENGINE=InnoDB;
-            ";
+                ) ENGINE=InnoDB;";
             if ($conn->query($create_table_sql) === TRUE) {
-                echo json_encode(['success' => "Table $tablename created successfully."]);
+                echo json_encode(['success' => "Table $table_name created successfully."]);
             } else {
                 echo json_encode(['error' => "Error creating table: " . $conn->error]);
             }

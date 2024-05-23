@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Game } from '../../interfaces/game';
 import { HttpClient } from '@angular/common/http';
 import {  DataIndex } from '../../interfaces/dataIndex';
@@ -26,46 +26,43 @@ export class GameDataService {
 
 
   fetchGames(){
-    this.http.get<Game[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getGameList.php')
+    this.http.get<Game[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getGameList.php')
      .subscribe(response => {
         this.gameList.next(response.map(game => ({
           id: game.id,
           name: game.name,
           creator_id: game.creator_id,
-          game_cover: game.game_cover,
           description: game.description,
         })))
       });
   }
 
   fetchLibrary(user_id: number){
-    this.http.get<Game[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getLibrary.php', {params: {'user_id': user_id}})
+    this.http.get<Game[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getLibrary.php', {params: {'user_id': user_id}})
      .subscribe(response => {
         this.gameList.next(response.map(game => ({
           id: game.id,
           name: game.name,
           creator_id: game.creator_id,
-          game_cover: game.game_cover,
           description: game.description,
         })))
       });
   }
 
   fetchDevelopedGames(user_id: number){
-    this.http.get<Game[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getDevelopedGames.php', {params: {'user_id': user_id}})
+    this.http.get<Game[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getDevelopedGames.php', {params: {'user_id': user_id}})
      .subscribe(response => {
         this.gameList.next(response.map(game => ({
           id: game.id,
           name: game.name,
           creator_id: game.creator_id,
-          game_cover: game.game_cover,
           description: game.description,
         })))
       });
   }
 
   fetchGameData(name: string, game_id: number){
-    this.http.get<Data[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getGameData.php', {params: {'name': name, 'game_id': game_id}})
+    this.http.get<Data[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getGameData.php', {params: {'name': name, 'game_id': game_id}})
      .subscribe(response => {
         this.gameDataList.next(response.map(data => ({
           player_id: data.player_id,
@@ -76,7 +73,7 @@ export class GameDataService {
   }
 
   fetchGameDataIndex(game_id: number){
-    this.http.get<DataIndex[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getGameDataIndex.php', {params: {'game_id': game_id}})
+    this.http.get<DataIndex[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getGameDataIndex.php', {params: {'game_id': game_id}})
      .subscribe(response => {
         this.gameDataIndexList.next(response.map(data => ({
           id: data.id,
@@ -88,7 +85,28 @@ export class GameDataService {
   }
 
   createDataTable(name: string, gameId: number) {
-    this.http.get<DataIndex[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/createNewDataParameter.php', {params: {'game_id': gameId, 'name': name}})
+    this.http.get('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/createNewDataParameter.php', {params: {'game_id': gameId, 'name': name}})
+    .subscribe(response => {
+      console.log(response);
+     });
+  }
+
+  deleteParameter(name: string, gameId: number) {
+    this.http.get('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/deleteDataParameter.php', {params: {'game_id': gameId, 'name': name}})
+    .subscribe(response => {
+      console.log(response);
+     });
+  }
+
+  addToLibrary(gameId: number, userId: number) {
+    this.http.get('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/addToLibrary.php', {params: {'game_id': gameId, 'user_id': userId}})
+    .subscribe(response => {
+      console.log(response);
+     });
+  }
+
+  removeFromLibrary(gameId: number, userId: number) {
+    this.http.get('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/removeFromLibrary.php', {params: {'game_id': gameId, 'user_id': userId}})
     .subscribe(response => {
       console.log(response);
      });

@@ -14,7 +14,7 @@ export class ImageUploadService {
     formData.append('image', image);
     formData.append('name', name); // Agregar el atributo "name" al FormData
 
-    return this.http.post<any>('http://localhost/ProyectoFinal_DAW/HTMLRequests/saveProfileImage.php', formData);
+    return this.http.post<any>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/saveProfileImage.php', formData);
   }
 
   uploadPostImage(image: File, forum_id: number, title: string): Observable<any> {
@@ -23,7 +23,7 @@ export class ImageUploadService {
     formData.append('forum_id', forum_id.toString());
     formData.append('title', title); // Agregar el atributo "name" al FormData
 
-    return this.http.post<any>('http://localhost/ProyectoFinal_DAW/HTMLRequests/savePostImage.php', formData);
+    return this.http.post<any>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/savePostImage.php', formData);
   }
 
   uploadForumImage(image: File, name: string): Observable<any> {
@@ -31,6 +31,6 @@ export class ImageUploadService {
     formData.append('image', image);
     formData.append('name', name); // Agregar el atributo "name" al FormData
 
-    return this.http.post<any>('http://localhost/ProyectoFinal_DAW/HTMLRequests/saveForumImage.php', formData);
+    return this.http.post<any>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/saveForumImage.php', formData);
   }
 }

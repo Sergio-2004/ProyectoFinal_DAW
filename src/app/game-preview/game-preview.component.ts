@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Game } from '../interfaces/game';
+import { GameDataService } from '../services/session/gameData.service';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-game-preview',
@@ -10,4 +12,19 @@ import { Game } from '../interfaces/game';
 })
 export class GamePreviewComponent {
   @Input() game?: Game;
+
+  gameDataService: GameDataService = inject(GameDataService);
+  sessionService: SessionService = inject(SessionService);
+
+  downloadGame(){
+    const link = document.createElement('a');
+    link.href = 'assets/games/'+this.game!.name.replace(' ', '%20')+'.zip';
+    link.download = this.game!.name+'.zip';
+    link.click();
+  }
+  removeFromLibrary(){
+    console.table(this.game);
+    this.gameDataService.removeFromLibrary(this.game!.id, this.sessionService.getSession()!.id);
+    window.location.reload();
+  }
 }

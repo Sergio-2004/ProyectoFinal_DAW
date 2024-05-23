@@ -34,4 +34,9 @@ export class LibraryComponent implements OnInit{
       this.gameData.fetchLibrary(this.sessionService.getSession()!.id);
     }
   }
+
+  selectGame(game: Game): void {
+    this.selectedGame = game;
+    console.table(this.selectedGame);
+  }
 }

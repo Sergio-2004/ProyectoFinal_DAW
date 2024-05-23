@@ -33,7 +33,6 @@ try{
     } else {
         echo json_encode(['error' => "Error al actualizar la imagen: " . $conn->error]);;
     }
-  echo json_encode($comment);
 
   // Cerrar la conexión a la base de datos
   $stmt->close();

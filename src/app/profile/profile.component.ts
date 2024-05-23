@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit{
     formData.append('user_id', user_id.toString());
     formData.append('picture', this.selectedFile);
 
-    this.http.post('http://localhost/ProyectoFinal_DAW/HTMLRequests/uploadPicture.php', formData)
+    this.http.post('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/uploadPicture.php', formData)
       .subscribe(response => {
         console.log('Image uploaded successfully:', response);
         this.sessionService.getImage();
@@ -60,16 +60,26 @@ export class ProfileComponent implements OnInit{
   }
 
   getProfileImageUrl(): string {
-    return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getProfileImage.php?fileName=${this.sessionService.getSession()?.id}.png`;
+    return `http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getProfileImage.php?fileName=${this.sessionService.getSession()?.id}.png`;
   }
 
   uploadDescription(description: string){
-    this.http.get('http://localhost/ProyectoFinal_DAW/HTMLRequests/uploadDescription.php', {params: {'user_id': this.sessionService.getSession()!.id, 'description': description}})
+    this.http.get('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/uploadDescription.php', {params: {'user_id': this.sessionService.getSession()!.id, 'description': description}})
       .subscribe(response => {
         console.log('Description uploaded successfully:', response);
         this.sessionService.getImage();
       }, error => {
         console.error('Error uploading description:', error);
+      });
+  }
+
+  deleteUser(){
+    this.http.get<any>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/deleteUser.php', {params: {'user_id': this.sessionService.getSession()!.id}})
+      .subscribe(response => {
+        console.log('User deleted successfully:', response);
+        this.sessionService.closeSession();
+      }, error => {
+        console.error('Error deleting user:', error);
       });
   }
 }

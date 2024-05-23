@@ -17,7 +17,7 @@ export class NavigationComponent {
   imageUrl: string = '../../assets/profile.svg';
 
   getProfileImageUrl(): string {
-    return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getProfileImage.php?fileName=${this.sessionService.getSession()?.id}.png`;
+    return `http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getProfileImage.php?fileName=${this.sessionService.getSession()?.id}.png`;
   }
 
 }

@@ -24,7 +24,7 @@ export class SocialDataService {
 
 
   fetchForums(){
-    this.http.get<Forum[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getForums.php')
+    this.http.get<Forum[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getForums.php')
      .subscribe(response => {
         this.forumList.next(response.map(forum => ({
           id: forum.id,
@@ -35,7 +35,7 @@ export class SocialDataService {
   }
 
   fetchPosts(forum_id: number){
-    this.http.get<Post[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getPosts.php', {params: {'forum_id': forum_id}})
+    this.http.get<Post[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getPosts.php', {params: {'forum_id': forum_id}})
      .subscribe(response => {
         this.postList.next(response.map(post => ({
           id: post.id,
@@ -47,7 +47,7 @@ export class SocialDataService {
   }
 
   fetchComments(post_id: number){
-    this.http.get<Comment[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/getComments.php', {params: {'post_id': post_id}})
+    this.http.get<Comment[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getComments.php', {params: {'post_id': post_id}})
      .subscribe(response => {
         this.commentList.next(response.map(comment => ({
           username: comment.username,
@@ -58,7 +58,7 @@ export class SocialDataService {
 
 
   postComment(user_id: number, post_id: number, content: string){
-    this.http.get<Comment[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postComment.php', {params: {'user_id': user_id, 'post_id': post_id, 'content': content}})
+    this.http.get<Comment[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/postComment.php', {params: {'user_id': user_id, 'post_id': post_id, 'content': content}})
     .subscribe(response => {
       console.log(response);
       });
@@ -66,7 +66,7 @@ export class SocialDataService {
   }
 
   postPost(forum_id:number, user_id: number,title: string, content: string, image?: File){
-    this.http.get<Post[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postPost.php', {params: {'forum_id':forum_id, 'user_id':user_id,'title': title, 'content': content}})
+    this.http.get<Post[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/postPost.php', {params: {'forum_id':forum_id, 'user_id':user_id,'title': title, 'content': content}})
     .subscribe(response => {
       console.log(response);
     });
@@ -83,7 +83,7 @@ export class SocialDataService {
   }
 
   postForum(name: string, description: string, image?: File){
-    this.http.get<Post[]>('http://localhost/ProyectoFinal_DAW/HTMLRequests/postForum.php', {params: {'forum_name':name, 'forum_description':description}})
+    this.http.get<Post[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/postForum.php', {params: {'forum_name':name, 'forum_description':description}})
     .subscribe(response => {
       console.log(response);
     });

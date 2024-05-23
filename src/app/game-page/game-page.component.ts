@@ -15,7 +15,7 @@ import { GameDataService } from '../services/session/gameData.service';
 })
 export class GamePageComponent implements OnInit {
 
-  constructor(private _route: ActivatedRoute, private gameData:GameDataService) {}
+  constructor(private _route: ActivatedRoute, private gameDataService:GameDataService) {}
 
   sessionService: SessionService = inject(SessionService);
   public games: Game[] = [];
@@ -25,8 +25,8 @@ export class GamePageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.gameData.fetchGames();
-    this.gameData.currentGameList.subscribe({
+    this.gameDataService.fetchGames();
+    this.gameDataService.currentGameList.subscribe({
       next: (gameList) => {
         this.games = gameList;
         this.games.forEach(game => {
@@ -36,6 +36,17 @@ export class GamePageComponent implements OnInit {
         });
       }
     })
+  }
+
+  downloadGame(){
+    const link = document.createElement('a');
+    link.href = 'assets/games/'+this.game!.name.replace(' ', '%20')+'.zip';
+    link.download = this.game!.name+'.zip';
+    link.click();
+  }
+
+  addToLibrary(game: Game){
+    this.gameDataService.addToLibrary(game.id, this.sessionService.getSession()!.id);
   }
 
 }

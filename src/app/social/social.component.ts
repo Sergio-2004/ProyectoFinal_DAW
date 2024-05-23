@@ -38,7 +38,7 @@ export class SocialComponent implements OnInit{
   }
 
   getForumImageUrl(forum_name: string): string {
-    return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getForumImage.php?forum_name=${forum_name}.png`;
+    return `http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getForumImage.php?forum_name=${forum_name}.png`;
   }
 
 }

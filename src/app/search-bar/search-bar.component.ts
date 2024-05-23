@@ -19,12 +19,12 @@ export class SearchBarComponent {
   show: boolean = false;
 
   public filterResults(text: string) {
-    if(!text || text.length == 0){
+    if(!text || text.length < 3){
       this.filteredItems = [];
       return;
     }
     this.filteredItems = [];
-    this.filteredItems = this.items.filter(items => items.toLocaleLowerCase().startsWith(text.toLocaleLowerCase()));
+    this.filteredItems = this.items.filter(items => items.toLocaleLowerCase().includes(text.toLocaleLowerCase()));
   }
 
   searchFiltered(){

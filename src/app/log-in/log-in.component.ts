@@ -22,7 +22,7 @@ export class LogInComponent implements OnInit {
 
 
   logIn(username: string, password: string){
-    this.http.get<any>('http://localhost/ProyectoFinal_DAW/HTMLRequests/logIn.php',  { params: { "username": username, "password": password }})
+    this.http.get<any>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/logIn.php',  { params: { "username": username, "password": password }})
     .subscribe((response) => {
       console.log(response)
       switch (response.message){

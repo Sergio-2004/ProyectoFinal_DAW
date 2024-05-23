@@ -42,4 +42,8 @@ export class DeveloperComponent implements OnInit{
     this.gameData.fetchGameDataIndex(game.id);
     console.log(game.id);
   }
+
+  deleteParameter(name: string, game_id: number){
+    this.gameData.deleteParameter(name, game_id);
+  }
 }

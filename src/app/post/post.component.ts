@@ -48,7 +48,7 @@ export class PostComponent implements OnInit {
   }
 
   getPostImageUrl(): string {
-    return `http://localhost/ProyectoFinal_DAW/HTMLRequests/getPostImage.php?forum_id=${this._route.snapshot.params['forum_id']}&post_title=${this.post.title}.png`;
+    return `http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getPostImage.php?forum_id=${this._route.snapshot.params['forum_id']}&post_title=${this.post.title}.png`;
   }
 
 }

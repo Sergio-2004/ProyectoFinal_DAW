@@ -13,6 +13,7 @@ export class NewParameterComponent {
 
   constructor(private gameData:GameDataService, private _route: ActivatedRoute){}
   testData(name: string){
+    console.log(name);
     this.gameData.createDataTable(name, this._route.snapshot.params['game_id']);
   }
 }

@@ -6,7 +6,7 @@
     <ul class="nav flex-column">
       @for(game of games; track $index){
         <li class="nav-item">
-          <button class="nav-link active d-flex" (click)="this.selectedGame=game"><p class="p-2">{{game.name}}</p></button>
+          <button class="nav-link active d-flex" (click)="selectGame(game)"><p class="p-2">{{game.name}}</p></button>
         </li>
       }
       </ul>

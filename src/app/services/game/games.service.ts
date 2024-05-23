@@ -5,7 +5,7 @@ import { Game } from '../../interfaces/game';
 @Injectable({
   providedIn: 'root'
 })
-export class UserDataService {
+export class GameService {
   private game = new BehaviorSubject({
     name: '',
     description: '',

@@ -1,9 +1,6 @@
 <?php
 // Establecer las cabeceras CORS para permitir solicitudes desde cualquier origen
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET");
-header("Access-Control-Allow-Headers: Content-Type");
-
+header("Access-Control-Allow-Origin: http://localhost:4200");
 // Establecer la conexión a la base de datos
 $servername = "localhost";
 $user_id = "betanet_user";

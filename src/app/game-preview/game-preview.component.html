@@ -2,13 +2,14 @@
   <div class="container">
     <h1>{{game.name}}</h1>
 
-    <img class="banner" src="{{game.game_cover}}" width="200px">
-
     <p>{{game.description}}</p>
 
 
-    <button class="btn btn-success">
-      Jugar
+    <button class="btn btn-success" (click)="downloadGame()">
+      Descargar
+    </button>
+    <button class="btn btn-danger" (click)="removeFromLibrary()">
+      Quitar de la biblioteca
     </button>
   </div>
 }

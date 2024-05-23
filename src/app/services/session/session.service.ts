@@ -46,7 +46,7 @@ export class SessionService {
       return;
     }
     // Realiza la solicitud GET para obtener la imagen
-    this.http.get('http://localhost/ProyectoFinal_DAW/HTMLRequests/getPicture.php', { params:{"user_id": user_id}, responseType: 'blob' })
+    this.http.get('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getPicture.php', { params:{"user_id": user_id}, responseType: 'blob' })
     .subscribe(
       (response: Blob) => {
         const reader = new FileReader();
