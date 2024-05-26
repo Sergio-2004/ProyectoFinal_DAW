@@ -24,7 +24,7 @@ try{
   $stmt = $conn->prepare(
       "DELETE FROM libraries
       WHERE user_id = ? AND game_id = ?;");
-  $stmt->bind_param("ii", $user_id, $game_id, );
+  $stmt->bind_param("ii", $user_id, $game_id);
 
   if ($stmt->execute()) {
       echo json_encode(['message' => "Juego eliminado de la librería correctamente."]);;

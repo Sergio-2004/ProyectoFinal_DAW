@@ -45,5 +45,10 @@ export class DeveloperComponent implements OnInit{
 
   deleteParameter(name: string, game_id: number){
     this.gameData.deleteParameter(name, game_id);
+    window.location.reload();
+  }
+
+  deleteGame(game: Game){
+    this.gameData.deleteGame(game.id, game.name);
   }
 }

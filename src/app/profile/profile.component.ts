@@ -27,7 +27,6 @@ export class ProfileComponent implements OnInit{
   imageUrl!: string;
 
   ngOnInit(): void {
-    this.sessionService.getImage();
   }
 
   onFileSelected(event: any) {
@@ -53,7 +52,7 @@ export class ProfileComponent implements OnInit{
     this.http.post('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/uploadPicture.php', formData)
       .subscribe(response => {
         console.log('Image uploaded successfully:', response);
-        this.sessionService.getImage();
+        window.location.reload();
       }, error => {
         console.error('Error uploading image:', error);
       });
@@ -65,12 +64,17 @@ export class ProfileComponent implements OnInit{
 
   uploadDescription(description: string){
     this.http.get('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/uploadDescription.php', {params: {'user_id': this.sessionService.getSession()!.id, 'description': description}})
-      .subscribe(response => {
-        console.log('Description uploaded successfully:', response);
-        this.sessionService.getImage();
-      }, error => {
+      .subscribe({
+        next: (response) => {
+          console.log('Description uploaded successfully:', response);
+          this.http.get<any>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getUserData.php',  { params: { "user_id": this.sessionService.getSession()!.id}})
+        .subscribe((response) => {
+          console.log(response);
+          this.sessionService.setSession(response.user);
+        });
+      }, error: (error) => {
         console.error('Error uploading description:', error);
-      });
+      }});
   }
 
   deleteUser(){

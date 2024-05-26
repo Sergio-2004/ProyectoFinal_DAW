@@ -32,7 +32,6 @@ export class LogInComponent implements OnInit {
           break;
         case "Registration successful":
           this.sessionService.setSession(response.user);
-          this.sessionService.getImage();
           history.back();
           break;
         default:

@@ -12,6 +12,6 @@
     @if(notSamePassword){
       <p style="color: red;">Las contraseñas no coinciden</p>
     }
-    <button class="m-2" (click)="signIn(user.value, password1.value)">Crear Usuario</button>
+    <button class="m-2" (click)="signIn(user.value, password1.value, password2.value, checkbox.checked)">Crear Usuario</button>
     <p>Si ya tiene una cuenta, pulse <a href="log-in">aqui</a></p>
   </div>

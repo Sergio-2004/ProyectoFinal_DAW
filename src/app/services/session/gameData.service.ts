@@ -151,4 +151,11 @@ export class GameDataService {
 
     return this.http.post<any>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/saveGameFiles.php', formData);
   }
+
+  deleteGame(gameId: number, gameName: string){
+    this.http.get('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/removeGame.php', {params: {'game_id': gameId, 'game_name': gameName}})
+    .subscribe(response => {
+      console.log(response);
+    });
+  }
 }
