@@ -38,7 +38,7 @@ try{
         $stmt->execute();
         $result = $stmt->get_result();
         $row = mysqli_fetch_assoc($result);
-        mkdir('../uploads/games/'.$row['name']);
+        mkdir('../src/assets/uploads/games/'.$row['name']);
 
         $stmt = $conn->prepare(
           "INSERT INTO libraries (user_id, game_id)

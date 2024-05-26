@@ -36,7 +36,7 @@ try{
         $stmt->bind_param("s", $name);
         $stmt->execute();
         $result = $stmt->get_result();
-        mkdir('../uploads/forums/'.mysqli_fetch_assoc($result)['id']);
+        mkdir('../src/assets/uploads/forums/'.mysqli_fetch_assoc($result)['id']);
 
     } else {
         echo json_encode(['error' => $conn->error]);;

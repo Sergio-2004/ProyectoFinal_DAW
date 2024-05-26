@@ -5,11 +5,14 @@ import { HttpClient } from '@angular/common/http';
 import {  DataIndex } from '../../interfaces/dataIndex';
 import { Data } from '../../interfaces/data';
 import { ImageUploadService } from '../image/image-upload.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameDataService {
+
+  private router: Router  = inject(Router);
 
   private http: HttpClient = inject(HttpClient)
   private imageUploadService: ImageUploadService = inject(ImageUploadService)
@@ -137,6 +140,7 @@ export class GameDataService {
           console.error('Error al subir la imagen:', err);
         }});
       }
+      this.router.navigate(['developer']);
     });
   }
 

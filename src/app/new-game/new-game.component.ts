@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { GameDataService } from '../services/session/gameData.service';
 import { SessionService } from '../services/session/session.service';
 
@@ -13,7 +12,6 @@ import { SessionService } from '../services/session/session.service';
 export class NewGameComponent {
 
   private gameDataService: GameDataService = inject(GameDataService);
-  private router: Router  = inject(Router);
   private sessionService: SessionService = inject(SessionService);
 
   showError: boolean = false;
