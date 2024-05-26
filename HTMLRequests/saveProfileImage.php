@@ -4,7 +4,7 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
 // Directorio de destino para almacenar las imágenes
-$uploadDirectory = '../uploads/profiles/';
+$uploadDirectory = '../src/assets/uploads/profiles/';
 
 // Verifica si se ha enviado una imagen
 if ($_FILES['image']) {

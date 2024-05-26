@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GameDataService } from '../services/session/gameData.service';
 import { SessionService } from '../services/session/session.service';
-import { SocialDataService } from '../services/session/socialData.service';
 
 @Component({
   selector: 'app-create-forum',
@@ -12,16 +12,18 @@ import { SocialDataService } from '../services/session/socialData.service';
 })
 export class NewGameComponent {
 
-  constructor(private socialData:SocialDataService, private router: Router){}
+  private gameDataService: GameDataService = inject(GameDataService);
+  private router: Router  = inject(Router);
+  private sessionService: SessionService = inject(SessionService);
 
   showError: boolean = false;
 
+  selectedFile?: File;
   selectedImage?: File;
 
   submit(name: string, description: string){
-    if(name != '' && description != '' && this.selectedImage){
-      this.socialData.postForum(name, description, this.selectedImage);
-      this.router.navigate(['social']);
+    if(name != '' && description != '' && this.selectedFile && this.selectedImage){
+      this.gameDataService.publishGame(name, description, this.sessionService.getSession()!.id, this.selectedFile, this.selectedImage);
     }else{
       this.showError = true;
     }
@@ -33,6 +35,10 @@ export class NewGameComponent {
   }
 
   onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  onFileImageSelected(event: any) {
     this.selectedImage = event.target.files[0];
   }
 

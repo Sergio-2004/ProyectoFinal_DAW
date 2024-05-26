@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Game } from '../../interfaces/game';
 import { HttpClient } from '@angular/common/http';
 import {  DataIndex } from '../../interfaces/dataIndex';
 import { Data } from '../../interfaces/data';
+import { ImageUploadService } from '../image/image-upload.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameDataService {
-  constructor(private http: HttpClient) { }
+
+  private http: HttpClient = inject(HttpClient)
+  private imageUploadService: ImageUploadService = inject(ImageUploadService)
 
   private gameList = new BehaviorSubject<Game[]>([]);
   currentGameList = this.gameList.asObservable();
@@ -110,5 +113,38 @@ export class GameDataService {
     .subscribe(response => {
       console.log(response);
      });
+  }
+
+  publishGame(name: string, description: string, creatorId: number, file: File, image: File){
+    this.http.get<any>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/publishGame.php', {params: {'name':name, 'description':description, 'creator_id': creatorId}})
+    .subscribe(response => {
+      console.log(response);
+      if(file){
+        this.uploadGameFile(file, name)
+        .subscribe({
+          next: (response) => { console.log('Archivos subidos correctamente:', response);
+        },
+        error: (err) => {
+          console.error('Error al subir los archivos:', err);
+        }});
+      }
+      if(image){
+        this.imageUploadService.uploadGameImage(image, name)
+        .subscribe({
+          next: (response) => { console.log('Imagen subida correctamente:', response);
+        },
+        error: (err) => {
+          console.error('Error al subir la imagen:', err);
+        }});
+      }
+    });
+  }
+
+  uploadGameFile(file: File, name: string ){
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('name', name); // Agregar el atributo "name" al FormData
+
+    return this.http.post<any>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/saveGameFiles.php', formData);
   }
 }

@@ -1,11 +1,14 @@
 
 <div class="container">
   <div class="d-flex flex-column p-1" id="post">
-  <input type="text" placeholder="Nombre del foro" #name>
+  <input type="text" placeholder="Nombre del juego" #name>
   <hr>
-  <input cols="60" rows="10" placeholder="Descripción del foro" #description>
-  <div>
-  </div>
+  <input cols="60" rows="10" placeholder="Descripción del juego" #description>
+
+  <h3>Imagen</h3>
+  <input type="file" (change)="onFileImageSelected($event)">
+
+  <h3>Archivos</h3>
   <input type="file" (change)="onFileSelected($event)">
   </div>
   <button class="btn btn-success" (click)="submit(name.value, description.value)">Publicar</button>

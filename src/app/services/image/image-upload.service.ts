@@ -33,4 +33,12 @@ export class ImageUploadService {
 
     return this.http.post<any>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/saveForumImage.php', formData);
   }
+
+  uploadGameImage(image: File, name: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('name', name); // Agregar el atributo "name" al FormData
+
+    return this.http.post<any>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/saveGameImage.php', formData);
+  }
 }

@@ -40,7 +40,7 @@ export class GamePageComponent implements OnInit {
 
   downloadGame(){
     const link = document.createElement('a');
-    link.href = 'assets/games/'+this.game!.name.replace(' ', '%20')+'.zip';
+    link.href = '/assets/uploads/games/'+this.game!.name.replace(' ', '%20')+'/'+this.game!.name.replace(' ', '%20')+'.zip';
     link.download = this.game!.name+'.zip';
     link.click();
   }

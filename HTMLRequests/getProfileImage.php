@@ -1,6 +1,6 @@
 <?php
 // Directorio donde se almacenan las imágenes
-$uploadDirectory = '../uploads/profiles/';
+$uploadDirectory = '../src/assets/uploads/profiles/';
 
 // Verifica si se ha recibido el nombre del archivo como parámetro
 if (isset($_GET['fileName'])) {

@@ -17,7 +17,7 @@ if ($_FILES['image']) {
     $name = $_POST['name'];
 
     // Directorio de destino para almacenar las imágenes
-    $uploadDirectory = '../uploads/forums/';
+    $uploadDirectory = '../src/assets/uploads/forums/';
 
     // Lista de extensiones de archivo permitidas
     $allowedExtensions = ["jpg", "jpeg", "png", "gif"];
