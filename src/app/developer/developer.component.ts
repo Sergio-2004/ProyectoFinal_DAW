@@ -14,14 +14,16 @@ import { DataIndex } from '../interfaces/dataIndex';
 })
 export class DeveloperComponent implements OnInit{
 
-  constructor( private gameData:GameDataService){
-    this.gameData.currentGameList.subscribe(game => {
+  constructor(){
+    this.gameDataService.currentGameList.subscribe(game => {
       this.games = game;
     });
-    this.gameData.currentGameDataIndexList.subscribe(dataIndex => {
+    this.gameDataService.currentGameDataIndexList.subscribe(dataIndex => {
       this.dataIndexList = dataIndex;
     });
   }
+
+  private gameDataService:GameDataService = inject(GameDataService);
 
   sessionService: SessionService = inject(SessionService);
 
@@ -31,24 +33,43 @@ export class DeveloperComponent implements OnInit{
 
   public dataIndexList: DataIndex[] = [];
 
+  selectedFile?: File;
+
   ngOnInit(): void {
     if(this.sessionService.getSession()){
-      this.gameData.fetchDevelopedGames(this.sessionService.getSession()!.id);
+      this.gameDataService.fetchDevelopedGames(this.sessionService.getSession()!.id);
     }
   }
 
   selectGame(game: Game): void {
     this.selectedGame = game;
-    this.gameData.fetchGameDataIndex(game.id);
+    this.gameDataService.fetchGameDataIndex(game.id);
     console.log(game.id);
   }
 
   deleteParameter(name: string, game_id: number){
-    this.gameData.deleteParameter(name, game_id);
+    this.gameDataService.deleteParameter(name, game_id);
     window.location.reload();
   }
 
   deleteGame(game: Game){
-    this.gameData.deleteGame(game.id, game.name);
+    this.gameDataService.deleteGame(game.id, game.name);
+  }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  updateGameFiles(){
+    if(this.selectedFile){
+      this.gameDataService.uploadGameFile(this.selectedFile, this.selectedGame!.name).subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+    }
   }
 }

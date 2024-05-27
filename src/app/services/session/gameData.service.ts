@@ -71,7 +71,7 @@ export class GameDataService {
     this.http.get<Data[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getGameData.php', {params: {'name': name, 'game_id': game_id}})
      .subscribe(response => {
         this.gameDataList.next(response.map(data => ({
-          player_id: data.player_id,
+          player_name: data.player_name,
           recorded_date: data.recorded_date,
           value: data.value,
         })))

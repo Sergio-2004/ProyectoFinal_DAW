@@ -12,7 +12,7 @@ import { UploadImageComponent } from '../upload-image/upload-image.component';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent {
 
   constructor( private http: HttpClient, private data:UserDataService){
     this.data.currentImageUrl.subscribe(imageUrl => {
@@ -26,36 +26,8 @@ export class ProfileComponent implements OnInit{
   selectedFile?: File;
   imageUrl!: string;
 
-  ngOnInit(): void {
-  }
-
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-  }
-
-  uploadImage() {
-    if (!this.selectedFile) {
-      console.error('No file selected');
-      return;
-    }
-
-    const user_id = this.sessionService.getSession()!.id;
-    if (user_id === null) {
-      console.error('user_id is null');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('user_id', user_id.toString());
-    formData.append('picture', this.selectedFile);
-
-    this.http.post('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/uploadPicture.php', formData)
-      .subscribe(response => {
-        console.log('Image uploaded successfully:', response);
-        window.location.reload();
-      }, error => {
-        console.error('Error uploading image:', error);
-      });
   }
 
   getProfileImageUrl(): string {

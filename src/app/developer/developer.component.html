@@ -1,7 +1,7 @@
 @if(sessionService.getSession()){
   @if(games){
     <div class="d-flex">
-      <nav class="nav-lib list" style="width: 300px;height: 100vw;">
+      <nav class="nav-lib list" style="width: 300px; height: 91.6vh;">
           <ul class="nav flex-column">
             @if(games){
               <li class="nav-item">
@@ -18,21 +18,26 @@
           </ul>
       </nav>
           @if(selectedGame){
-            <div class="container">
-            <button class="btn btn-danger d-flex row" (click)="deleteGame(selectedGame)"><p class="p-2">Eliminar juego</p></button>
-            <nav class="nav-lib game" style="width: 300px;height: 100vw;">
-              <ul class="nav flex-column">
-                @for(data of dataIndexList; track $index){
-                  <li class="nav-item game d-flex justify-content-between">
-                    <a class="item" style="width: 300px; text-align: center; padding-top: 5px;" href="parameter/{{selectedGame.id}}/{{data.name}}">
-                      {{data.name}}
-                    </a>
-                    <a class="item" (click)="deleteParameter(data.name, selectedGame.id)"><img src="/assets/delete.svg" width="40px"></a>
-                  </li>
-                }
-                <a href="new-parameter/{{selectedGame.id}}"><li>Crear nuevo parámetro</li></a>
-              </ul>
-            </nav>
+            <div class="d-flex justify-content-between" style="width: 100vw;">
+              <nav class="nav-lib game" style="width: 300px;padding: 50px;">
+                <ul class="nav flex-column">
+                  @for(data of dataIndexList; track $index){
+                    <li class="nav-item game d-flex justify-content-between">
+                      <a class="item" style="width: 300px; text-align: center; padding-top: 5px;" href="parameter/{{selectedGame.id}}/{{data.name}}">
+                        {{data.name}}
+                      </a>
+                      <a class="item" (click)="deleteParameter(data.name, selectedGame.id)"><img src="/assets/delete.svg" width="40px"></a>
+                    </li>
+                  }
+                  <a href="new-parameter/{{selectedGame.id}}"><li>Crear nuevo parámetro</li></a>
+                </ul>
+              </nav>
+              <div class="" style="padding: 50px;">
+                <h3>Cambiar archivos de juego</h3>
+                <input type="file" (change)="onFileSelected($event)">
+                <button class="btn btn-success d-flex row" (click)="updateGameFiles()">Cambiar archivos</button>
+                <button class="btn btn-danger d-flex row" (click)="deleteGame(selectedGame)"><p class="p-2">Eliminar juego</p></button>
+              </div>
             </div>
           }@else{
             <h3>Seleccione un juego para ver sus parámetros</h3>

@@ -1,5 +1,5 @@
 export interface Data {
-  player_id: number,
+  player_name: string,
   recorded_date: string,
   value: string,
 }

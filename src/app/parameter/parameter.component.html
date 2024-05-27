@@ -4,8 +4,26 @@
     <p>Table id: {{dataIndex.table_name}}</p>
   }
 
-  @for (item of dataList; track $index) {
-    {{item.value}}
-    {{item.recorded_date}}
-  }
+  <div class="d-flex justify-content-between">
+    <div>
+      <button (click)="sortByName()">Nombre</button>
+      <button (click)="sortByValue()">Valor</button>
+      <button (click)="sortByDate()">Fecha</button>
+    @for (item of dataList; track $index) {
+      <div>
+      {{item.player_name}}
+      {{item.value}}
+      {{item.recorded_date}}
+      </div>
+    }
+    </div>
+
+    <div class="chart-wrapper" style="width: 500px;">
+        <canvas
+        baseChart
+        [type]="'line'"
+        [data]="getLineChartData()"
+        ></canvas>
+    </div>
+  </div>
 </div>

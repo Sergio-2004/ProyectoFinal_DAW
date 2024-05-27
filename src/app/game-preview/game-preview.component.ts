@@ -21,6 +21,7 @@ export class GamePreviewComponent {
     link.href = '/assets/uploads/games/'+this.game!.name.replace(' ', '%20')+'/'+this.game!.name.replace(' ', '%20')+'.zip';
     link.download = this.game!.name+'.zip';
     link.click();
+    console.log('/assets/uploads/games/'+this.game!.name.replace(' ', '%20')+'/'+this.game!.name.replace(' ', '%20')+'.zip');
   }
   removeFromLibrary(){
     console.table(this.game);

@@ -14,7 +14,6 @@ export class UserDataService {
     description: ''
   });
   currentUser = this.user.asObservable();
-  constructor() { }
 
   changeImageUrl(imageUrl: string){
     this.imageUrl.next(imageUrl);

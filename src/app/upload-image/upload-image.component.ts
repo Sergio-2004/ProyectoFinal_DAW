@@ -30,6 +30,7 @@ export class UploadImageComponent {
     this.imageUploadService.uploadImage(this.selectedImage, this.sessionService.getSession()!.id.toString())
       .subscribe(response => {
         console.log('Imagen subida correctamente:', response);
+        window.location.reload();
         // Aquí puedes manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
       }, error => {
         console.error('Error al subir la imagen:', error);

@@ -32,8 +32,9 @@ try{
   if($row = $result->fetch_assoc()) {
     $table_name = $row['table_name'].'-'.$row['id'];
     $stmt = $conn->prepare(
-      "SELECT *
-      FROM `$table_name`");
+      "SELECT users.username as player_name, `$table_name`.recorded_date as recorded_date, `$table_name`.value as value
+      FROM `$table_name`
+      JOIN users ON users.id = `$table_name`.player_id");
   $stmt->execute();
   $result = $stmt->get_result();
   $data = [];

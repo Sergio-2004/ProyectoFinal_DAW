@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { Game } from '../interfaces/game';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
