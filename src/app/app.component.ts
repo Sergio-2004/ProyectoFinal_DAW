@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { NavigationComponent } from './navigation/navigation.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NavigationComponent } from './common/navigation/navigation.component';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,5 @@ export class AppComponent implements OnInit{
   title = 'proyecto';
 
   ngOnInit(): void {
-    this.elementRef.nativeElement.ownerDocument
-            .body.style.backgroundColor = '#3b213b';
   }
 }

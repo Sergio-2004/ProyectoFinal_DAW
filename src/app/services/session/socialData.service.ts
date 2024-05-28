@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Post } from '../../interfaces/post';
-import { Forum } from '../../interfaces/IForum';
-import { Comment } from '../../interfaces/comment';
+import { Post } from '../../common/interfaces/post';
+import { Forum } from '../../common/interfaces/IForum';
+import { Comment } from '../../common/interfaces/comment';
 import { ImageUploadService } from '../image/image-upload.service';
 
 @Injectable({

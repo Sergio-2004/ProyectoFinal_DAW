@@ -1,19 +1,19 @@
 import { Routes } from '@angular/router';
-import { ShopComponent } from './shop/shop.component';
-import { LibraryComponent } from './library/library.component';
-import { SocialComponent } from './social/social.component';
-import { DeveloperComponent } from './developer/developer.component';
-import { ProfileComponent } from './profile/profile.component';
-import { GamePageComponent } from './game-page/game-page.component';
-import { LogInComponent } from './log-in/log-in.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { PostComponent } from './post/post.component';
-import { ParameterComponent } from './parameter/parameter.component';
-import { ForumComponent } from './forum/forum.component';
-import { CreatePostComponent } from './create-post/create-post.component';
-import { CreateForumComponent } from './create-forum/create-forum.component';
-import { NewParameterComponent } from './new-parameter/new-parameter.component';
-import { NewGameComponent } from './new-game/new-game.component';
+import { ShopComponent } from './store/shop/shop.component';
+import { DeveloperComponent } from './user-data/developer/developer.component';
+import { LogInComponent } from './user-data/log-in/log-in.component';
+import { ParameterComponent } from './user-data/parameter/parameter.component';
+import { NewParameterComponent } from './user-data/new-parameter/new-parameter.component';
+import { NewGameComponent } from './user-data/new-game/new-game.component';
+import { SocialComponent } from './social-data/social/social.component';
+import { LibraryComponent } from './user-data/library/library.component';
+import { ProfileComponent } from './user-data/profile/profile.component';
+import { GamePageComponent } from './store/game-page/game-page.component';
+import { SignInComponent } from './user-data/sign-in/sign-in.component';
+import { ForumComponent } from './social-data/forum/forum.component';
+import { CreatePostComponent } from './social-data/create-post/create-post.component';
+import { PostComponent } from './social-data/post/post.component';
+import { CreateForumComponent } from './social-data/create-forum/create-forum.component';
 
 export const routes: Routes = [
   {

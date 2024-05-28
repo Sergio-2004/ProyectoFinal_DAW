@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Game } from '../../interfaces/game';
+import { Game } from '../../common/interfaces/game';
 import { HttpClient } from '@angular/common/http';
-import {  DataIndex } from '../../interfaces/dataIndex';
-import { Data } from '../../interfaces/data';
+import {  DataIndex } from '../../common/interfaces/dataIndex';
+import { Data } from '../../common/interfaces/data';
 import { ImageUploadService } from '../image/image-upload.service';
 import { Router } from '@angular/router';
 
