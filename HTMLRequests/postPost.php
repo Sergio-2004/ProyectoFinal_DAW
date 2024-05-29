@@ -16,6 +16,7 @@ $user_id = $_GET['user_id'];
 $forum_id = $_GET['forum_id'];
 $content = $_GET['content'];
 $title = $_GET['title'];
+$has_image = $_GET['has_image'];
 
 // Verificar la conexión
 try{
@@ -25,12 +26,12 @@ try{
 
   // Consulta SQL para obtener los juegos de la base de datos
   $stmt = $conn->prepare(
-      "INSERT INTO posts (user_id, forum_id, title, content)
-      VALUES (?, ?, ?, ?);");
-  $stmt->bind_param("iiss", $user_id, $forum_id, $title, $content);
+      "INSERT INTO posts (user_id, forum_id, title, content, has_image)
+      VALUES (?, ?, ?, ?, ?);");
+  $stmt->bind_param("iissi", $user_id, $forum_id, $title, $content, $has_image);
 
     if ($stmt->execute()) {
-        echo json_encode(['message' => "Post publicado correctamente."]);;
+        echo json_encode(['message' => "Post publicado correctamente."]);
     } else {
         echo json_encode(['error' => $conn->error]);;
     }

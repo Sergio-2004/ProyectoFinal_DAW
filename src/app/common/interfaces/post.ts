@@ -3,5 +3,5 @@ export interface Post {
   title: string;
   username: string;
   content: string;
-  image?: string;
+  hasImage: boolean;
 }

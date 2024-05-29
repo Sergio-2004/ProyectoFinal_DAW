@@ -3,4 +3,5 @@ export interface Game {
   name: string;
   creator_id: number;
   description: string;
+  genre?: string;
 }

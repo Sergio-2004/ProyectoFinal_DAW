@@ -25,7 +25,8 @@ try{
       "SELECT posts.id as post_id,
       posts.title as post_title,
       users.username as post_username,
-      posts.content as post_content
+      posts.content as post_content,
+      posts.has_image as has_image
       FROM posts
       JOIN users ON posts.user_id = users.id
       WHERE posts.forum_id = ?;");
@@ -39,7 +40,8 @@ try{
           'id' => $row['post_id'],
           'title' => $row['post_title'],
           'username' => $row['post_username'],
-          'content' => $row['post_content']
+          'content' => $row['post_content'],
+          'hasImage' => $row['has_image']
       ];
   }
 

@@ -2,21 +2,22 @@
 	.navbar .nav-item .dropdown-menu{ display: none; }
 	.navbar .nav-item:hover .dropdown-menu{ display: block; }
 	.navbar .nav-item .dropdown-menu{ margin-top:0; }
-  .nav-item:hover, .dropdown-item:hover{ background: rgb(80, 0, 100);}
+  .nav-item:hover, .dropdown-item:hover{background-color: #252c3f;}
+  .nav-item{ font-weight: 500; font-size: 20px;}
+}
+*{
+  color: white;
 }
 li{
   padding-top: 20px;
   padding-bottom: 20px ;
-}
-a, a:hover{
-  color: white;
 }
 .right{
   position: absolute;
   right: 0;
 }
 nav, ul{
-  background-color: rgb(25, 0, 49);
+  background-color: #323c57;
   padding: 0;
 }
 li+li{

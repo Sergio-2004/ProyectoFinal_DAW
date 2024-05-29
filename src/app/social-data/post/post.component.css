@@ -1,13 +1,9 @@
-*{
-  color: white;
-}
 h1{
   text-align: center;
   margin-bottom: 50px;
 }
 
 .list-group-item{
-  background-color: rgb(34, 0, 66);
   border: none;
   border-radius: 0;
   margin-top: 10px;
@@ -15,15 +11,23 @@ h1{
 
 textarea{
   color: black;
+  resize: none;
 }
 .post{
-  background-color: rgb(19, 0, 44);
+  background-color: #a1c6cf;
+  border: 10px solid #406c91;
   margin-top: 20px;
   margin-bottom: 100px;
   padding-bottom: 50px;
   padding-left: 10px;
 }
 .comments{
-  background-color: rgb(19, 0, 44);
+  background-color: #406c91;
   padding: 10px;
+}
+.back-container{
+  background-color: #d7e7e7;
+  min-height: 91vh;
+  padding-right: 50px;
+  padding-left: 50px;
 }

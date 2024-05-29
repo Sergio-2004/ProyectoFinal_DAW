@@ -1,17 +1,19 @@
 @if(sessionService.getSession()){
   @if(games){
     <div class="d-flex">
-      <nav class="nav-lib list" style="width: 300px; height: 91.6vh;">
+      <nav class="nav-lib list">
           <ul class="nav flex-column">
             @if(games){
               <li class="nav-item">
-                <a href="new-game">
+                <a class="nav-link active d-flex" href="new-game">
                <p class="p-2">Añadir juego</p>
               </a>
               </li>
               @for(game of games; track $index){
                 <li class="nav-item">
-                  <a class="nav-link active d-flex" (click)="selectGame(game)"><p class="p-2">{{game.name}}</p></a>
+                  <a class="nav-link active d-flex" (click)="selectGame(game)">
+                    <p class="p-2">{{game.name}}</p>
+                  </a>
                 </li>
               }
             }
@@ -19,7 +21,7 @@
       </nav>
           @if(selectedGame){
             <div class="d-flex justify-content-between" style="width: 100vw;">
-              <nav class="nav-lib game" style="width: 300px;padding: 50px;">
+              <nav class="nav-lib game">
                 <ul class="nav flex-column">
                   @for(data of dataIndexList; track $index){
                     <li class="nav-item game d-flex justify-content-between">
@@ -32,11 +34,14 @@
                   <a href="new-parameter/{{selectedGame.id}}"><li>Crear nuevo parámetro</li></a>
                 </ul>
               </nav>
-              <div class="" style="padding: 50px;">
+              <div style="padding: 50px;">
                 <h3>Cambiar archivos de juego</h3>
                 <input type="file" (change)="onFileSelected($event)">
                 <button class="btn btn-success d-flex row" (click)="updateGameFiles()">Cambiar archivos</button>
                 <button class="btn btn-danger d-flex row" (click)="deleteGame(selectedGame)"><p class="p-2">Eliminar juego</p></button>
+              </div>
+              <div class="image-wraper">
+                <img src="../../../assets/logo/logo.png" style="max-height: 70vh;">
               </div>
             </div>
           }@else{

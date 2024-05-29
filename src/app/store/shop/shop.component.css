@@ -1,19 +1,6 @@
-body{
-  background-color: blueviolet;
-}
 h1{
   text-align: center;
   padding: 40px;
-}
-*{
-  color: white;
-}
-.card-text{
-  height: 80px;
-  overflow: auto;
-}
-.card{
-  background-color: blueviolet;
 }
 
 .right{
@@ -22,22 +9,72 @@ h1{
 }
 
 .slider-button{
-  background-color: #3b58a7;
+  background-color: #406c91;
   border-radius: 50%;
-  border-color: #3b58a7;
+  border-color: #406c91;
   width: 60px;
   height: 60px;
 }
 
 .slider-btn-left{
   position: relative;
-  right: -60px;
+  right: -160px;
 }
 .slider-btn-right{
   position: relative;
-  left: -60px;
+  left: -160px;
 }
 
 div.search-box *{
   color: black;
+}
+
+.game-card {
+  position: relative;
+  max-width: 300px;
+  height: 300px;
+  border: 5px solid #406c91;
+  z-index: 2;
+  overflow:hidden;
+}
+
+.game-card:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.815);
+  z-index: 4;
+  pointer-events: none;
+}
+.game-text{
+  position: absolute;
+  top: 30px;
+  visibility: hidden;
+  z-index: 6;
+  padding: 2px;
+  color: white;
+}
+.game-card:hover .game-text{
+  visibility: visible;
+}
+
+.game-img{
+  width: 290px;
+  z-index: 3;
+}
+.game-title{
+  z-index: 6;
+  color: white;
+  height: 30px;
+  width: 300px;
+  background-color: #406c91;
+  position: absolute;
+}
+
+.card-container{
+  background-color: #d7e7e7;
+  padding: 50px 10px 50px 10px;
 }

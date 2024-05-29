@@ -1,15 +1,16 @@
 
 <div class="container">
+  <h1>Creación de foro</h1>
   <div class="d-flex flex-column p-1" id="post">
-  <input type="text" placeholder="Nombre del foro" #name>
+  <input class="title" type="text" placeholder="Título del foro" #title>
   <hr>
-  <input cols="60" rows="10" placeholder="Descripción del foro" #description>
+  <textarea cols="60" rows="10" placeholder="Descripción del foro" #description></textarea>
   <div>
   </div>
   <input type="file" (change)="onFileSelected($event)">
   </div>
-  <button class="btn btn-success" (click)="submitForum(name.value, description.value)">Crear nuevo foro</button>
+  <button class="btn btn-success" (click)="submitForum(title.value, description.value)">Crear nuevo foro</button>
   @if(showError){
-    <p style="color: red;">Por favor, ponga nombre y descripción al foro</p>
+    <p style="color: red;">Por favor, ponga título, descripción e imagen al foro</p>
   }
 </div>

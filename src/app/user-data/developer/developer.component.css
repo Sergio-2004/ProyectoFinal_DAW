@@ -1,21 +1,35 @@
-*{
-    color: white;
-}
-
 .list .nav-item:hover{
   cursor: pointer;
-  background-color: rgb(46, 0, 83);
+  background-color: #5893c4;
 
 }
 .nav-lib.list{
-  background-color: rgb(23, 0, 49);
+  background-color: #406c91;
+  height: 91vh;
+  min-width: 300px;
+}
+
+.nav-lib.game{
+  min-width: 300px;
+  max-width: 300px;
+  padding: 50px;
 }
 
 .item:hover {
   cursor: pointer;
-  background-color: rgb(190, 0, 127);
+  background-color: #5893c4;
 }
 
 .game.nav-item{
-  background-color: rgb(134, 0, 101);
+  background-color: #406c91;
+}
+
+a{
+  text-decoration: none;
+  color: white!important;
+  font-size: 20px;
+}
+
+.image-wraper{
+  overflow: hidden; max-height: 91vh; max-width: 700px; border: 20px solid #406c8f;
 }

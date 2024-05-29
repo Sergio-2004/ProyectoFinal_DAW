@@ -1,6 +1,4 @@
-*{
-    color: white;
-}
+
 
 a.list-group-warper{
   text-decoration: none;
@@ -11,14 +9,14 @@ a.list-group-warper{
 }
 
 .list-group-item{
-  background-color: rgb(37, 0, 71);
-  border: none;
-  padding: 30px;
+  background-color: #406c91;
+  min-height: 150px;
+  padding:10px;
   margin: 10px;
   font-size: 20px;
+  color: white;
 }
 
 .list-group-item:hover{
-  background-color: rgb(69, 0, 134);
-  border: 1px solid blueviolet;
+  background-color: #5796c9;
 }

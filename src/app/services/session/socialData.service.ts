@@ -41,7 +41,8 @@ export class SocialDataService {
           id: post.id,
           title: post.title,
           username: post.username,
-          content: post.content
+          content: post.content,
+          hasImage: post.hasImage
         })))
       });
   }
@@ -61,12 +62,13 @@ export class SocialDataService {
     this.http.get<Comment[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/postComment.php', {params: {'user_id': user_id, 'post_id': post_id, 'content': content}})
     .subscribe(response => {
       console.log(response);
+      window.location.reload();
       });
     this.fetchComments(post_id);
   }
 
   postPost(forum_id:number, user_id: number,title: string, content: string, image?: File){
-    this.http.get<Post[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/postPost.php', {params: {'forum_id':forum_id, 'user_id':user_id,'title': title, 'content': content}})
+    this.http.get<Post[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/postPost.php', {params: {'forum_id':forum_id, 'user_id':user_id,'title': title, 'content': content, 'has_image': image != null ? 1: 0}})
     .subscribe(response => {
       console.log(response);
     });
