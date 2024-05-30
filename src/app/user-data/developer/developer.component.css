@@ -22,6 +22,7 @@
 
 .game.nav-item{
   background-color: #406c91;
+  border-bottom: 3px solid #243e53;
 }
 
 a{

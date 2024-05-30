@@ -4,11 +4,12 @@ import { SessionService } from '../../services/session/session.service';
 import { GameDataService } from '../../services/session/gameData.service';
 import { Game } from '../../common/interfaces/game';
 import { DataIndex } from '../../common/interfaces/dataIndex';
+import { NewParameterComponent } from '../new-parameter/new-parameter.component';
 
 @Component({
   selector: 'app-developer',
   standalone: true,
-  imports: [SessionInitRequireComponent],
+  imports: [SessionInitRequireComponent, NewParameterComponent],
   templateUrl: './developer.component.html',
   styleUrl: './developer.component.css'
 })

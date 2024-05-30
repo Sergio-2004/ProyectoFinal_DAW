@@ -1,16 +1,21 @@
 @if(game){
-  <div class="container">
-    <h1>{{game.name}}</h1>
+  <div class="d-flex justify-content-between">
+    <div class="container">
+      <h1>{{game.name}}</h1>
 
-    <p>{{game.description}}</p>
+      <p>{{game.description}}</p>
 
 
-    <button class="btn btn-success" (click)="downloadGame()">
-      Descargar
-    </button>
-    <button class="btn btn-danger" (click)="removeFromLibrary()">
-      Quitar de la biblioteca
-    </button>
+      <button class="btn btn-success" (click)="downloadGame()">
+        Descargar
+      </button>
+      <button class="btn btn-danger" (click)="removeFromLibrary()">
+        Quitar de la biblioteca
+      </button>
+    </div>
+    <div class="image-wraper">
+      <img src="../../../assets/logo/logo.png" style="max-height: 91vh;">
+    </div>
   </div>
 }
 

@@ -1,21 +1,28 @@
+  <div class="d-flex justify-content-between">
+    <div class="p-5">
+      <h1>{{game.name}}</h1>
 
-<div class="container">
-  <h1>{{game.name}}</h1>
-
-  <p>{{game.description}}</p>
+      <p>{{game.description}}</p>
 
 
-  @if(sessionService.getSession()){
-    <button class="btn btn-success" (click)="downloadGame()">
-      Descargar
-    </button>
-    <button class="btn btn-success" (click)="addToLibrary(game)">
-      Añadir a biblioteca
-    </button>
-}@else {
-  <button class="btn btn-success" disabled>
-    Descargar
-  </button>
-  <app-session-init-require></app-session-init-require>
-}
-</div>
+      @if(sessionService.getSession()){
+        <button class="btn btn-success" (click)="downloadGame()">
+          Descargar
+        </button>
+        <button class="btn btn-success" (click)="addToLibrary(game)">
+          Añadir a biblioteca
+        </button>
+      }@else {
+        <button class="btn btn-success" disabled>
+          Descargar
+        </button>
+        <button class="btn btn-success" disabled>
+          Añadir a biblioteca
+        </button>
+        <app-session-init-require></app-session-init-require>
+      }
+    </div>
+    <div class="image-wraper">
+      <img src="../../../assets/logo/logo.png" style="max-height: 91vh;">
+    </div>
+  </div>

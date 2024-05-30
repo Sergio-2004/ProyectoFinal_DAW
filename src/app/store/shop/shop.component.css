@@ -18,11 +18,11 @@ h1{
 
 .slider-btn-left{
   position: relative;
-  right: -160px;
+  right: -60px;
 }
 .slider-btn-right{
   position: relative;
-  left: -160px;
+  left: -60px;
 }
 
 div.search-box *{

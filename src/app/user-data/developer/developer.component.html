@@ -25,13 +25,15 @@
                 <ul class="nav flex-column">
                   @for(data of dataIndexList; track $index){
                     <li class="nav-item game d-flex justify-content-between">
-                      <a class="item" style="width: 300px; text-align: center; padding-top: 5px;" href="parameter/{{selectedGame.id}}/{{data.name}}">
+                      <a class="item" style="width: 200px; text-align: center; padding-top: 5px;" href="parameter/{{selectedGame.id}}/{{data.name}}">
                         {{data.name}}
                       </a>
                       <a class="item" (click)="deleteParameter(data.name, selectedGame.id)"><img src="/assets/delete.svg" width="40px"></a>
                     </li>
                   }
-                  <a href="new-parameter/{{selectedGame.id}}"><li>Crear nuevo parámetro</li></a>
+                  <li class="nav-item game d-flex justify-content-between">
+                    <app-new-parameter [game]="selectedGame"></app-new-parameter>
+                  <li class="nav-item game d-flex justify-content-between"></li>
                 </ul>
               </nav>
               <div style="padding: 50px;">
