@@ -24,9 +24,10 @@ try{
 
   // Consulta SQL para obtener los juegos de la base de datos
   $stmt = $conn->prepare(
-      "INSERT INTO comments (user_id, post_id, content)
-      VALUES (?, ?, ?);");
-  $stmt->bind_param("iis", $user_id, $post_id, $content);
+      "INSERT INTO comments (user_id, post_id, content, date)
+      VALUES (?, ?, ?, ?);");
+  $current_date = date("Y-m-d");
+  $stmt->bind_param("iiss", $user_id, $post_id, $content, $current_date);
 
     if ($stmt->execute()) {
         echo json_encode(['message' => "Imagen actualizada correctamente."]);;

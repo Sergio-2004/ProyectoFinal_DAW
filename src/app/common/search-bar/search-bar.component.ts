@@ -15,6 +15,7 @@ export class SearchBarComponent {
   public filteredItems: string[] = this.items;
 
   @Output() selectedFilter = new EventEmitter<string[]>();
+  @Output() selectedOption = new EventEmitter<string>();
 
   show: boolean = false;
 
@@ -40,6 +41,6 @@ export class SearchBarComponent {
   }
 
   optionSelected(item: string){
-    this.selectedFilter.emit([item]);
+    this.selectedOption.emit(item);
   }
 }

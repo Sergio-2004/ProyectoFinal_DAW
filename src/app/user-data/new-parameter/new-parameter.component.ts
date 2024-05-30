@@ -13,14 +13,11 @@ import { Game } from '../../common/interfaces/game';
 export class NewParameterComponent {
 
   private gameData:GameDataService = inject(GameDataService);
-  private _route: ActivatedRoute = inject( ActivatedRoute );
-  private router: Router = inject( Router );
 
   @Input() game!: Game;
 
   testData(name: string){
-    console.log(name);
     this.gameData.createDataTable(name, this.game.id);
-    this.router.navigateByUrl('/developer');
+    window.location.reload();
   }
 }

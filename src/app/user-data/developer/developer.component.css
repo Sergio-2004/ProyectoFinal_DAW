@@ -6,7 +6,8 @@
 .nav-lib.list{
   background-color: #406c91;
   height: 91vh;
-  min-width: 300px;
+  min-width: 200px;
+  max-width: 200px;
 }
 
 .nav-lib.game{
@@ -22,7 +23,7 @@
 
 .game.nav-item{
   background-color: #406c91;
-  border-bottom: 3px solid #243e53;
+  border: 3px solid #243e53;
 }
 
 a{
@@ -32,5 +33,23 @@ a{
 }
 
 .image-wraper{
-  overflow: hidden; max-height: 91vh; max-width: 700px; border: 20px solid #406c8f;
+  overflow: hidden;
+  height: 91vh;
+  width: 700px;
+  max-width: 700px;
+  border: 20px solid #406c8f;
+  background-color: #406c8f;
+  text-align: center;
+  position: sticky;
+  right: 0;
+}
+
+.image-wraper img{
+  width: 500px;
+  max-width: 500px;
+}
+
+li{
+  margin-bottom: 10px;
+  align-items: center;
 }

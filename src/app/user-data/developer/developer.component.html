@@ -1,5 +1,4 @@
 @if(sessionService.getSession()){
-  @if(games){
     <div class="d-flex">
       <nav class="nav-lib list">
           <ul class="nav flex-column">
@@ -31,26 +30,35 @@
                       <a class="item" (click)="deleteParameter(data.name, selectedGame.id)"><img src="/assets/delete.svg" width="40px"></a>
                     </li>
                   }
-                  <li class="nav-item game d-flex justify-content-between">
+                  <li class="nav-item game new-parameter">
                     <app-new-parameter [game]="selectedGame"></app-new-parameter>
-                  <li class="nav-item game d-flex justify-content-between"></li>
+                  </li>
                 </ul>
               </nav>
-              <div style="padding: 50px;">
-                <h3>Cambiar archivos de juego</h3>
-                <input type="file" (change)="onFileSelected($event)">
-                <button class="btn btn-success d-flex row" (click)="updateGameFiles()">Cambiar archivos</button>
-                <button class="btn btn-danger d-flex row" (click)="deleteGame(selectedGame)"><p class="p-2">Eliminar juego</p></button>
+              <div>
+                <div class="col">
+                  <h3 class="row m-5">Cambiar archivos de juego</h3>
+                  <div class="w-100"></div>
+                  <input class="row m-2" type="file" (change)="onFileSelected($event)">
+                  <div class="w-100"></div>
+                  <button class="btn btn-success row m-2" (click)="updateGameFiles()">Cambiar archivos</button>
+                  <div class="w-100"></div>
+                  <h3 class="row p-3">Eliminar juego</h3>
+                  <div class="w-100"></div>
+                  <button class="btn btn-danger row m-2" (click)="deleteGame(selectedGame)">Eliminar juego</button>
+                </div>
               </div>
               <div class="image-wraper">
-                <img src="../../../assets/logo/logo.png" style="max-height: 70vh;">
+                <img [src]="getGameImageUrl(selectedGame)">
               </div>
             </div>
           }@else{
-            <h3>Seleccione un juego para ver sus parámetros</h3>
+            <div style="position: relative; left: 30vw; text-align: center;">
+              <img src="../assets/logo/logo.png" width="400px">
+              <h3 style="text-align: center;">Seleccione o cree un juego para ver sus parámetros</h3>
+            </div>
           }
     </div>
-  }
 }@else {
   <app-session-init-require></app-session-init-require>
 }

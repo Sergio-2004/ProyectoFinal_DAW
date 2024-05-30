@@ -4,4 +4,5 @@ export interface Post {
   username: string;
   content: string;
   hasImage: boolean;
+  date: string;
 }

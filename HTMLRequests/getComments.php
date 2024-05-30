@@ -22,7 +22,7 @@ try{
 
   // Consulta SQL para obtener los juegos de la base de datos
   $stmt = $conn->prepare(
-      "SELECT users.username as username, comments.content as content
+      "SELECT users.username as username, comments.content as content, comments.date as date
       FROM comments
       JOIN users ON (comments.user_id = users.id)
       WHERE comments.post_id = ?;");
@@ -34,7 +34,8 @@ try{
   while ($row = mysqli_fetch_assoc($result)) {
       $comment[] = [
           'username' => $row['username'],
-          'content' => $row['content']
+          'content' => $row['content'],
+          'date' => $row['date']
       ];
   }
 

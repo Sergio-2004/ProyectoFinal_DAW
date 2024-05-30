@@ -1,7 +1,5 @@
-
-*{
-
-}
 button{
   color: black;
+  margin: 10px;
+  border: 2px solid #406c91;
 }

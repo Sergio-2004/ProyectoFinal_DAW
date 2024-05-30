@@ -2,28 +2,77 @@
   ¡Descubre y Prueba Nuevos Juegos!
 </h1>
 
-<app-search-bar [items]="this.gameNames" (selectedFilter)="filterGames($event)"></app-search-bar>
+<app-search-bar [items]="this.gameNames" (selectedFilter)="filterGames($event)" (selectedOption)="goToGame($event)"></app-search-bar>
 
-
+<h2 style="text-align: center;">Recomendados</h2>
 <div class="container-fluid d-flex align-items-center">
-  @if(filtered.length > 3){
-    <input class="slider-button slider-btn-left" type="image" (click)="previousGame()" src="../../assets/left-arrow.svg">
-  }
-<div class="container d-flex justify-content-around card-container">
-  @for (game of filtered; track $index) {
-    @if($index < 3){
-      <a href="game-page/{{game.name}}">
-        <div class="game-card">
-          <h5 class="game-title">{{game.name}}</h5>
-          <img class="game-img" src="../../../assets/logo/logo.png" alt="Card image cap">
-          <p class="game-text">{{game.description}}</p>
-        </div>
-      </a>
+  <div class="container d-flex justify-content-around card-container">
+    @if(filtered.length > 3){
+      <input class="slider-button slider-btn-left" type="image" (click)="previousGame(filtered)" src="../../assets/left-arrow.svg">
     }
-  }
-
+    @for (game of filtered; track $index) {
+      @if($index < 3){
+        <a href="game-page/{{game.name}}">
+          <div class="game-card">
+            <h5 class="game-title">{{game.name}}</h5>
+            <img class="game-img" [src]="getGameImageUrl(game.name)" alt="Card image cap">
+            <p class="game-text">{{game.description}}</p>
+          </div>
+        </a>
+      }
+    }
+    @if(filtered.length > 3){
+      <input class="slider-button slider-btn-right" type="image" (click)="nextGame(filtered)" src="../../../assets/right-arrow.svg">
+    }
   </div>
-  @if(filtered.length > 4){
-    <input class="slider-button slider-btn-right" type="image" (click)="nextGame()" src="../../../assets/right-arrow.svg">
-  }
 </div>
+
+@if(action.length > 0){
+  <h2 style="text-align: center;">Acción</h2>
+  <div class="container-fluid d-flex align-items-center">
+    <div class="container d-flex justify-content-around card-container">
+      @if(action.length > 3){
+        <input class="slider-button slider-btn-left" type="image" (click)="previousGame(action)" src="../../assets/left-arrow.svg">
+      }
+      @for (game of action; track $index) {
+        @if($index < 3){
+          <a href="game-page/{{game.name}}">
+            <div class="game-card">
+              <h5 class="game-title">{{game.name}}</h5>
+              <img class="game-img" [src]="getGameImageUrl(game.name)" alt="Card image cap">
+              <p class="game-text">{{game.description}}</p>
+            </div>
+          </a>
+        }
+      }
+      @if(action.length > 3){
+        <input class="slider-button slider-btn-right" type="image" (click)="nextGame(action)" src="../../../assets/right-arrow.svg">
+      }
+    </div>
+  </div>
+}
+
+@if(horror.length > 0){
+  <h2 style="text-align: center;">Terror</h2>
+  <div class="container-fluid d-flex align-items-center">
+    <div class="container d-flex justify-content-around card-container">
+      @if(horror.length > 3){
+        <input class="slider-button slider-btn-left" type="image" (click)="previousGame(horror)" src="../../assets/left-arrow.svg">
+      }
+      @for (game of horror; track $index) {
+        @if($index < 3){
+          <a href="game-page/{{game.name}}">
+            <div class="game-card">
+              <h5 class="game-title">{{game.name}}</h5>
+              <img class="game-img" [src]="getGameImageUrl(game.name)" alt="Card image cap">
+              <p class="game-text">{{game.description}}</p>
+            </div>
+          </a>
+        }
+      }
+      @if(horror.length > 3){
+        <input class="slider-button slider-btn-right" type="image" (click)="nextGame(horror)" src="../../../assets/right-arrow.svg">
+      }
+    </div>
+  </div>
+}

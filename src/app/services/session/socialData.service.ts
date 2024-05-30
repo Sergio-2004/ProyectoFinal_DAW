@@ -42,7 +42,8 @@ export class SocialDataService {
           title: post.title,
           username: post.username,
           content: post.content,
-          hasImage: post.hasImage
+          hasImage: post.hasImage,
+          date: post.date
         })))
       });
   }
@@ -52,7 +53,8 @@ export class SocialDataService {
      .subscribe(response => {
         this.commentList.next(response.map(comment => ({
           username: comment.username,
-          content: comment.content
+          content: comment.content,
+          date: comment.date
         })))
       });
   }

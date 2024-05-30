@@ -31,3 +31,11 @@ textarea{
   padding-right: 50px;
   padding-left: 50px;
 }
+
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+.content{
+  padding: 30px;
+}

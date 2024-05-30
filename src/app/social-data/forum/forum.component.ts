@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from '../../services/session/session.service';
 import { SocialDataService } from '../../services/session/socialData.service';
 import { SearchBarComponent } from '../../common/search-bar/search-bar.component';
@@ -18,6 +18,7 @@ export class ForumComponent {
   _route: ActivatedRoute = inject(ActivatedRoute);
   socialData:SocialDataService = inject(SocialDataService);
   sessionService: SessionService = inject(SessionService);
+  router: Router = inject(Router);
   constructor(){
     this.socialData.currentPostList.subscribe(postList => {
       this.posts = postList;
@@ -50,5 +51,9 @@ export class ForumComponent {
     event.forEach(title => {
       this.filtered.push(this.posts.find(post => post.title == title)!);
     });
+  }
+
+  goToPost(event: string){
+    this.router.navigateByUrl('forum/' + this.posts.find(post => post.title == event)?.id);
   }
 }

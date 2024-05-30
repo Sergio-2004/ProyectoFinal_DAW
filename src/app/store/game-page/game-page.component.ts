@@ -50,4 +50,8 @@ export class GamePageComponent implements OnInit {
     this.gameDataService.addToLibrary(game.id, this.sessionService.getSession()!.id);
   }
 
+  getGameImageUrl(): string {
+    return `http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getGameImage.php?game_name=${this.game?.name}`;
+  }
+
 }

@@ -1,4 +1,13 @@
 
 input, button, textarea{
   color: black;
+  resize: none;
+  margin: 10px;
+  border: 2px solid #406c91;
+}
+
+.top-container{
+  margin-top: 50px;
+ background-color: #a1c6cf;
+ border: 5px solid #406c91;;
 }

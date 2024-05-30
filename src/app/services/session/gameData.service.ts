@@ -39,6 +39,7 @@ export class GameDataService {
           name: game.name,
           creator_id: game.creator_id,
           description: game.description,
+          genres: game.genres,
         })))
       });
   }
@@ -107,7 +108,7 @@ export class GameDataService {
   addToLibrary(gameId: number, userId: number) {
     this.http.get('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/addToLibrary.php', {params: {'game_id': gameId, 'user_id': userId}})
     .subscribe(response => {
-      console.log(response);
+      this.router.navigateByUrl('library')
      });
   }
 

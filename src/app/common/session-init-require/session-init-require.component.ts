@@ -5,7 +5,8 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-    <div class="container">
+    <div class="container" style="text-align: center; margin: auto">
+      <img src="../assets/logo/logo.png" width="400px">
       <p>Necesita iniciar sesión para acceder a esta sección, <a href="log-in">pulse aqui para iniciar sesión si ya tiene una cuenta</a></p>
       <p>Si no tiene cuenta puede, <a href="sign-in">pulsar aqui para crear una nueva cuenta</a></p>
     </div>

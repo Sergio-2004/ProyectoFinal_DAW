@@ -26,9 +26,10 @@ try{
 
   // Consulta SQL para obtener los juegos de la base de datos
   $stmt = $conn->prepare(
-      "INSERT INTO posts (user_id, forum_id, title, content, has_image)
-      VALUES (?, ?, ?, ?, ?);");
-  $stmt->bind_param("iissi", $user_id, $forum_id, $title, $content, $has_image);
+      "INSERT INTO posts (user_id, forum_id, title, content, has_image, date)
+      VALUES (?, ?, ?, ?, ?, ?);");
+  $current_date = date("Y-m-d");
+  $stmt->bind_param("iissis", $user_id, $forum_id, $title, $content, $has_image, $current_date);
 
     if ($stmt->execute()) {
         echo json_encode(['message' => "Post publicado correctamente."]);

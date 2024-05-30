@@ -3,12 +3,12 @@
   <div class="d-flex justify-content-center">
     <div class="container back-container">
       <div class="post">
-        <p>{{post!.username}}</p>
+        <strong class="header"><span>{{post.username}}</span> <span>{{post.date}}</span></strong>
         <h1>{{post!.title}}</h1>
         @if(post.hasImage){
           <h1><img [src]="getPostImageUrl()" alt="Imagen" width="200px"></h1>
         }
-        <p>{{post!.content}}</p>
+        <p class="content">{{post!.content}}</p>
       </div>
 
       <div class="comments">
@@ -20,8 +20,8 @@
         @for (comment of comments; track $index) {
           <ul class="list-group">
             <li class="list-group-item">
-              <p>{{comment.username}}.<p>
-              <p>{{comment.content}}<p>
+              <strong class="header"><span>{{comment.username}}</span> <span>{{comment.date}}</span></strong>
+              <p>{{comment.content}}</p>
             </li>
           </ul>
         }

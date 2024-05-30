@@ -73,4 +73,8 @@ export class DeveloperComponent implements OnInit{
       })
     }
   }
+
+  getGameImageUrl(game: Game): string {
+    return `http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getGameImage.php?game_name=${game?.name}`;
+  }
 }

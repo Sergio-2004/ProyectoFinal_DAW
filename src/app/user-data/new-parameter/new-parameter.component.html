@@ -1,2 +1,6 @@
-<input type="text" #name>
-<button (click)="testData(name.value)">Crear parámetro</button>
+<div>
+  <input type="text" placeholder="Nuevo parámetro" #name>
+  <span>
+    <button (click)="testData(name.value)">Añadir parámetro</button>
+  </span>
+</div>

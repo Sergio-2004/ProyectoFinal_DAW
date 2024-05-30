@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SocialDataService } from '../../services/session/socialData.service';
 import { SessionService } from '../../services/session/session.service';
 import { Forum } from '../../common/interfaces/IForum';
 import { SearchBarComponent } from '../../common/search-bar/search-bar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-social',
@@ -22,6 +23,7 @@ export class SocialComponent implements OnInit{
 
   socialDataService:SocialDataService = inject(SocialDataService);
   sessionService: SessionService = inject(SessionService);
+  router: Router = inject(Router);
 
   public forums!: Forum[];
   public filtered!: Forum[];
@@ -44,4 +46,8 @@ export class SocialComponent implements OnInit{
     return `http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getForumImage.php?forum_name=${forum_name}.png`;
   }
 
+
+  goToForum(event: string){
+    this.router.navigateByUrl('forum/' + this.forums.find(forum => forum.name == event)?.id);
+  }
 }

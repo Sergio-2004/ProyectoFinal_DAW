@@ -8,7 +8,6 @@ h1{
 
 #post{
   margin: 10px;
-  background-color:#416b93;
 }
 
 .title{
@@ -34,4 +33,4 @@ hr{
 .container{
   background-color: #cedede;
   padding: 30px 20px 30px 20px;
- }
+}

@@ -18,11 +18,11 @@ h1{
 
 .slider-btn-left{
   position: relative;
-  right: -60px;
+  top: 100px;
 }
 .slider-btn-right{
   position: relative;
-  left: -60px;
+  top: 100px;
 }
 
 div.search-box *{
@@ -77,4 +77,8 @@ div.search-box *{
 .card-container{
   background-color: #d7e7e7;
   padding: 50px 10px 50px 10px;
+}
+
+h2{
+  padding-top: 50px;
 }

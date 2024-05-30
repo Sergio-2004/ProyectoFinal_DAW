@@ -2,7 +2,7 @@
 <div class="container">
   @if(forum){
     <h1>{{forum.name}}</h1>
-    <app-search-bar [items]="postTitles" (selectedFilter)="filterPosts($event)"></app-search-bar>
+    <app-search-bar [items]="postTitles" (selectedFilter)="filterPosts($event)" (selectedOption)="goToPost($event)"></app-search-bar>
     <div class="wraper">
       @if(sessionService.getSession()){
         <a href="forum/{{forum.id}}/create_post">Crear post</a>

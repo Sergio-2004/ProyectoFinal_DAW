@@ -7,7 +7,7 @@
   <textarea cols="60" rows="10" placeholder="Contenido" #content></textarea>
   <div>
   <input type="checkbox" id="showUploadImage" (change)="toggleSwowUploadImage()">
-  <label for="showUploadImage">Añadir imagen</label>
+  <label for="showUploadImage" style="color: black;">Añadir imagen</label>
   </div>
   @if(showUploadImage){
     <input type="file" (change)="onFileSelected($event)">

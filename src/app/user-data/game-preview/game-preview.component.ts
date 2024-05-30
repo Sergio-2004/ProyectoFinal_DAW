@@ -28,4 +28,8 @@ export class GamePreviewComponent {
     this.gameDataService.removeFromLibrary(this.game!.id, this.sessionService.getSession()!.id);
     window.location.reload();
   }
+
+  getGameImageUrl(): string {
+    return `http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/getGameImage.php?game_name=${this.game?.name}`;
+  }
 }

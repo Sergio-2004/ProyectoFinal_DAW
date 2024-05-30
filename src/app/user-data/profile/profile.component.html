@@ -1,16 +1,20 @@
 @if(!sessionService.getSession()){
   <app-session-init-require></app-session-init-require>
 }@else {
-  <div class="container p-5">
+  <div class="container p-5 top-container">
         <div class="row">
-          <div class="col">
-            <app-upload-image></app-upload-image>
+          <div class="col" style="margin-top: 30px;">
+            <span>
+              <h3>Editar foto de perfil</h3>
+              <app-upload-image></app-upload-image>
+            </span>
           </div>
-          <div class="col">
+          <div class="col" style="position: relative; top: -30px;">
+            <h1>{{sessionService.getSession()?.username}}</h1>
             <img [src]="getProfileImageUrl()" alt="Imagen" width="200px">
           </div>
-          <div class="col">
-            <h1>{{sessionService.getSession()?.username}}</h1>
+          <div class="col" style="margin-top: 30px;">
+            <h2>Sobre ti</h2>
             <textarea cols="50" rows="10" [value]="sessionService.getSession()?.description" #description>{{sessionService.getSession()?.description}}</textarea>
             <button (click)="uploadDescription(description.value)">Subir descripción</button>
           </div>

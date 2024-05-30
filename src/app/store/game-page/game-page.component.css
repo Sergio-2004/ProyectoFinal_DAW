@@ -1,3 +1,7 @@
 .image-wraper{
     overflow: hidden; max-height: 91vh; max-width: 700px; border: 20px solid #406c8f;
-  }
+}
+
+button{
+  margin: 10px;
+}
