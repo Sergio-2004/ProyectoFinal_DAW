@@ -1,5 +1,24 @@
+.content{
+  padding-top: 50px;
+  padding-left: 50px;
+  max-width: 40vw;
+}
+
 .image-wraper{
-    overflow: hidden; max-height: 91vh; max-width: 700px; border: 20px solid #406c8f;
+  overflow: hidden;
+  height: 91vh;
+  width: 500px;
+  max-width: 500px;
+  border: 20px solid #406c8f;
+  background-color: #406c8f;
+  text-align: center;
+  position: sticky;
+  right: 0;
+}
+
+.image-wraper img{
+  width: 400px;
+  max-width: 400px;
 }
 
 button{

@@ -22,7 +22,7 @@ if ($conexion->connect_error) {
 $user_id = $_GET['user_id'];
 
 // Consulta SQL para obtener la imagen del usuario de la base de datos
-$sql="SELECT users.password as password, users.id as id, users.username as username, profiles.description as description
+$sql="SELECT users.password as password, users.id as id, users.username as username, profiles.description as description, users.is_admin as isAdmin
   FROM users
   JOIN profiles ON (users.id = profiles.user_id)
   WHERE users.id = ?;";
@@ -35,7 +35,7 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     // Obtener los datos de la imagen de la fila de resultados
     $row = $result->fetch_assoc();
-    echo json_encode(['user' => ['id' => $row['id'], 'username' => $row['username'], 'description' => $row['description']]]);
+    echo json_encode(['user' => ['id' => $row['id'], 'username' => $row['username'], 'description' => $row['description'], 'isAdmin' => $row['isAdmin']]]);
 }
 // Cerrar la conexión a la base de datos
 $stmt->close();

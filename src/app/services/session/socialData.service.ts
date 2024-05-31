@@ -1,16 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../../common/interfaces/post';
 import { Forum } from '../../common/interfaces/IForum';
 import { Comment } from '../../common/interfaces/comment';
 import { ImageUploadService } from '../image/image-upload.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocialDataService {
-  constructor(private http: HttpClient, private imageUploadService: ImageUploadService) { }
+
+  http: HttpClient = inject(HttpClient);
+  imageUploadService: ImageUploadService = inject(ImageUploadService);
+  router: Router = inject(Router);
 
   private forumList = new BehaviorSubject<Forum[]>([]);
   currentForumList = this.forumList.asObservable();
@@ -73,33 +77,37 @@ export class SocialDataService {
     this.http.get<Post[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/postPost.php', {params: {'forum_id':forum_id, 'user_id':user_id,'title': title, 'content': content, 'has_image': image != null ? 1: 0}})
     .subscribe(response => {
       console.log(response);
+      if(!image){
+        this.router.navigate(['social/'+forum_id]);
+      }else{
+        this.imageUploadService.uploadPostImage(image, forum_id, title)
+        .subscribe({
+          next: (response) => {
+            console.log('Imagen subida correctamente:', response);
+            this.router.navigate(['social/'+forum_id]);
+          }, 
+          error: (error) => {
+          console.error('Error al subir la imagen:', error);
+          }
+        });
+      }
     });
-    if(image){
-      this.imageUploadService.uploadPostImage(image, forum_id, title)
-      .subscribe(response => {
-        console.log('Imagen subida correctamente:', response);
-        // Aquí puedes manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
-      }, error => {
-        console.error('Error al subir la imagen:', error);
-        // Aquí puedes manejar errores, por ejemplo, mostrar un mensaje de error al usuario
-      });
-    }
   }
 
-  postForum(name: string, description: string, image?: File){
+  postForum(name: string, description: string, image: File){
     this.http.get<Post[]>('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/postForum.php', {params: {'forum_name':name, 'forum_description':description}})
     .subscribe(response => {
       console.log(response);
-    });
-    if(image){
       this.imageUploadService.uploadForumImage(image, name)
-      .subscribe(response => {
-        console.log('Imagen subida correctamente:', response);
-        // Aquí puedes manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
-      }, error => {
+      .subscribe({
+        next: (response) => {
+          console.log('Imagen subida correctamente:', response);
+          this.router.navigate(['social']);
+        }, 
+        error: (error) => {
         console.error('Error al subir la imagen:', error);
-        // Aquí puedes manejar errores, por ejemplo, mostrar un mensaje de error al usuario
+        }
       });
-    }
+    });
   }
 }

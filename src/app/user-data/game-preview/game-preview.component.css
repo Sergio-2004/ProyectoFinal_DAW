@@ -1,8 +1,14 @@
+.content{
+  padding-top: 50px;
+  padding-left: 50px;
+  max-width: 40vw;
+}
+
 .image-wraper{
   overflow: hidden;
   height: 91vh;
-  width: 700px;
-  max-width: 700px;
+  width: 500px;
+  max-width: 500px;
   border: 20px solid #406c8f;
   background-color: #406c8f;
   text-align: center;
@@ -10,9 +16,9 @@
   right: 0;
 }
 
-img{
-  width: 500px;
-  max-width: 500px;
+.image-wraper img{
+  width: 400px;
+  max-width: 400px;
 }
 
 

@@ -11,8 +11,8 @@ import { SocialDataService } from '../../services/session/socialData.service';
 })
 export class CreateForumComponent {
 
-socialData:SocialDataService = inject(SocialDataService);
-router: Router = inject(Router);
+  socialData:SocialDataService = inject(SocialDataService);
+  router: Router = inject(Router);
 
   showError: boolean = false;
 
@@ -21,7 +21,6 @@ router: Router = inject(Router);
   submitForum(name: string, description: string){
     if(name != '' && description != '' && this.selectedImage){
       this.socialData.postForum(name, description, this.selectedImage);
-      this.router.navigate(['social']);
     }else{
       this.showError = true;
     }

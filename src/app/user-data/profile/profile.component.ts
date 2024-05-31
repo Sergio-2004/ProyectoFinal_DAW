@@ -35,6 +35,7 @@ export class ProfileComponent {
   }
 
   uploadDescription(description: string){
+    console.log(this.sessionService.getSession())
     this.http.get('http://localhost/Betanet_ProyectoFinal_DAW/HTMLRequests/uploadDescription.php', {params: {'user_id': this.sessionService.getSession()!.id, 'description': description}})
       .subscribe({
         next: (response) => {

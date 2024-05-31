@@ -26,7 +26,7 @@ try {
     $stmt = $conn->prepare(
         "INSERT INTO data_index (name, game_id, table_name) VALUES (?, ?, ?);"
     );
-    $table_name = $name ."-". $game_id;
+    $table_name = $name . "-" . $game_id;
     $stmt->bind_param("sis", $name, $game_id, $table_name);
 
     if ($stmt->execute()) {
@@ -39,17 +39,18 @@ try {
         $result = $stmt->get_result();
 
         if ($row = $result->fetch_assoc()) {
-            $tablename = $row['table_name'] ."-". $row['id'];
+            $tablename = $row['table_name'] . "-" . $row['id'];
             // Crear una nueva tabla con el nombre dinámico
-            $create_table_sql =
+            $create_table_sql = 
             "CREATE TABLE `betanet`.`$tablename` (
+                    `id` INT(5) NOT NULL AUTO_INCREMENT,
                     `player_id` INT(5) NOT NULL,
                     `recorded_date` DATE NOT NULL,
                     `value` VARCHAR(20) NOT NULL,
-                    PRIMARY KEY (`player_id`)
+                    PRIMARY KEY (`id`)
                 ) ENGINE=InnoDB;";
             if ($conn->query($create_table_sql) === TRUE) {
-                echo json_encode(['success' => "Table $table_name created successfully."]);
+                echo json_encode(['success' => "Table $tablename created successfully."]);
             } else {
                 echo json_encode(['error' => "Error creating table: " . $conn->error]);
             }
@@ -66,3 +67,4 @@ try {
 } catch (Exception $e) {
     echo json_encode(['error' => $e->getMessage()]);
 }
+?>

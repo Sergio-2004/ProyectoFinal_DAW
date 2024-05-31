@@ -29,7 +29,7 @@ try{
       $stmt->execute();
 
 
-      $sql="SELECT users.password as password, users.id as id, users.username as username, profiles.description as description, profiles.picture as picture
+      $sql="SELECT users.password as password, users.id as id, users.username as username, profiles.description as description
             FROM users
             JOIN profiles ON (users.id = profiles.user_id)
             WHERE username = ?;";
@@ -39,16 +39,14 @@ try{
       $resultado = $stmt->get_result();
       if($resultado->num_rows == 0){
           echo json_encode(['message' => 'No username by that name']);
-          exit;
       }else if(($row = mysqli_fetch_assoc($resultado))["password"]!=$password){
           echo json_encode(['message' => 'Incorrect password']);
-          exit;
       }else{
           echo json_encode(['message' => 'Registration successful', 'user' => ['id' => $row['id'], 'username' => $row['username'], 'description' => $row['description']]]);
-          exit;
       }
       $stmt->close();
       mysqli_close($conexion);
+      exit;
   }
 }catch(Exception $e){
     echo json_encode(['message' => $e->getMessage()]);

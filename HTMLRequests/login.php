@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     or die("Connection error");
     mysqli_select_db($conexion, "betanet")
     or die("Error connecting to database");
-    $sql="SELECT users.password as password, users.id as id, users.username as username, profiles.description as description
+    $sql="SELECT users.password as password, users.id as id, users.username as username, profiles.description as description, users.is_admin as isAdmin
           FROM users
           JOIN profiles ON (users.id = profiles.user_id)
           WHERE username = ?;";
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 echo json_encode(['message' => 'Incorrect password']);
                 exit;
             }else{
-                echo json_encode(['message' => 'Registration successful', 'user' => ['id' => $row['id'], 'username' => $row['username'], 'description' => $row['description']]]);
+                echo json_encode(['message' => 'Registration successful', 'user' => ['id' => $row['id'], 'username' => $row['username'], 'description' => $row['description'], 'isAdmin' => $row['isAdmin']]]);
                 exit;
             }
             $stmt->close();

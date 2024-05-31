@@ -47,7 +47,7 @@ $tables = $query->fetchAll(PDO::FETCH_COLUMN);
 foreach ($tables as $table) {
     echo "<h2>Tabla: $table</h2>";
 
-    $query = $pdo->query("SELECT * FROM $table");
+    $query = $pdo->query("SELECT * FROM `$table`");
     $entries = $query->fetchAll(PDO::FETCH_ASSOC);
 
     if (count($entries) > 0) {
@@ -93,7 +93,7 @@ foreach ($tables as $table) {
     echo "<form method='POST'>";
     echo "<input type='hidden' name='table' value='$table'>";
     echo "<input type='hidden' name='action' value='insert'>";
-    foreach ($pdo->query("DESCRIBE $table") as $column) {
+    foreach ($pdo->query("DESCRIBE `$table`") as $column) {
         echo $column['Field'] . ": <input type='text' name='data[{$column['Field']}]'><br>";
     }
     echo "<input type='submit' value='Insertar'>";
