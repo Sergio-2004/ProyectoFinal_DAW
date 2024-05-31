@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2024 a las 00:56:38
+-- Tiempo de generación: 31-05-2024 a las 02:16:28
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -105,7 +105,7 @@ INSERT INTO `games` (`id`, `name`, `creator_id`, `description`, `genres`) VALUES
 (3, 'Shoot', 1, 'Embárcate en una emocionante aventura controlando a una serpiente mágica que crece cada vez que come gemas brillantes. Explora mundos fantásticos y descubre secretos antiguos mientras te deslizas sinuosamente por paisajes exóticos.', 'action,horror'),
 (4, 'Neon', 2, 'Un juego de plataformas trepidante donde saltas y corres a través de niveles desafiantes llenos de trampas mortales. Domina habilidades acrobáticas y desafía los límites de la gravedad en este emocionante viaje lleno de acción.', 'action'),
 (5, 'Don\'t lie', 2, 'Únete a una emocionante carrera de autos por las bulliciosas calles de la ciudad, esquivando el tráfico y compitiendo contra otros pilotos. Personaliza tu vehículo y demuestra tus habilidades de conducción en este trepidante juego de carreras urbano.', 'horror'),
-(35, 'Galaxy Defiance', 1, '¡Prueba a este apasionante juego de aventuras espaciales! Inspirado en los Space Invaders y Galaga, junta los géneros del bullet hell con los clásicos juegos de \"marcianitos\".', '');
+(35, 'Galaxy Defiance', 1, '¡Prueba a este apasionante juego de aventuras espaciales! Inspirado en los Space Invaders y Galaga, junta los géneros del bullet hell con los clásicos juegos de \"marcianitos\".\n(DESCARGABLE)', 'action');
 
 -- --------------------------------------------------------
 
@@ -114,6 +114,7 @@ INSERT INTO `games` (`id`, `name`, `creator_id`, `description`, `genres`) VALUES
 --
 
 CREATE TABLE `highscore-35-24` (
+  `id` int(5) NOT NULL,
   `player_id` int(5) NOT NULL,
   `recorded_date` date NOT NULL,
   `value` varchar(20) NOT NULL
@@ -123,26 +124,14 @@ CREATE TABLE `highscore-35-24` (
 -- Volcado de datos para la tabla `highscore-35-24`
 --
 
-INSERT INTO `highscore-35-24` (`player_id`, `recorded_date`, `value`) VALUES
-(1, '2024-05-27', '130'),
-(2, '2024-05-27', '40'),
-(3, '2024-05-27', '30'),
-(4, '2024-05-28', '60'),
-(5, '2024-05-28', '55'),
-(6, '2024-05-16', '5'),
-(7, '2024-05-15', '350');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `highscore-38-26`
---
-
-CREATE TABLE `highscore-38-26` (
-  `player_id` int(5) NOT NULL,
-  `recorded_date` date NOT NULL,
-  `value` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `highscore-35-24` (`id`, `player_id`, `recorded_date`, `value`) VALUES
+(1, 1, '2024-05-27', '130'),
+(2, 2, '2024-05-27', '40'),
+(3, 3, '2024-05-27', '30'),
+(4, 4, '2024-05-28', '60'),
+(5, 5, '2024-05-28', '55'),
+(6, 6, '2024-05-16', '5'),
+(7, 7, '2024-05-15', '350');
 
 -- --------------------------------------------------------
 
@@ -238,23 +227,24 @@ INSERT INTO `profiles` (`id`, `user_id`, `description`) VALUES
 CREATE TABLE `users` (
   `id` int(5) NOT NULL,
   `username` varchar(15) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(20) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, 'Sergio', '1234'),
-(2, 'john_doe', 'pass123'),
-(3, 'alice_smith', 'securepw'),
-(4, 'mike_jackson', 'mysecret'),
-(5, 'sarah_brown', 'letmein'),
-(6, 'david_wilson', 'p@ssw0rd'),
-(7, 'emily_clark', 'sunshine'),
-(8, 'chris_taylor', 'qwerty'),
-(9, 'laura_miller', 'ilovecats');
+INSERT INTO `users` (`id`, `username`, `password`, `is_admin`) VALUES
+(1, 'Sergio', '1234', 1),
+(2, 'john_doe', 'pass123', 0),
+(3, 'alice_smith', 'securepw', 0),
+(4, 'mike_jackson', 'mysecret', 0),
+(5, 'sarah_brown', 'letmein', 0),
+(6, 'david_wilson', 'p@ssw0rd', 0),
+(7, 'emily_clark', 'sunshine', 0),
+(8, 'chris_taylor', 'qwerty', 0),
+(9, 'laura_miller', 'ilovecats', 0);
 
 --
 -- Índices para tablas volcadas
@@ -292,13 +282,8 @@ ALTER TABLE `games`
 -- Indices de la tabla `highscore-35-24`
 --
 ALTER TABLE `highscore-35-24`
-  ADD PRIMARY KEY (`player_id`);
-
---
--- Indices de la tabla `highscore-38-26`
---
-ALTER TABLE `highscore-38-26`
-  ADD PRIMARY KEY (`player_id`);
+  ADD PRIMARY KEY (`player_id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indices de la tabla `libraries`
@@ -342,7 +327,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT de la tabla `data_index`
 --
 ALTER TABLE `data_index`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `forums`
@@ -355,6 +340,12 @@ ALTER TABLE `forums`
 --
 ALTER TABLE `games`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT de la tabla `highscore-35-24`
+--
+ALTER TABLE `highscore-35-24`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `libraries`
