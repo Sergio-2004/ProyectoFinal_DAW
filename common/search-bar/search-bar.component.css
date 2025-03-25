@@ -1,0 +1,9 @@
+a{
+  text-decoration: none;
+
+  cursor: pointer;
+}
+button{
+  margin-left: 10px;
+  border: 2px solid #406c91;
+}

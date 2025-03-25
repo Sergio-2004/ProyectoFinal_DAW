@@ -1,0 +1,36 @@
+label{
+  color: white;
+}
+
+h1{
+  text-align: center;
+}
+
+#post{
+  margin: 10px;
+}
+
+.title{
+  font-size: 30px;
+}
+
+input, textarea{
+  background-color:#416b93;
+  border: none;
+  outline: none;
+  caret-color: white;
+  resize: none;
+  color: white;
+}
+::placeholder {
+  color: lightgray;
+  opacity: 1;
+}
+hr{
+  color: white;
+}
+
+.container{
+  background-color: #cedede;
+  padding: 30px 20px 30px 20px;
+}

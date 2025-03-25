@@ -1,0 +1,19 @@
+@if(!sessionService.getSession()){
+  <app-session-init-require></app-session-init-require>
+}@else {
+  <div class="d-flex" style="height: 500px; height: 91vh">
+    <nav class="nav-lib" style="width: 300px;">
+      <ul class="nav flex-column">
+      @for(game of games; track $index){
+        <li class="nav-item">
+          <button class="nav-link active d-flex" (click)="selectGame(game)"><p class="p-2">{{game.name}}</p></button>
+        </li>
+      }
+      </ul>
+    </nav>
+
+    <div style="width: 100%;">
+      <app-game-preview [game]="this.selectedGame"></app-game-preview>
+    </div>
+    </div>
+}

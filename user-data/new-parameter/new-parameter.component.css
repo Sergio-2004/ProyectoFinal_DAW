@@ -1,0 +1,13 @@
+input{
+  background-color: #406c8f;
+  color: white;
+}
+::placeholder {
+  color: lightgray;
+  opacity: 1;
+}
+div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

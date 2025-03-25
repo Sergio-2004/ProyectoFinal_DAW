@@ -1,0 +1,27 @@
+<div class="container d-flex flex-column">
+
+  <div class="container p-2">
+    <h1 class="text-center">Foros</h1>
+    @if(sessionService.getSession()){
+      <a href="social/create_forum">Crear Nuevo Foro</a>
+    }@else {
+      <p>Debe iniciar sesión para poder crear un nuevo Foro, <a href="log-in">pulse aqui para iniciar sesión</a></p>
+    }
+    <app-search-bar [items]="forumNames" (selectedFilter)="filterForums($event)" (selectedOption)="goToForum($event)"></app-search-bar>
+    <div class="row row-gap-4 row-cols-lg-3 row-cols-xs-1 row-cols-sm-1">
+    @for (forum of filtered; track $index) {
+    <a class='list-group-warper' href="forum/{{forum.id}}">
+      <li class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <div style="min-width: 75px; max-width: 75px; padding-right: 10px;">
+        <img [src]="getForumImageUrl(forum.name)" alt="Imagen" style="width: 100%;">
+        </div>
+        <div>
+          <h2 style="padding: 0; text-align: center;">{{forum.name}}</h2>
+        </div>
+      </div>
+    </li></a>
+    }
+    </div>
+  </div>
+</div>

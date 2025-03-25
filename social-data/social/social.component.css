@@ -1,0 +1,22 @@
+
+
+a.list-group-warper{
+  text-decoration: none;
+}
+
+.spacer{
+  height: 5vw;
+}
+
+.list-group-item{
+  background-color: #406c91;
+  min-height: 150px;
+  padding:10px;
+  margin: 10px;
+  font-size: 20px;
+  color: white;
+}
+
+.list-group-item:hover{
+  background-color: #5796c9;
+}

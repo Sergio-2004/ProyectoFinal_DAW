@@ -1,0 +1,23 @@
+
+
+<nav class="navbar navbar-expand-sm">
+  <span class="logo"><img src="../../assets/logo/logo4.png" width="90px"></span>
+  <ul class="navbar-nav">
+    <li class="nav-item"><a class="nav-link" href="shop">Catálogo </a></li>
+    <li class="nav-item"><a class="nav-link" href="library"> Biblioteca </a></li>
+    <li class="nav-item"><a class="nav-link" href="social"> Social </a></li>
+    <li class="nav-item"><a class="nav-link" href="developer"> Desarrollador </a></li>
+    @if(sessionService.getSession() && sessionService.getSession()?.isAdmin == 1){
+      <li class="nav-item"><a class="nav-link" href="http://localhost:8000/ProyectoFinal_DAW-main/src/app/admin.php"> Administrador </a></li>
+    }
+  </ul>
+  <ul class="navbar-nav right">
+    <li class="nav-item" style="padding: 0;"><a class="nav-link" href="profile">
+      @if(sessionService.getSession()){
+        <img [src]="getProfileImageUrl()" width="40px">
+      }@else{
+        <img src="{{imageUrl}}" style="width: 40px;">
+      }
+     </a></li>
+  </ul>
+</nav>

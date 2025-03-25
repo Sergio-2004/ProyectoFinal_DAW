@@ -1,0 +1,11 @@
+.nav-link{
+  text-decoration: none;
+  color: white;
+}
+
+.nav-item:hover{
+  background-color: #5893c4;
+}
+.nav-lib{
+  background-color: #406c91;
+}

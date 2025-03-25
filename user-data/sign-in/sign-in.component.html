@@ -1,0 +1,17 @@
+  <div class="container d-flex flex-column w-25 mt-5">
+    <strong>Introduzca su nombre de usuario:</strong>
+    <input class="m-2" type="text" #user placeholder="Nombre de usuario">
+    <strong>Introduzca su contraseña:</strong>
+    <input class="m-2" type="password" #password1 placeholder="****">
+    <strong>Repita su contraseña:</strong>
+    <input class="m-2" type="password" #password2 placeholder="****">
+    <div>
+      <input class="m-2" type="checkbox" #checkbox>
+      Aceptar eula Eula, <a class="eula" (click)="EULAPopup()">pulse aqui para leerlo</a>
+    </div>
+    @if(notSamePassword){
+      <p style="color: red;">Las contraseñas no coinciden</p>
+    }
+    <button class="m-2" (click)="signIn(user.value, password1.value, password2.value, checkbox.checked)">Crear Usuario</button>
+    <p>Si ya tiene una cuenta, pulse <a href="log-in">aqui</a></p>
+  </div>

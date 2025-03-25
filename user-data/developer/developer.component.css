@@ -1,0 +1,55 @@
+.list .nav-item:hover{
+  cursor: pointer;
+  background-color: #5893c4;
+
+}
+.nav-lib.list{
+  background-color: #406c91;
+  height: 91vh;
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.nav-lib.game{
+  min-width: 300px;
+  max-width: 300px;
+  padding: 50px;
+}
+
+.item:hover {
+  cursor: pointer;
+  background-color: #5893c4;
+}
+
+.game.nav-item{
+  background-color: #406c91;
+  border: 3px solid #243e53;
+}
+
+a{
+  text-decoration: none;
+  color: white!important;
+  font-size: 20px;
+}
+
+.image-wraper{
+  overflow: hidden;
+  height: 91vh;
+  width: 500px;
+  max-width: 500px;
+  border: 20px solid #406c8f;
+  background-color: #406c8f;
+  text-align: center;
+  position: sticky;
+  right: 0;
+}
+
+.image-wraper img{
+  width: 400px;
+  max-width: 400px;
+}
+
+li{
+  margin-bottom: 10px;
+  align-items: center;
+}

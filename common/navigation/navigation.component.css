@@ -1,0 +1,28 @@
+@media all {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+  .nav-item:hover, .dropdown-item:hover{background-color: #252c3f;}
+  .nav-item{ font-weight: 500; font-size: 20px;}
+}
+*{
+  color: white;
+}
+li{
+  padding-top: 20px;
+  padding-bottom: 20px ;
+}
+.right{
+  position: absolute;
+  right: 0;
+}
+nav, ul{
+  background-color: #323c57;
+  padding: 0;
+}
+li+li{
+  margin-left: 5px;
+}
+.logo img{
+  margin: auto;
+}

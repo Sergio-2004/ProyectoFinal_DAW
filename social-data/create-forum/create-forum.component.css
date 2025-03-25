@@ -1,0 +1,33 @@
+
+#post{
+  margin: 10px;
+  background-color:#416b93;
+}
+h1{
+  text-align: center;
+}
+.title{
+  font-size: 30px;
+}
+
+input, textarea{
+  background-color:#416b93;
+  border: none;
+  outline: none;
+  caret-color: white;
+  resize: none;
+  color: white;
+  resize: none;
+}
+::placeholder {
+  color: lightgray;
+  opacity: 1;
+}
+hr{
+  color: white;
+}
+
+.container{
+ background-color: #cedede;
+ padding: 30px 20px 30px 20px;
+}

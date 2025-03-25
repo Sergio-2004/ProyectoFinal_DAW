@@ -1,0 +1,64 @@
+@if(sessionService.getSession()){
+    <div class="d-flex">
+      <nav class="nav-lib list">
+          <ul class="nav flex-column">
+            @if(games){
+              <li class="nav-item">
+                <a class="nav-link active d-flex" href="new-game">
+               <p class="p-2">Publicar nuevo juego</p>
+              </a>
+              </li>
+              @for(game of games; track $index){
+                <li class="nav-item">
+                  <a class="nav-link active d-flex" (click)="selectGame(game)">
+                    <p class="p-2">{{game.name}}</p>
+                  </a>
+                </li>
+              }
+            }
+          </ul>
+      </nav>
+          @if(selectedGame){
+            <div class="d-flex justify-content-between" style="width: 100vw;">
+              <nav class="nav-lib game">
+                <ul class="nav flex-column">
+                  @for(data of dataIndexList; track $index){
+                    <li class="nav-item game d-flex justify-content-between">
+                      <a class="item" style="width: 200px; text-align: center; padding-top: 5px;" href="parameter/{{selectedGame.id}}/{{data.name}}">
+                        {{data.name}}
+                      </a>
+                      <a class="item" (click)="deleteParameter(data.name, selectedGame.id)"><img src="/assets/delete.svg" width="40px"></a>
+                    </li>
+                  }
+                  <li class="nav-item game new-parameter">
+                    <app-new-parameter [game]="selectedGame"></app-new-parameter>
+                  </li>
+                </ul>
+              </nav>
+              <div>
+                <div class="col">
+                  <h3 class="row m-5">Cambiar archivos de juego</h3>
+                  <div class="w-100"></div>
+                  <input class="row m-2" type="file" (change)="onFileSelected($event)">
+                  <div class="w-100"></div>
+                  <button class="btn btn-success row m-2" (click)="updateGameFiles()">Cambiar archivos</button>
+                  <div class="w-100"></div>
+                  <h3 class="row p-3">Eliminar juego</h3>
+                  <div class="w-100"></div>
+                  <button class="btn btn-danger row m-2" (click)="deleteGame(selectedGame)">Eliminar juego</button>
+                </div>
+              </div>
+              <div class="image-wraper">
+                <img [src]="getGameImageUrl(selectedGame)">
+              </div>
+            </div>
+          }@else{
+            <div style="position: relative; left: 30vw; text-align: center;">
+              <img src="../assets/logo/logo.png" width="400px">
+              <h3 style="text-align: center;">Seleccione o cree un juego para ver sus parámetros</h3>
+            </div>
+          }
+    </div>
+}@else {
+  <app-session-init-require></app-session-init-require>
+}
