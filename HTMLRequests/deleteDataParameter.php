@@ -1,49 +1,32 @@
 <?php
-// Establecer las cabeceras CORS para permitir solicitudes desde cualquier origen
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
-// Establecer la conexión a la base de datos
-$servername = "localhost";
-$user_id = "betanet_user";
-$password = "1234";
-$database = "betanet";
-
-$conn = new mysqli($servername, $user_id, $password, $database);
-
-// Verificar la conexión
-if ($conn->connect_error) {
-    die(json_encode(['error' => "Connection failed: " . $conn->connect_error]));
-}
-
-$name = $_GET['name'];
-$game_id = $_GET['game_id'];
-
 try {
-    // Buscar la entrada en la tabla data_index
-    $stmt = $conn->prepare("SELECT * FROM data_index WHERE name = ? AND game_id = ?;");
-    $stmt->bind_param("si", $name, $game_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $dbPath = 'C:\Users\sparrine\SQLite\betanet.db';
+    $conn = new SQLite3($dbPath);
 
-    if ($row = $result->fetch_assoc()) {
+    $name = $_GET['name'];
+    $game_id = $_GET['game_id'];
+
+    // Find the entry in data_index
+    $stmt = $conn->prepare("SELECT * FROM data_index WHERE name = :name AND game_id = :game_id;");
+    $stmt->bindValue(':name', $name, SQLITE3_TEXT);
+    $stmt->bindValue(':game_id', $game_id, SQLITE3_INTEGER);
+    $result = $stmt->execute();
+
+    if ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         $id = $row['id'];
         $table_name = $row['table_name'] . "-" . $id;
 
-        // Eliminar la entrada de la tabla data_index
-        $stmt = $conn->prepare("DELETE FROM data_index WHERE id = ?;");
-        $stmt->bind_param("i", $id);
+        // Delete the entry from data_index
+        $stmt = $conn->prepare("DELETE FROM data_index WHERE id = :id;");
+        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
 
         if ($stmt->execute()) {
-            // Eliminar la tabla dinámica
-            $drop_table_sql = "DROP TABLE IF EXISTS `betanet`.`$table_name`;";
-            if ($conn->query($drop_table_sql) === TRUE) {
-                echo json_encode(['success' => "Entry and table $table_name deleted successfully."]);
-            } else {
-                echo json_encode(['error' => "Error dropping table: " . $conn->error]);
-            }
+            echo json_encode(['success' => "Entry and table $table_name deleted successfully."]);
         } else {
             echo json_encode(['error' => "Error deleting data: " . $stmt->error]);
         }
@@ -51,7 +34,6 @@ try {
         echo json_encode(['error' => "No matching record found."]);
     }
 
-    // Cerrar la conexión a la base de datos
     $stmt->close();
     $conn->close();
 } catch (Exception $e) {

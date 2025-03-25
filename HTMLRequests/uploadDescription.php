@@ -26,7 +26,7 @@ try{
     "UPDATE profiles
     SET description = ?
     WHERE user_id = ?;");
-  $stmt->bind_param("si", $description, $user_id);
+  $stmt->bindValue("si", $description, $user_id);
 
     if ($stmt->execute()) {
         echo json_encode(['message' => "Descripción subida correctamente."]);;

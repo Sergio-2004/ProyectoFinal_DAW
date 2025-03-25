@@ -8,15 +8,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $username = $_GET["username"];
     $password = $_GET["password"];
 
-    $conexion = mysqli_connect("localhost","betanet_user","1234")
-    or die("Connection error");
-    mysqli_select_db($conexion, "betanet")
-    or die("Error connecting to database");
+    $conexion = new SQLite3('C:\Users\sparrine\SQLite\betanet.db');
     $sql="SELECT * FROM users WHERE username = ?;";
             $stmt = $conexion->prepare($sql);
-            $stmt->bind_param("s", $username);
+            $stmt->bindValue("s", $username);
             $stmt->execute();
-            $resultado = $stmt->get_result();
+            $resultado = $stmt->execute()->fetchArray();
             if($resultado->num_rows == 0){
                 echo json_encode(['message' => 'No username by that name']);
                 exit;

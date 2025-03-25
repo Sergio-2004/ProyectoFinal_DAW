@@ -29,7 +29,7 @@ try{
       "INSERT INTO posts (user_id, forum_id, title, content, has_image, date)
       VALUES (?, ?, ?, ?, ?, ?);");
   $current_date = date("Y-m-d");
-  $stmt->bind_param("iissis", $user_id, $forum_id, $title, $content, $has_image, $current_date);
+  $stmt->bindValue("iissis", $user_id, $forum_id, $title, $content, $has_image, $current_date);
 
     if ($stmt->execute()) {
         echo json_encode(['message' => "Post publicado correctamente."]);

@@ -27,7 +27,7 @@ try{
       "INSERT INTO comments (user_id, post_id, content, date)
       VALUES (?, ?, ?, ?);");
   $current_date = date("Y-m-d");
-  $stmt->bind_param("iiss", $user_id, $post_id, $content, $current_date);
+  $stmt->bindValue("iiss", $user_id, $post_id, $content, $current_date);
 
     if ($stmt->execute()) {
         echo json_encode(['message' => "Imagen actualizada correctamente."]);;

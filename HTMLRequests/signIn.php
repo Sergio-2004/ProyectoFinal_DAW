@@ -9,15 +9,12 @@ try{
       $username = $_GET["username"];
       $password = $_GET["password"];
 
-      $conexion = mysqli_connect("localhost","betanet_user","1234")
-      or die("Connection error");
-      mysqli_select_db($conexion, "betanet")
-      or die("Error connecting to database");
+      $conexion = new SQLite3('C:\Users\sparrine\SQLite\betanet.db');
 
       $sql="INSERT INTO users (username, password)
             VALUES (?, ?);";
       $stmt = $conexion->prepare($sql);
-      $stmt->bind_param("ss", $username, $password);
+      $stmt->bindValue("ss", $username, $password);
       $stmt->execute();
 
       $sql="INSERT INTO profiles (user_id)
@@ -25,7 +22,7 @@ try{
             FROM users
             WHERE username = ?;";
       $stmt = $conexion->prepare($sql);
-      $stmt->bind_param("s", $username);
+      $stmt->bindValue("s", $username);
       $stmt->execute();
 
 
@@ -34,9 +31,9 @@ try{
             JOIN profiles ON (users.id = profiles.user_id)
             WHERE username = ?;";
       $stmt = $conexion->prepare($sql);
-      $stmt->bind_param("s", $username);
+      $stmt->bindValue("s", $username);
       $stmt->execute();
-      $resultado = $stmt->get_result();
+      $resultado = $stmt->execute()->fetchArray();
       if($resultado->num_rows == 0){
           echo json_encode(['message' => 'No username by that name']);
       }else if(($row = mysqli_fetch_assoc($resultado))["password"]!=$password){

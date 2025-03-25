@@ -10,7 +10,9 @@ $user_id = "betanet_user";
 $password = "1234";
 $database = "betanet";
 
-$conn = new mysqli($servername, $user_id, $password, $database);
+$dbPath = 'C:\Users\sparrine\SQLite\betanet.db';
+
+$conn = new SQLite3($dbPath);
 
 $forum_id = $_GET['forum_id'];
 
@@ -31,9 +33,9 @@ try{
       FROM posts
       JOIN users ON posts.user_id = users.id
       WHERE posts.forum_id = ?;");
-  $stmt->bind_param("i", $forum_id);
+  $stmt->bindValue("i", $forum_id);
   $stmt->execute();
-  $result = $stmt->get_result();
+  $result = $stmt->execute()->fetchArray();
 
   $post = []; // Inicializar el arreglo fuera del bucle
   while ($row = mysqli_fetch_assoc($result)) {

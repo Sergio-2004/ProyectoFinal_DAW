@@ -26,7 +26,7 @@ try{
   $stmt = $conn->prepare(
       "INSERT INTO games (name, description, creator_id)
       VALUES (?, ?, ?);");
-  $stmt->bind_param("ssi", $name, $description, $creator_id);
+  $stmt->bindValue("ssi", $name, $description, $creator_id);
 
     if ($stmt->execute()) {
         echo json_encode(['message' => "Juego subido correctamente."]);
@@ -34,9 +34,9 @@ try{
           "SELECT *
           FROM games
           WHERE name = ?;");
-        $stmt->bind_param("s", $name);
+        $stmt->bindValue("s", $name);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $result = $stmt->execute()->fetchArray();
         $row = mysqli_fetch_assoc($result);
         mkdir('../src/assets/uploads/games/'.$row['name']);
 
@@ -47,7 +47,7 @@ try{
               SELECT 1 FROM libraries WHERE user_id = ? AND game_id = ?
           );"
       );
-      $stmt->bind_param("iiii", $row['creator_id'], $row['id'], $row['creator_id'], $row['id']);
+      $stmt->bindValue("iiii", $row['creator_id'], $row['id'], $row['creator_id'], $row['id']);
       $stmt->execute();
 
     } else {

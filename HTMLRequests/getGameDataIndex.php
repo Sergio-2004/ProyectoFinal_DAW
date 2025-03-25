@@ -1,44 +1,29 @@
 <?php
-// Establecer las cabeceras CORS para permitir solicitudes desde cualquier origen
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Content-Type");
 
-// Establecer la conexión a la base de datos
-$servername = "localhost";
-$user_id = "betanet_user";
-$password = "1234";
-$database = "betanet";
+try {
+    $dbPath = 'C:\Users\sparrine\SQLite\betanet.db';
+    $conn = new SQLite3($dbPath);
 
-$conn = new mysqli($servername, $user_id, $password, $database);
+    $game_id = $_GET['game_id'];
 
-$game_id = $_GET['game_id'];
+    // Prepare the SQL query to get game data index
+    $stmt = $conn->prepare(
+        "SELECT * FROM data_index WHERE game_id = :game_id;"
+    );
+    $stmt->bindValue(':game_id', $game_id, SQLITE3_INTEGER);
+    $result = $stmt->execute();
 
-// Verificar la conexión
-try{
-  if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-  }
+    $data = [];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $data[] = $row;
+    }
+    echo json_encode($data);
 
-  // Consulta SQL para obtener los juegos de la base de datos
-  $stmt = $conn->prepare(
-      "SELECT *
-      FROM data_index
-      WHERE game_id = ?;");
-  $stmt->bind_param("i", $game_id);
-  $stmt->execute();
-  $result = $stmt->get_result();
-
-  $data = [];
-  // Verificar si se encontraron resultados
-  while ( $row = mysqli_fetch_assoc( $result )){
-      $data[] = $row;
-  }
-  echo json_encode($data);
-
-  // Cerrar la conexión a la base de datos
-  $stmt->close();
-  $conn->close();
-}catch(Exception $e){
-  echo "Error: " . $e->getMessage();
+    $stmt->close();
+    $conn->close();
+} catch (Exception $e) {
+    echo json_encode(['error' => $e->getMessage()]);
 }

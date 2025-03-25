@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Preparar y ejecutar la consulta para obtener el id y el nombre de la tabla
         $stmt = $conn->prepare("SELECT id, table_name FROM data_index WHERE name = ? AND game_id = ?");
-        $stmt->bind_param("si", $data["name"], $data["game_id"]);
+        $stmt->bindValue("si", $data["name"], $data["game_id"]);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $result = $stmt->execute()->fetchArray();
 
         if ($row = $result->fetch_assoc()) {
             $tablename = $row['table_name'] . "-" . $row['id'];
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 recorded_date = VALUES(recorded_date), value = VALUES(value)"
             );
             $current_date = date("Y-m-d H:i:s");
-            $stmt->bind_param("iss", $data["player_id"], $current_date, $data["value"]);
+            $stmt->bindValue("iss", $data["player_id"], $current_date, $data["value"]);
 
             if ($stmt->execute()) {
                 echo json_encode(['message' => "Datos publicados o actualizados correctamente."]);

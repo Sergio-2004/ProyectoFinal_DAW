@@ -25,7 +25,7 @@ try{
   $stmt = $conn->prepare(
       "INSERT INTO forums (name, description)
       VALUES (?, ?);");
-  $stmt->bind_param("ss", $name, $description);
+  $stmt->bindValue("ss", $name, $description);
 
     if ($stmt->execute()) {
         echo json_encode(['message' => "Foro subido correctamente."]);
@@ -33,9 +33,9 @@ try{
           "SELECT id
           FROM forums
           WHERE name = ?;");
-        $stmt->bind_param("s", $name);
+        $stmt->bindValue("s", $name);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $result = $stmt->execute()->fetchArray();
         mkdir('../src/assets/uploads/forums/'.mysqli_fetch_assoc($result)['id']);
 
     } else {

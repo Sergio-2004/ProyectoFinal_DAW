@@ -10,7 +10,9 @@ $user_id = "betanet_user";
 $password = "1234";
 $database = "betanet";
 
-$conn = new mysqli($servername, $user_id, $password, $database);
+$dbPath = 'C:\Users\sparrine\SQLite\betanet.db';
+
+$conn = new SQLite3($dbPath);
 
 $id = $_GET['id'];
 
@@ -25,9 +27,9 @@ try{
       "SELECT *
       FROM data
       WHERE id = ?;");
-  $stmt->bind_param("i", $id);
+  $stmt->bindValue("i", $id);
   $stmt->execute();
-  $result = $stmt->get_result();
+  $result = $stmt->execute()->fetchArray();
 
   $data = [];
   // Verificar si se encontraron resultados
